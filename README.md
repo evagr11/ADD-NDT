@@ -7,14 +7,15 @@ Repositorio de la asignatura Acceso a Datos en New Digital Talent en el ciclo de
 ## Programación (Java)
 
 1. Explica brevemente con tus palabras qué diferencia hay entre una clase y un objeto.
-   · **Clase** : Es como una plantilla que define los atributos de algo
-   · **Objeto** : Es una copia de la plantilla co valores
+   - **Clase** : Es como una plantilla que define los atributos de algo
+   - **Objeto** : Es una copia de la plantilla co valores
 2. ¿Sabrías definir el concepto de **excepción** en el ámbito de la programación? Busque la sintaxis de una excepción en Java.
    
 3. ¿Sabrías definir el concepto de **herencia** en el ámbito de la programación?¿Qué utilidad tiene la herencia? Busque la sintaxis para indicar que una clase hereda de otra en Java.
    Es un metodo en el que una clase puede heredar atributos de otra clase, esto nos permite reutilizar código
 4. Escribe una clase Persona con los atributos nombre y edad, un constructor y un método que devuelva si la persona es mayor de edad.
-  public class Person {
+   ```java
+   public class Person {
     public String name;
     public int age;
 
@@ -27,6 +28,7 @@ Repositorio de la asignatura Acceso a Datos en New Digital Talent en el ciclo de
         return age >= 18;
     }
    }
+   ```
 
 ## Base de Datos (SQL)
 
