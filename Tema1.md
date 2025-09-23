@@ -56,8 +56,17 @@ Definición: Sucesión de bits almacenada enn un fichero
   File fichero = new File ("/Desktop/folder");
   fichero.getName();
   ```
+  #### Renombrar
+- Metodo: [boolean] renameTo(File dest)
+- Crear fichero: Renombra el fichero. Puede servir para mover archivos
+- Ejemplo:
+  ```java
+  File fichero1 = new File ("/Desktop/fichero1.txt");
+  File fichero2 = new File ("/Desktop/fichero2.txt");
+  fichero1.renameTo(fichero2);
+  ```
 
-  # Ejercicios Tema 1
+# Ejercicios Tema 1
   ## Ejercicio 1. (0.5 puntos)
   **Haciendo uso de la clase Java.io.File deberá crear un directorio con el nombre "cine_granada" dentro de la carpeta "P1" utilizada para esta práctica.**
   ```java
@@ -80,6 +89,22 @@ Definición: Sucesión de bits almacenada enn un fichero
       for (String dia : dias) {
           File dir = new File ("P1/" + dia);
           dir.mkdir();
+      }
+    }
+  ```
+
+  ## Ejercicio 3. (1 puntos)
+  **Haciendo uso de la clase Java.io.File deberá mover los siguientes directorios: "Lunes, Martes,
+Miércoles, Jueves, Viernes, Sábado, Domingo" dentro de la carpeta "cine_granada".**
+  ```java
+  import java.io.File;
+  public class MyClass {
+    public static void main(String args[]) {
+      String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
+      for (String dia : dias) {
+          File origen = new File ("P1/" + dia);
+          File destino = new File ("P1/cine_granada/" + dia);
+          origen.renameTo(destino);
       }
     }
   }
