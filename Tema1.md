@@ -65,6 +65,14 @@ Definición: Sucesión de bits almacenada enn un fichero
   File fichero2 = new File ("/Desktop/fichero2.txt");
   fichero1.renameTo(fichero2);
   ```
+  #### Comprobar existencia
+- Metodo: [boolean] exists()
+- Crear fichero: Comprueba si existe el fichero
+- Ejemplo:
+  ```java
+  File fichero = new File ("/Desktop/fichero1.txt");
+  fichero.exists();
+  ```
 
 # Ejercicios Tema 1
   ## Ejercicio 1. (0.5 puntos)
@@ -105,6 +113,37 @@ Miércoles, Jueves, Viernes, Sábado, Domingo" dentro de la carpeta "cine_granad
           File origen = new File ("P1/" + dia);
           File destino = new File ("P1/cine_granada/" + dia);
           origen.renameTo(destino);
+      }
+    }
+  }
+  ```
+
+## Ejercicio 4. (1 puntos)
+  **Hasta este momento hemos creado los directorios sin realizar ningún tipo de comprobación,
+añada al código de los ejercicios 1 y 2 comprobaciones para no crear el directorio si ya existe.**
+### Ejercicio 4.1
+  ```java
+  import java.io.File;
+  public class MyClass {
+    public static void main(String args[]) {
+      File fichero = new File ("P1/cine_granada");
+      if (!fichero.exists()) {
+          fichero.mkdir();
+      }
+    }
+  }
+  ```
+### Ejercicio 4.2
+  ```java
+  import java.io.File;
+  public class MyClass {
+    public static void main(String args[]) {
+      String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
+      for (String dia : dias) {
+          File dir = new File ("P1/" + dia);
+          if (!dir. exists()) {
+              dir.mkdir();
+          }
       }
     }
   }
