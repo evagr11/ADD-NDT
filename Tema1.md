@@ -183,5 +183,24 @@ un mensaje como el siguiente "Se ha creado el directorio con ruta absoluta: /…
   ```
 ## Ejercicio 6. (0.5 puntos)
   **Haciendo uso de uno de los métodos de la clase Java.io.File, liste y muestre por pantalla todos los archivos del directorio  cine_granada". Deberá mostrar la ruta relativa con el siguiente mensaje: "Archivos creados hasta ahora:" "ruta relativa: /…/…/…", "ruta relativa: /…/…/…", …**
+  ```java
+  import java.io.File;
+  public class MyClass {
+    public static void main(String args[]) {
+      String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
+    
+      System.out.println("Archivos creados hasta ahora:");
+      for (String dia : dias) {
+          File origen = new File ("P1/" + dia);
+          File destino = new File ("P1/cine_granada/" + dia);
+          origen.renameTo(destino);
+          if (!destino. exists()) {
+              destino.mkdir();
+              System.out.println("· Ruta relativa: " + destino.getPath());
+          }
+      }
+    }
+  }
+  ```
   
   
