@@ -74,6 +74,39 @@ Definición: Sucesión de bits almacenada enn un fichero
   fichero.exists();
   ```
 
+  #### Comprobar ruta
+- Metodo: [boolean] getAbsolutePath()
+- Crear fichero: Devuelve la ruta completa del archivo o diractorio
+- Ejemplo:
+  ```java
+  System.out.println(new File("P1/archivo.txt").getAbsolutePath()):
+  ```
+
+  #### Leer y escribir bytes en archivos
+- Metodo: [boolean] FileOutputStream() FileInputStream()
+- Crear fichero: Permiten leer y escribir bytes en archivos. Se usan para trabajar con datos binarios o escritura/lectura básica.
+- Ejemplo:
+  ```java
+  new FileOutputStream("archivo.txt");  // escribir bytes
+  new FileInputStream("archivo.txt");   // leer bytes
+  ```
+  #### Leer y escribir caracteres en archivos
+- Metodo: [boolean] FileReader() FileWriter()
+- Crear fichero: Permiten leer y escribir caracteres en archivos de texto. Más cómodos que los streams de bytes para trabajar con texto.
+- Ejemplo:
+  ```java
+  new FileWriter("archivo.txt");  // escribir bytes
+  new FileReader("archivo.txt");   // leer bytes
+  ```
+
+  #### Leer y escribir en cualquier parte
+- Metodo: [boolean] FileReader() FileWriter()
+- Crear fichero: Permite leer y escribir en cualquier parte de un archivo (lectura/escritura aleatoria). Muy útil para modificar solo una parte sin sobrescribir todo.
+- Ejemplo:
+  ```java
+  new RandomAccessFile("archivo.txt", "rw");  // modo lectura-escritura
+  ```
+
 # Ejercicios Tema 1
   ## Ejercicio 1. (0.5 puntos)
   **Haciendo uso de la clase Java.io.File deberá crear un directorio con el nombre "cine_granada" dentro de la carpeta "P1" utilizada para esta práctica.**
