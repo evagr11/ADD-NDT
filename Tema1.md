@@ -286,5 +286,35 @@ public class AADD {
     }
 }
   ```
+
+## Ejercicio 9. (1.5 puntos)
+  **Haciendo uso del método de lectura y escritura secuencial mediante caracteres realice lo
+siguiente:
+• Escriba en el fichero "sesiones.txt" del directorio "Martes": Iron Man (2008): 17:00 - 19:06.
+• Lea el fichero completo e imprima por pantalla el contenido.**
+  ```java
+  package com.mycompany.aadd;
+import java.io.IOException;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FileReader;
+
+public class AADD {
+    public static void main(String args[]) throws IOException{
+        String ruta = "P1/cine_granada/Martes/sesiones.txt";
+        FileWriter salida = new FileWriter(ruta);
+        String sesion = "Iron Man (2008): 17:00 - 19:06.";
+        salida.write(sesion);
+        salida.close();
+        
+        FileReader entrada = new FileReader(ruta);
+        int i;
+        while((i = entrada.read()) != -1){
+            System.out.print((char) i);
+        }
+        entrada.close();
+    }
+}
+  ```
   
   
