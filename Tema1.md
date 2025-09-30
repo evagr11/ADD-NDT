@@ -168,7 +168,8 @@ Representa de forma abstracta un fichero o directorio
   ```
 ## 4 Acceso aleatorio basado en bytes
 Permite leer/escribir en cualquier punto del fichero
-##### **Constructor**: RandomAccessFile(String path, string mode) o RandomAccessFile(File file, string mode)
+##### **Constructor**: 
+RandomAccessFile(String path, string mode) o RandomAccessFile(File file, string mode)
 ##### **Modos:**
 - r : solo lectura
 - rw : lectura y escritura
