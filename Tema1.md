@@ -386,29 +386,39 @@ public class AADD {
   **Haciendo uso del método de lectura y escritura secuencial mediante caracteres realice lo
 siguiente:**
 - Escriba en el fichero "sesiones.txt" del directorio "Martes": Iron Man (2008): 17:00 - 19:06.
-- Lea el fichero completo e imprima por pantalla el contenido.**
+- Lea el fichero completo e imprima por pantalla el contenido.
   ```java
   package com.mycompany.aadd;
-import java.io.IOException;
-import java.io.FileWriter;
-import java.io.FileReader;
+  import java.io.IOException;
+  import java.io.FileWriter;
+  import java.io.FileReader;
 
-public class AADD {
-    public static void main(String args[]) throws IOException{
-        String ruta = "P1/cine_granada/Martes/sesiones.txt";
-        try (FileWriter salida = new FileWriter(ruta)) {
-            String sesion = "Iron Man (2008): 17:00 - 19:06.";
-            salida.write(sesion);
-        }
+  public class AADD {
+      public static void main(String args[]) throws IOException{
+          String ruta = "P1/cine_granada/Martes/sesiones.txt";
+          try (FileWriter salida = new FileWriter(ruta)) {
+              String sesion = "Iron Man (2008): 17:00 - 19:06.";
+              salida.write(sesion);
+          }
         
-        try (FileReader entrada = new FileReader(ruta)) {
-            int i;
-            while((i = entrada.read()) != -1){
-                System.out.print((char) i);
-            }
-        }
-    }
-}
+          try (FileReader entrada = new FileReader(ruta)) {
+              int i;
+              while((i = entrada.read()) != -1){
+                  System.out.print((char) i);
+              }
+          }
+      }
+  }
   ```
+
+## Ejercicio 10. (2 puntos)
+**Haciendo uso del método de lectura y escritura aleatoria mediante bytes realice lo siguiente:**
+- Escriba en el fichero "sesiones.txt" del directorio "Miércoles": Titanic (1998): 17:00 - 20:15.
+- Tras esta escritura, el cine ha detectado un error en el año de publicación de la película y
+desea arreglarlo, sin sobreescribir todo el texto, modifique el año de 1998 a 1997.
+- Lea el fichero completo e imprima por pantalla el contenido
   
+  ```java
+  
+  ```  
   
