@@ -355,60 +355,58 @@ un mensaje como el siguiente "Se ha creado el directorio con ruta absoluta: /…
   ```
 
 ## Ejercicio 8. (1.5 puntos)
-  **Haciendo uso del método de lectura y escritura secuencial mediante bytes realice lo siguiente:
-• Escriba en el fichero "sesiones.txt" del directorio "Lunes": Spiderman (2002): 18:00 - 20:07.
-• Lea el fichero completo e imprima por pantalla el contenido.**
+**Haciendo uso del método de lectura y escritura secuencial mediante bytes realice lo siguiente:**
+  - Escriba en el fichero "sesiones.txt" del directorio "Lunes": Spiderman (2002): 18:00 - 20:07.
+  - Lea el fichero completo e imprima por pantalla el contenido.
   ```java
   package com.mycompany.aadd;
 import java.io.IOException;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileInputStream;
 
 public class AADD {
-    public static void main(String args[]) throws IOException{
-        FileOutputStream salida = new FileOutputStream("P1/cine_granada/Lunes/sesiones.txt");
-        String sesion = "Spiderman (2002): 18:00 - 20:07.";
-        byte [] arrayBytes = sesion.getBytes();
-        salida.write(arrayBytes);
-        salida.close();
-        
-        FileInputStream entrada = new FileInputStream("P1/cine_granada/Lunes/sesiones.txt");
-        int i;
-        while((i = entrada.read()) != -1){
-            System.out.print((char) i);
-        }
-        entrada.close();
-    }
+  public static void main(String args[]) throws IOException{
+      try (FileOutputStream salida = new FileOutputStream("P1/cine_granada/Lunes/sesiones.txt")) {
+          String sesion = "Spiderman (2002): 18:00 - 20:07.";
+          byte [] arrayBytes = sesion.getBytes();
+          salida.write(arrayBytes);
+      }
+      
+      try (FileInputStream entrada = new FileInputStream("P1/cine_granada/Lunes/sesiones.txt")) {
+          int i;
+          while((i = entrada.read()) != -1){
+              System.out.print((char) i);
+          }
+      }
+  }
 }
   ```
 
 ## Ejercicio 9. (1.5 puntos)
   **Haciendo uso del método de lectura y escritura secuencial mediante caracteres realice lo
-siguiente:
-• Escriba en el fichero "sesiones.txt" del directorio "Martes": Iron Man (2008): 17:00 - 19:06.
-• Lea el fichero completo e imprima por pantalla el contenido.**
+siguiente:**
+- Escriba en el fichero "sesiones.txt" del directorio "Martes": Iron Man (2008): 17:00 - 19:06.
+- Lea el fichero completo e imprima por pantalla el contenido.**
   ```java
   package com.mycompany.aadd;
 import java.io.IOException;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.FileReader;
 
 public class AADD {
     public static void main(String args[]) throws IOException{
         String ruta = "P1/cine_granada/Martes/sesiones.txt";
-        FileWriter salida = new FileWriter(ruta);
-        String sesion = "Iron Man (2008): 17:00 - 19:06.";
-        salida.write(sesion);
-        salida.close();
-        
-        FileReader entrada = new FileReader(ruta);
-        int i;
-        while((i = entrada.read()) != -1){
-            System.out.print((char) i);
+        try (FileWriter salida = new FileWriter(ruta)) {
+            String sesion = "Iron Man (2008): 17:00 - 19:06.";
+            salida.write(sesion);
         }
-        entrada.close();
+        
+        try (FileReader entrada = new FileReader(ruta)) {
+            int i;
+            while((i = entrada.read()) != -1){
+                System.out.print((char) i);
+            }
+        }
     }
 }
   ```
