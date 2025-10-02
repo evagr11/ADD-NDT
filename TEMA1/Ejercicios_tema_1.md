@@ -183,3 +183,35 @@ un mensaje como el siguiente "Se ha creado el directorio con ruta absoluta: /…
       }
   }
   ```
+## Ejercicio 9. (1.5 puntos)
+  **Haciendo uso del método de lectura y escritura secuencial mediante caracteres realice lo
+siguiente:**
+- Escriba en el fichero "sesiones.txt" del directorio "Martes": Iron Man (2008): 17:00 - 19:06.
+- Lea el fichero completo e imprima por pantalla el contenido.
+  ```java
+  package com.mycompany.aadd;
+  
+  import java.io.File;
+  import java.io.FileWriter;
+  import java.io.FileReader;
+  import java.io.IOException;
+
+  public class Aadd {
+      public static void main(String[] args) throws IOException {
+          File carpeta = new File("P1/cine_granada/Martes");
+          carpeta.mkdirs(); 
+
+          try (FileWriter fw = new FileWriter("P1/cine_granada/Martes/sesiones.txt")) {
+              fw.write("Iron Man (2008): 17:00 - 19:06.");
+          }
+
+          try (FileReader fr = new FileReader("P1/cine_granada/Martes/sesiones.txt")) {
+              int i;
+              while ((i = fr.read()) != -1) {
+                  System.out.print((char) i);
+              }
+          }
+      }
+  }
+
+  ```
