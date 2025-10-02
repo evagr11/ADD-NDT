@@ -215,3 +215,45 @@ siguiente:**
   }
 
   ```
+## Ejercicio 10. (2 puntos)
+  **Haciendo uso del método de lectura y escritura aleatoria mediante bytes realice lo siguiente:**
+- Escriba en el fichero "sesiones.txt" del directorio "Miércoles": Titanic (1998): 17:00 - 20:15.
+- Tras esta escritura, el cine ha detectado un error en el año de publicación de la película y
+desea arreglarlo, sin sobreescribir todo el texto, modifique el año de 1998 a 1997.
+- Lea el fichero completo e imprima por pantalla el contenido
+  
+  ```java
+  package com.mycompany.aadd;
+
+  import java.io.File;
+  import java.io.RandomAccessFile;
+  import java.io.IOException;
+
+  public class Aadd {
+      public static void main(String[] args) throws IOException {
+          File carpeta = new File("P1/cine_granada/Miércoles");
+          carpeta.mkdirs(); 
+        
+          File archivo = new File("P1/cine_granada/Miércoles/sesiones.txt");
+
+          //Primera escritura
+          try (RandomAccessFile raf = new RandomAccessFile(archivo, "rw")) {
+              raf.writeBytes("Titanic (1998): 17:00 - 20:15.");
+          }
+
+          //Corregir año
+          try (RandomAccessFile raf = new RandomAccessFile(archivo, "rw")) {
+              raf.seek(9); 
+              raf.write("1997".getBytes());
+          }
+
+          // Impresión por pantalla
+          try (RandomAccessFile raf = new RandomAccessFile(archivo, "r")) {
+              int i;
+              while ((i = raf.read()) != -1) {
+                  System.out.print((char) i);
+              }
+          }
+      }
+  }
+  ```  
