@@ -134,3 +134,19 @@ un mensaje como el siguiente "Se ha creado el directorio con ruta absoluta: /…
     }
   }
   ```
+## Ejercicio 7. (1 puntos)
+  **Haciendo uso de la clase Java.io.File deberá crear un archivo llamado "sesiones.txt" dentro de cada una de las carpetas con nombre: "Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo". De esta forma deberán crearse 5 archivos llamados "sesiones.txt".**
+  ```java
+  import java.io.File;
+  public class MyClass {
+    public static void main(String args[]) {
+      String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
+  
+      System.out.println("Archivos creados hasta ahora:");
+      for (String dia : dias) {
+          File archivo = new File("P1/cine_granada/" + dia + "/sesiones.txt");
+          System.out.println("· Ruta relativa: " + archivo.getPath());
+      }
+    }
+  }
+  ```
