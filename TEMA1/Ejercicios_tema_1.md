@@ -150,3 +150,36 @@ un mensaje como el siguiente "Se ha creado el directorio con ruta absoluta: /…
     }
   }
   ```
+
+## Ejercicio 8. (1.5 puntos)
+**Haciendo uso del método de lectura y escritura secuencial mediante bytes realice lo siguiente:**
+  - Escriba en el fichero "sesiones.txt" del directorio "Lunes": Spiderman (2002): 18:00 - 20:07.
+  - Lea el fichero completo e imprima por pantalla el contenido.
+  ```java
+  package com.mycompany.aadd;
+
+  import java.io.File;
+  import java.io.FileOutputStream;
+  import java.io.FileInputStream;
+  import java.io.IOException;
+
+  public class Aadd {
+      public static void main(String[] args) throws IOException {
+          File carpeta = new File("P1/cine_granada/Lunes");
+          carpeta.mkdirs(); 
+
+          try (FileOutputStream salida = new FileOutputStream("P1/cine_granada/Lunes/sesiones.txt")) {
+              String sesion = "Spiderman (2002): 18:00 - 20:07.";
+              byte[] arrayBytes = sesion.getBytes();
+              salida.write(arrayBytes);
+          }
+
+          try (FileInputStream entrada = new FileInputStream("P1/cine_granada/Lunes/sesiones.txt")) {
+              int i;
+              while ((i = entrada.read()) != -1) {
+                  System.out.print((char) i);
+              }
+          }
+      }
+  }
+  ```
