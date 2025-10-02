@@ -46,3 +46,35 @@ Miércoles, Jueves, Viernes, Sábado, Domingo" dentro de la carpeta "cine_granad
     }
   }
   ```
+## Ejercicio 4. (1 puntos)
+  **Hasta este momento hemos creado los directorios sin realizar ningún tipo de comprobación,
+añada al código de los ejercicios 1 y 2 comprobaciones para no crear el directorio si ya existe.**
+### Ejercicio 4.1
+  ```java
+  import java.io.File;
+
+  public class MyClass {
+    public static void main(String args[]) {
+      File fichero = new File ("P1/cine_granada");
+      if (!fichero.exists()) {
+          fichero.mkdir();
+      }
+    }
+  }
+  ```
+### Ejercicio 4.2
+  ```java
+  import java.io.File;
+
+  public class MyClass {
+    public static void main(String args[]) {
+      String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
+      for (String dia : dias) {
+          File dir = new File ("P1/" + dia);
+          if (!dir. exists()) {
+              dir.mkdir();
+          }
+      }
+    }
+  }
+  ```
