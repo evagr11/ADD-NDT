@@ -78,3 +78,38 @@ añada al código de los ejercicios 1 y 2 comprobaciones para no crear el direct
     }
   }
   ```
+## Ejercicio 5. (0.5 puntos)
+  **A partir de la modificación realizada en el ejercicio 4 incluya el código necesario para imprimir por
+consola la ruta absoluta de los ficheros o directorios en el momento de crearse. Deberá imprimir
+un mensaje como el siguiente "Se ha creado el directorio con ruta absoluta: /…/…/…".**
+  ### Ejercicio 5.1
+  ```java
+  import java.io.File;
+
+  public class MyClass {
+    public static void main(String args[]) {
+      File fichero = new File ("P1/cine_granada");
+      if (!fichero.exists()) {
+          fichero.mkdir();
+          System.out.println("Se ha creado el directorio con ruta absoluta:" + fichero.getAbsolutePath());
+      }
+    }
+  }
+  ```
+  ### Ejercicio 5.2
+  ```java
+  import java.io.File;
+
+  public class MyClass {
+    public static void main(String args[]) {
+      String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
+      for (String dia : dias) {
+          File dir = new File ("P1/" + dia);
+          if (!dir. exists()) {
+              dir.mkdir();
+              System.out.println("Se ha creado el directorio con ruta absoluta:" + dir.getAbsolutePath());
+          }
+      }
+    }
+  }
+  ```
