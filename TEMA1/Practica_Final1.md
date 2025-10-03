@@ -9,7 +9,57 @@ Diseñe un programa que cumpla con las siguientes características:
 - Añadir una review de un usuario existente.
 - Mostrar las reviews de un usuario existente.
 - Salir.
+```java
+package com.mycompany.cine;
 
+import java.util.Scanner;
+
+public class Cine{
+
+    public static void main(String[] args) {
+        //Scanner lee la opción que selecciona el usuario
+        Scanner scanner = new Scanner (System.in);
+        int opcion;
+        
+        do {
+            // Mostramos el menú en cada iteración
+            System.out.println("\nMenú interactivo:");
+            System.out.println("1. Crear un usuario nuevo.");
+            System.out.println("2. Eliminar un usuario.");
+            System.out.println("3. Añadir una review de un usuario existente.");
+            System.out.println("4. Mostrar las reviews de un usuario existente.");
+            System.out.println("5. Salir");
+        
+            System.out.print("Elige una opción (1 a 5): ");
+            opcion = scanner.nextInt();
+        
+            switch (opcion){
+                case 1:
+                    System.out.println("Has accedido a la opción de crear nuevo usuario");
+                    // break detiene la ejecución del switch y sale de él
+                    break;
+                case 2:
+                    System.out.println("Has accedido a la opción de eliminar un usuario");
+                    break;
+                case 3:
+                    System.out.println("Has accedido a la opción de añadir una review");
+                    break;
+                case 4:
+                    System.out.println("Has accedido a la opción de mostrar las reviews");
+                    break;
+                case 5:
+                    System.out.println("Saliendo del programa...");
+                    break;
+                default:
+                    System.out.println("Opción no valida. Por favor, elige una opción del 1 al 5.");
+            }
+        } while (opcion != 5);
+        
+        scanner.close();
+        
+    }
+}
+```
 ## 2. Estructura de directorios:
 - Todo el proyecto se almacenará dentro de una carpeta llamada “cinema2000”.
 - Los datos se almacenarán en una carpeta llamada “reviews”, almacenando las reseñas de los usuarios en un fichero .txt con el nombre y código del usuario como nombre del fichero. Por ejemplo, si mi nombre es Guillermo y mi código de usuario es el [1], el fichero donde se almacenen mis reviews se llamará Guillermo-1.txt.
