@@ -117,7 +117,15 @@ Una biblioteca desea organizar digitalmente sus libros y sesiones de lectura. Im
     ```
 
 ## 5. Listar todo el contenido de Biblioteca (carpetas y archivos), mostrando sus rutas relativas desde Biblioteca.
-
+   ```java
+  File lista = new File ("Biblioteca");
+  File[] fileList = lista.listFiles();
+  int i;
+  System.out.println("Aquí tienes todo el contenido existente en la biblioteca");
+  for(i = 0; i < fileList.length; i++){
+     System.out.println(fileList[i]); 
+  }
+  ```
 # Código completo
 ```java
 package com.mycompany.biblioteca;
@@ -222,7 +230,14 @@ public class Biblioteca {
             }
             System.out.println();
         }
-        
+
+        File lista = new File ("Biblioteca");
+        File[] fileList = lista.listFiles();
+        int i;
+        System.out.println("Aquí tienes todo el contenido existente en la biblioteca");
+        for(i = 0; i < fileList.length; i++){
+           System.out.println(fileList[i]); 
+        }
     }
 }
 ```
