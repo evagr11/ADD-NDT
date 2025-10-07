@@ -25,9 +25,9 @@ package com.mycompany.cine;
 
 import java.util.Scanner;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Cine{
 
@@ -124,8 +124,25 @@ public class Cine{
         return lineas;
     }
 
+    public static ArrayList<User> leerUsuarios() throws IOException{
+        ArrayList<User> lista = new ArrayList<>();
+        
+        try (Scanner sc = new Scanner(archivoUsuarios)) {
+            while (sc.hasNextLine()) {
+                String linea = sc.nextLine();
+                String[] partes = linea.split(",");
+                if (partes.length == 3) {
+                    String nombre = partes[0];
+                    int codigo = Integer.parseInt(partes[1]);
+                    String contraseña = partes[2];
+                    lista.add(new User(nombre, codigo, contraseña));
+                }
+            }
+        }
+        return lista;
+    }
     
-    public static void eliminarUsuario(){
+    public static void eliminarUsuario() throws IOException{
         System.out.print("Introduzca el código del usuario que quieres eliminar: ");
         int codigoAEliminar = scanner.nextInt();
         scanner.nextLine(); // limpiar buffer
@@ -141,6 +158,13 @@ public class Cine{
                 break;
             }
         }
+        
+        //Reescribe la lista de usuarios sin el eliminado
+        FileWriter fw = new FileWriter(archivoUsuarios, false);
+        for (User u : usuarios) {
+            fw.write(u.toString() + "\n");
+        }
+        fw.close();
         
         File reviewFile = new File(carpetaRewiews, nombreArchivo);
         if (reviewFile.exists()) {
