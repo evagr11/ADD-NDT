@@ -21,7 +21,7 @@ Diseñe un programa que cumpla con las siguientes características:
 
 # Código completo
 ```java
-package com.mycompany.cine;
+package cine;
 
 import java.util.Scanner;
 import java.io.File;
@@ -34,7 +34,7 @@ public class Cine{
     //Scanner lee la opción que selecciona el usuario
     static Scanner scanner = new Scanner(System.in);
     static File carpetaBase = new File("cinema2000");
-    static File carpetaRewiews = new File("cinema2000/reviews");
+    static File carpetaReviews = new File("cinema2000/reviews");
     static File archivoUsuarios = new File("cinema2000/users.txt");
     
     public static void main(String[] args) throws IOException {
@@ -44,8 +44,8 @@ public class Cine{
             carpetaBase.mkdir();
         }
         
-        if (!carpetaRewiews.exists()){
-            carpetaRewiews.mkdir();
+        if (!carpetaReviews.exists()){
+            carpetaReviews.mkdir();
         }
         
         if (!archivoUsuarios.exists()) {
@@ -68,7 +68,7 @@ public class Cine{
             switch (opcion){
                 case 1:
                     System.out.println("Has accedido a la opción de crear nuevo usuario");
-                    CrearUsuario();
+                    crearUsuario();
                     // break detiene la ejecución del switch y sale de él
                     break;
                 case 2:
@@ -77,11 +77,11 @@ public class Cine{
                     break;
                 case 3:
                     System.out.println("Has accedido a la opción de añadir una review");
-                    AñadirReview();
+                    anadirReview();
                     break;
                 case 4:
                     System.out.println("Has accedido a la opción de mostrar las reviews");
-                    MostrarReviews();
+                    mostrarReviews();
                     break;
                 case 5:
                     System.out.println("Saliendo del programa...");
@@ -94,51 +94,79 @@ public class Cine{
         scanner.close(); 
     }
     
-    public static void CrearUsuario() throws IOException {
-        System.out.println("Introduzca el nombre de usuario: ");
+    public static void crearUsuario() throws IOException {
+        System.out.print("Introduzca el nombre de usuario: ");
         String nombre = scanner.nextLine();
-        
-        int codigo = contarUsuarios() + 1;
+
+        //Valido q no este vacio y hago lo mismo para la contraseña
+        if (nombre.isEmpty()) {
+            System.out.println("Nombre no puede estar vacío.");
+            return;
+        }
 
         System.out.print("Introduce contraseña: ");
-        String contraseña = scanner.nextLine();
+        String contrasena = scanner.nextLine(); 
 
-        User nuevoUser = new User(nombre, codigo, contraseña);
+        if (contrasena.isEmpty()) {
+            System.out.println("Contraseña no puede estar vacía.");
+            return;
+        }
 
-        FileWriter fw = new FileWriter(archivoUsuarios, true);
-        fw.write(nuevoUser.toString() + "\n");
-        fw.close();
+        //Calculo el siguiente codigo leyendo los usuarios existentes
+        int codigo = obtenerSiguienteCodigo();
+        //Creo una instancia de User
+        User nuevoUser = new User(nombre, codigo, contrasena);
+        //Escribo los datos en archivoUsuarios
+        try (FileWriter fw = new FileWriter(archivoUsuarios, true)) {
+            fw.write(nuevoUser.toString() + System.lineSeparator());
+        }
 
         System.out.println("Usuario creado: " + nombre + " con código " + codigo);
-        
-    }
-    
-    public static int contarUsuarios() throws IOException {
-        int lineas = 0;
-        Scanner sc = new Scanner(archivoUsuarios);
-            while (sc.hasNextLine()) {
-                sc.nextLine();
-                lineas++;
-            }
-        sc.close();
-        return lineas;
     }
 
-    public static ArrayList<User> leerUsuarios() throws IOException{
-        ArrayList<User> lista = new ArrayList<>();
-        
-        try (Scanner sc = new Scanner(archivoUsuarios)) {
-            while (sc.hasNextLine()) {
-                String linea = sc.nextLine();
-                String[] partes = linea.split(",");
-                if (partes.length == 3) {
-                    String nombre = partes[0];
-                    int codigo = Integer.parseInt(partes[1]);
-                    String contraseña = partes[2];
-                    lista.add(new User(nombre, codigo, contraseña));
-                }
+
+
+    public static int obtenerSiguienteCodigo() throws IOException {
+        //Leo los usuarios desde archivoUsers y los devuelvo en forma d lista
+        ArrayList<User> usuarios = leerUsuarios();
+        int maxCodigo = 0;
+        //Recorro toda la lista
+        for (int i = 0; i < usuarios.size(); i++) {
+            //Obtiene el obj User(nombre, cdg, contraseña) en la posicioni
+            User u = usuarios.get(i);
+            //Extraigo el campo del codigo
+            int codigo = u.codigo;
+            if (codigo > maxCodigo) {
+                maxCodigo = codigo;
             }
         }
+        return maxCodigo + 1;
+    }
+
+
+
+    public static ArrayList<User> leerUsuarios() throws IOException{
+        //Creo una lista vacia 
+        ArrayList<User> lista = new ArrayList<>();
+        //leo los usuarios que hay en archivoUsuarios y los almaceno en la lista
+        try (Scanner sc = new Scanner(archivoUsuarios)) {
+            // Recorro el archivo linea a linea mientras haya lineas por leer
+            while (sc.hasNextLine()) {
+                //Lee la linea en la que esta
+                String linea = sc.nextLine();
+                //Divide la linea por partes utilizando la ,
+                String[] partes = linea.split(",");
+                //El primer campo del array seria el nombre
+                String nombre = partes[0];
+                //Segundo es el codigo, y lo convierto de String a int
+                int codigo = Integer.parseInt(partes[1]);
+                //El tercero seria la contraseña
+                String contrasena = partes[2];
+                //Creo un nuevo obj User con los valores anteriores y los añado a la lista que he creado antes
+                lista.add(new User(nombre, codigo, contrasena));
+            }
+        }
+        //Devuelvo la lista que creo
         return lista;
     }
     
@@ -150,7 +178,7 @@ public class Cine{
         ArrayList<User> usuarios = leerUsuarios();
         String nombreArchivo = "";
 
-        // Buscar y eliminar el usuario con el código
+        //Busco el usuario por el codigo, y si existe lo elimino de la lista
         for (int i = 0; i < usuarios.size(); i++) {
             if (usuarios.get(i).codigo == codigoAEliminar) {
                 nombreArchivo = usuarios.get(i).nombre + "-" + usuarios.get(i).codigo + ".txt";
@@ -159,14 +187,17 @@ public class Cine{
             }
         }
         
-        //Reescribe la lista de usuarios sin el eliminado
+        //Reescribo la lista de usuarios sin el eliminado
         FileWriter fw = new FileWriter(archivoUsuarios, false);
-        for (User u : usuarios) {
-            fw.write(u.toString() + "\n");
+        for (int i = 0; i < usuarios.size(); i++) {
+            fw.write(usuarios.get(i).toString() + System.lineSeparator());
         }
         fw.close();
         
-        File reviewFile = new File(carpetaRewiews, nombreArchivo);
+        //Creo un objeto File que representa la ruta completa del fichero de 
+        //reviews combinando la carpeta base carpetaReviews y el nombre 
+        //de fichero nombreArchivo
+        File reviewFile = new File(carpetaReviews, nombreArchivo);
         if (reviewFile.exists()) {
             reviewFile.delete();
             System.out.println("Archivo de reviews eliminado.");
@@ -175,53 +206,127 @@ public class Cine{
     }
     
     
-    public static void AñadirReview(){
-        
+    public static void anadirReview() throws IOException {
+        System.out.print("Codigo de usuario: ");
+        int codigo = scanner.nextInt();
+        scanner.nextLine();
+
+        //Abro el Scanner local para leer el fichero de usuarios
+        Scanner sc = new Scanner(archivoUsuarios);
+        //Variable que almacena el nombre del usuario, si existe
+        String nombreUsuario = null;
+        //Recorro el fichero users buscando el codigo
+        while (sc.hasNextLine()) {
+            String[] partes = sc.nextLine().split(",");
+            if (partes.length == 3 && Integer.parseInt(partes[1]) == codigo) {
+                //Guardo el nombre para luego crear el archivo
+                nombreUsuario = partes[0];
+                break;
+            }
+        }
+        sc.close();
+
+        System.out.print("Pelicula: ");
+        String pelicula = scanner.nextLine();
+        System.out.print("Calificacion (1-10): ");
+        int nota = scanner.nextInt();
+        scanner.nextLine();
+
+        //Creo el obj Review con los datos leidos
+        Review nueva = new Review(pelicula, nota);
+        //Construyo el fichero
+        String nombreArchivo = nombreUsuario + "-" + codigo + ".txt";
+        //Creo un obj File que representa el fichero dentro de la carpeta reviews
+        File archivoReview = new File(carpetaReviews, nombreArchivo);
+        //Escribo la review en el fichero
+        FileWriter fw = new FileWriter(archivoReview, true);
+        fw.write(nueva.toString() + "\n");
+        fw.close();
+
+        System.out.println("Review guardada.");
     }
-    
-    public static void MostrarReviews(){
+
+    public static void mostrarReviews() throws IOException {
+        System.out.print("Codigo de usuario: ");
+        int codigo = scanner.nextInt();
+        scanner.nextLine();
+
+        //Abro el Scanner local para leer el fichero de usuarios
+        Scanner sc = new Scanner(archivoUsuarios);
+        String nombreUsuario = null;
+        while (sc.hasNextLine()) {
+            String[] partes = sc.nextLine().split(",");
+            if (partes.length == 3 && Integer.parseInt(partes[1]) == codigo) {
+                nombreUsuario = partes[0];
+                break;
+            }
+        }
+        sc.close();
         
+        // Si tras leer todo el fichero no se encontró el usuario, informa y sale
+        if (nombreUsuario == null) {
+            System.out.println("Usuario no encontrado.");
+            return;
+        }
+
+        //Construyo el nombre del fichero de reviews asociado al usuario
+        String nombreArchivo = nombreUsuario + "-" + codigo + ".txt";
+        //Creo un objeto File que representa el fichero dentro de carpetaReviews
+        File archivoReview = new File(carpetaReviews, nombreArchivo);
+
+        // Si el fichero no existe, informa que no hay reviews y sale
+        if (!archivoReview.exists()) {
+            System.out.println("No hay reviews.");
+            return;
+        }
+
+        // Muestra encabezado indicando de quién son las reviews
+        System.out.println("Reviews de " + nombreUsuario + ":");
+        // Recorre el fichero de reviews imprimiendo cada línea
+        Scanner lector = new Scanner(archivoReview);
+        while (lector.hasNextLine()) {
+            System.out.println("- " + lector.nextLine());
+        }
+        lector.close();
     }
 }
 ```
 ``` java
-package com.mycompany.cine;
+package cine;
+
+public class User {
+    String nombre;
+    int codigo;
+    String contrasena;
+
+    public User(String nombre, int codigo, String contrasena) {
+        this.nombre = nombre;
+        this.codigo = codigo;
+        this.contrasena = contrasena;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + "," + codigo + "," + contrasena;
+    }
+}
+```
+``` java
+package cine;
 
 public class Review {
     String nombrePelicula;
-        int calificacion; 
+    int calificacion;
 
-        Review(String nombrePelicula, int calificacion) {
-            this.nombrePelicula = nombrePelicula;
-            this.calificacion = calificacion;
-        }
+    public Review(String nombrePelicula, int calificacion) {
+        this.nombrePelicula = nombrePelicula;
+        this.calificacion = calificacion;
+    }
 
-        @Override
-        public String toString() {
-            return nombrePelicula + " - " + calificacion + "/10";
-        }
+    @Override
+    public String toString() {
+        return nombrePelicula + " - " + calificacion + "/10";
+    }
 }
-```
-``` java
 
-package com.mycompany.cine;
-
-public class User {
-    
-    String nombre;
-        int codigo;
-        String contraseña;
-
-        User(String nombre, int codigo, String contraseña) {
-            this.nombre = nombre;
-            this.codigo = codigo;
-            this.contraseña = contraseña;
-        }
-
-        @Override
-        public String toString() {
-            return nombre + "," + codigo + "," + contraseña;
-        }
-    
-}
 ```
