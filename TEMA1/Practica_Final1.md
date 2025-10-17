@@ -330,3 +330,27 @@ public class Review {
 }
 
 ```
+```java
+public static int obtenerSiguienteCodigo() throws IOException {
+        //Leo los usuarios desde archivoUsers y los devuelvo en forma d lista
+        ArrayList<User> usuarios = leerUsuarios();
+        
+        //TODO: ordenar usuario por ID
+        
+        int maxCodigo = 0;
+        //Recorro toda la lista
+        for (int i = 1; i < usuarios.size()+1; i++) {
+            //Obtiene el obj User(nombre, cdg, contraseña) en la posicioni
+            User u = usuarios.get(i-1);
+            //Extraigo el campo del codigo
+            int codigo = u.codigo;
+            if (codigo == i) {
+                maxCodigo = codigo +1;
+            }else {
+                maxCodigo = i;
+                break;
+            }
+        }
+        return maxCodigo;
+    }
+```
