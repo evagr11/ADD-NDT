@@ -117,59 +117,15 @@ public class Cine{
         //Creo una instancia de User
         User nuevoUser = new User(nombre, codigo, contrasena);
         //Escribo los datos en archivoUsuarios
-        try (FileWriter fw = new FileWriter(archivoUsuarios, true)) {
-            fw.write(nuevoUser.toString() + System.lineSeparator());
-        }
+        ArrayList<User> usuarios = leerUsuarios();
+        usuarios.add(nuevoUser);
+        reescribirLista(usuarios);
+
 
         System.out.println("Usuario creado: " + nombre + " con código " + codigo);
     }
 
-
-
-    public static int obtenerSiguienteCodigo() throws IOException {
-        //Leo los usuarios desde archivoUsers y los devuelvo en forma d lista
-        ArrayList<User> usuarios = leerUsuarios();
-        int maxCodigo = 0;
-        //Recorro toda la lista
-        for (int i = 0; i < usuarios.size(); i++) {
-            //Obtiene el obj User(nombre, cdg, contraseña) en la posicioni
-            User u = usuarios.get(i);
-            //Extraigo el campo del codigo
-            int codigo = u.codigo;
-            if (codigo > maxCodigo) {
-                maxCodigo = codigo;
-            }
-        }
-        return maxCodigo + 1;
-    }
-
-
-
-    public static ArrayList<User> leerUsuarios() throws IOException{
-        //Creo una lista vacia 
-        ArrayList<User> lista = new ArrayList<>();
-        //leo los usuarios que hay en archivoUsuarios y los almaceno en la lista
-        try (Scanner sc = new Scanner(archivoUsuarios)) {
-            // Recorro el archivo linea a linea mientras haya lineas por leer
-            while (sc.hasNextLine()) {
-                //Lee la linea en la que esta
-                String linea = sc.nextLine();
-                //Divide la linea por partes utilizando la ,
-                String[] partes = linea.split(",");
-                //El primer campo del array seria el nombre
-                String nombre = partes[0];
-                //Segundo es el codigo, y lo convierto de String a int
-                int codigo = Integer.parseInt(partes[1]);
-                //El tercero seria la contraseña
-                String contrasena = partes[2];
-                //Creo un nuevo obj User con los valores anteriores y los añado a la lista que he creado antes
-                lista.add(new User(nombre, codigo, contrasena));
-            }
-        }
-        //Devuelvo la lista que creo
-        return lista;
-    }
-    
+        
     public static void eliminarUsuario() throws IOException{
         System.out.print("Introduzca el código del usuario que quieres eliminar: ");
         int codigoAEliminar = scanner.nextInt();
@@ -188,11 +144,8 @@ public class Cine{
         }
         
         //Reescribo la lista de usuarios sin el eliminado
-        FileWriter fw = new FileWriter(archivoUsuarios, false);
-        for (int i = 0; i < usuarios.size(); i++) {
-            fw.write(usuarios.get(i).toString() + System.lineSeparator());
-        }
-        fw.close();
+        reescribirLista(usuarios);
+
         
         //Creo un objeto File que representa la ruta completa del fichero de 
         //reviews combinando la carpeta base carpetaReviews y el nombre 
@@ -246,22 +199,14 @@ public class Cine{
         System.out.println("Review guardada.");
     }
 
+    
     public static void mostrarReviews() throws IOException {
         System.out.print("Codigo de usuario: ");
         int codigo = scanner.nextInt();
         scanner.nextLine();
 
         //Abro el Scanner local para leer el fichero de usuarios
-        Scanner sc = new Scanner(archivoUsuarios);
-        String nombreUsuario = null;
-        while (sc.hasNextLine()) {
-            String[] partes = sc.nextLine().split(",");
-            if (partes.length == 3 && Integer.parseInt(partes[1]) == codigo) {
-                nombreUsuario = partes[0];
-                break;
-            }
-        }
-        sc.close();
+        String nombreUsuario = obtenerNombrePorCodigo(codigo);
         
         // Si tras leer todo el fichero no se encontró el usuario, informa y sale
         if (nombreUsuario == null) {
@@ -289,6 +234,102 @@ public class Cine{
         }
         lector.close();
     }
+
+
+    public static int obtenerSiguienteCodigo() throws IOException {
+        ArrayList<User> usuarios = leerUsuarios();
+
+        // Crear una lista de códigos existentes
+        ArrayList<Integer> codigos = new ArrayList<>();
+        for (int i = 0; i < usuarios.size(); i++) {
+            codigos.add(usuarios.get(i).codigo);
+        }
+
+        // Buscar el primer número que no esté en la lista de códigos
+        for (int i = 1; i <= usuarios.size() + 1; i++) {
+            boolean encontrado = false;
+            for (int j = 0; j < codigos.size(); j++) {
+                if (codigos.get(j) == i) {
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (!encontrado) {
+                return i;
+            }
+        }
+
+        // Por seguridad, aunque no debería llegar aquí
+        return usuarios.size() + 1;
+    }
+
+
+    public static void reescribirLista(ArrayList<User> usuarios) throws IOException {
+        // Ordenar la lista por código (forma básica)
+        for (int i = 0; i < usuarios.size() - 1; i++) {
+            for (int j = i + 1; j < usuarios.size(); j++) {
+                if (usuarios.get(i).codigo > usuarios.get(j).codigo) {
+                    // Intercambiar posiciones
+                    User temp = usuarios.get(i);
+                    usuarios.set(i, usuarios.get(j));
+                    usuarios.set(j, temp);
+                }
+            }
+        }
+
+        // Reescribir el archivo con los usuarios ordenados
+        FileWriter fw = new FileWriter(archivoUsuarios, false); // false para sobrescribir
+        for (int i = 0; i < usuarios.size(); i++) {
+            fw.write(usuarios.get(i).toString() + System.lineSeparator());
+        }
+        fw.close();
+    }
+
+    
+    public static ArrayList<User> leerUsuarios() throws IOException {
+        ArrayList<User> lista = new ArrayList<>();
+
+        try (Scanner sc = new Scanner(archivoUsuarios)) {
+            while (sc.hasNextLine()) {
+                String linea = sc.nextLine().trim();
+
+                // Ignorar líneas vacías
+                if (linea.isEmpty()) continue;
+
+                String[] partes = linea.split(",");
+
+                // Validar que la línea tenga exactamente 3 partes
+                if (partes.length != 3) {
+                    System.out.println("Línea mal formateada en users.txt: " + linea);
+                    continue;
+                }
+
+                String nombre = partes[0].trim();
+                int codigo;
+                try {
+                    codigo = Integer.parseInt(partes[1].trim());
+                } catch (NumberFormatException e) {
+                    System.out.println("Código inválido en línea: " + linea);
+                    continue;
+                }
+
+                String contrasena = partes[2].trim();
+                lista.add(new User(nombre, codigo, contrasena));
+            }
+        }
+
+        return lista;
+    }
+    
+    public static String obtenerNombrePorCodigo(int codigo) throws IOException {
+    ArrayList<User> usuarios = leerUsuarios();
+    for (User u : usuarios) {
+        if (u.codigo == codigo) {
+            return u.nombre;
+        }
+    }
+    return null;
+}
 }
 ```
 ``` java
@@ -328,29 +369,4 @@ public class Review {
         return nombrePelicula + " - " + calificacion + "/10";
     }
 }
-
-```
-```java
-public static int obtenerSiguienteCodigo() throws IOException {
-        //Leo los usuarios desde archivoUsers y los devuelvo en forma d lista
-        ArrayList<User> usuarios = leerUsuarios();
-        
-        //TODO: ordenar usuario por ID
-        
-        int maxCodigo = 0;
-        //Recorro toda la lista
-        for (int i = 1; i < usuarios.size()+1; i++) {
-            //Obtiene el obj User(nombre, cdg, contraseña) en la posicioni
-            User u = usuarios.get(i-1);
-            //Extraigo el campo del codigo
-            int codigo = u.codigo;
-            if (codigo == i) {
-                maxCodigo = codigo +1;
-            }else {
-                maxCodigo = i;
-                break;
-            }
-        }
-        return maxCodigo;
-    }
 ```
