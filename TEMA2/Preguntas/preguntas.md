@@ -20,4 +20,6 @@ Crea un programa que lea un archivo de texto y cuente:
   ![Pregunta3abc](Pregunta3abc.png)
 ## 4. DataInputStream
 - ¿Qué ocurre si lees los datos en un orden distinto al que fueron escritos?
+  ![Pregunta4a](Pregunta4a.png)
 - ¿Qué pasa si intentas leer más bytes de los disponibles?
+  ![Pregunta4b](Pregunta4b.png)
