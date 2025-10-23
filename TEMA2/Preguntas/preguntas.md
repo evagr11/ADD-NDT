@@ -2,13 +2,14 @@
 ## 1. PushbackReader
 Investigue las clases para el análisis de flujos de datos: PushBackReader. Concretamente investigue el comportamiento de los métodos: read y unread. Para ello, conteste a las siguientes preguntas, incluyendo las explicaciones y capturas de pantalla necesarias.
 - ¿El uso de read modifica el archivo?
-  ![Pregunta1](Pregunta1.PNG)
+  ![Pregunta1a](Pregunta1a.PNG)
 - Utilizando read, ¿puedo leer más de un carácter?
-  ![Pregunta2](Pregunta2.PNG)
+  ![Pregunta1b](Pregunta1b.PNG)
 - ¿Qué ocurre si hago unread sin leer previamente un carácter?
-  ![Pregunta3](Pregunta3.png)
+  ![Pregunta1c](Pregunta1c.png)
 ## 2. PipedInputStream y PipedOutputStream
 - ¿Qué ocurre si intentas leer antes de que se haya escrito nada?
+  ![Pregunta2a](Pregunta2a.png)
 - ¿Se puede conectar un PipedInputStream con varios PipedOutputStream?
 ## 3. StreamTokenizer y LineNumberReader
 Crea un programa que lea un archivo de texto y cuente:
