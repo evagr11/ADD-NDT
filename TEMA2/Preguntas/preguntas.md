@@ -11,6 +11,7 @@ Investigue las clases para el análisis de flujos de datos: PushBackReader. Conc
 - ¿Qué ocurre si intentas leer antes de que se haya escrito nada?
   ![Pregunta2a](Pregunta2a.png)
 - ¿Se puede conectar un PipedInputStream con varios PipedOutputStream?
+  ![Pregunta2b](Pregunta2b.png)
 ## 3. StreamTokenizer y LineNumberReader
 Crea un programa que lea un archivo de texto y cuente:
 - Cuántas palabras tiene.
