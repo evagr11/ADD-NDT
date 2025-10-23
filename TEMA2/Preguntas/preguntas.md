@@ -17,6 +17,7 @@ Crea un programa que lea un archivo de texto y cuente:
 - Cuántas palabras tiene.
 - Cuántos números aparecen.
 - Cuántas líneas se procesaron.
+  ![Pregunta3abc](Pregunta3abc.png)
 ## 4. DataInputStream
 - ¿Qué ocurre si lees los datos en un orden distinto al que fueron escritos?
 - ¿Qué pasa si intentas leer más bytes de los disponibles?
