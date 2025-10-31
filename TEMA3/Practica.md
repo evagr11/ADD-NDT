@@ -1,5 +1,5 @@
 # TEMA 3. Práctica 1
-
+![Consola](Practica3.PNG)
 ## Parte 1. Crear un parseador DOM:
 Tal y como hemos visto en la explicación teórica del tema 3, para crear un parseador de
 tipo DOM de la librería javax.xml.parsers necesitábamos:
