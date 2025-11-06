@@ -10,7 +10,37 @@ El menú en cuestión es:
 ## 1. Mostrar todos los productos (DOM)
 - Utiliza la DOM para leer el fichero productos.xml.
 - Muestra por pantalla todos los productos con su nombre, categoría, precio y stock.
-  
+```java
+    // ==========================================================
+    // Método 1: Mostrar todos los productos
+    // ==========================================================
+    public static void mostrarProductos() {
+        try {
+            Document doc = cargarDocumento();
+            NodeList lista = doc.getElementsByTagName("producto"); //PISTA
+
+            System.out.println("\n===== LISTA DE PRODUCTOS =====");
+
+            for (int i = 0; i < lista.getLength(); i++) {
+                Element producto = (Element) lista.item(i);
+                String id = producto.getAttribute("id");
+                String nombre = producto.getElementsByTagName("nombre").item(0).getTextContent();
+                String categoria = producto.getElementsByTagName("categoria").item(0).getTextContent();
+                String precio = producto.getElementsByTagName("precio").item(0).getTextContent();
+                String stock = producto.getElementsByTagName("stock").item(0).getTextContent();
+
+                System.out.println(
+                        "ID: " + id + 
+                        " | Nombre: " + nombre + 
+                        " | Categoria: " + categoria + 
+                        " | Precio: " + precio + 
+                        " | Stock: " + stock);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+```
 ## 2. Añadir un nuevo producto (DOM)
 - Solicita al usuario los datos del nuevo producto (id, nombre, categoría, precio y stock).
 - Añade un nuevo nodo <producto> al documento XML.
