@@ -176,3 +176,7 @@ Se facilitan los siguientes documentos para el desarrollo de la práctica:
 - productos.xml: listado de los productos que se deberá consultar.
 - GestorProductosXML.java: esqueleto de la clase principal que muestra el menú interactivo.
 - DOMManager.java: clase que gestiona las funcionalidades de DOM que se deben implementar.
+
+## Posibles mejoras
+- Al actualizar el precio de una categoría y mostrar los productos con el metodo 1, aparecen con el precio antiguo ya que coge productos.xml en vez de productos_actualizados.xml
+- Si actualizas una categoria, y despues otra, el precio actualizado de la primera se "borra"
