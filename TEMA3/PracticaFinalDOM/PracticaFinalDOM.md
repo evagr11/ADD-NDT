@@ -127,6 +127,8 @@ información útil y de interés http://jmoral.es/blog/xml-dom.
             NodeList lista = doc.getElementsByTagName("producto");
 
             //TODO: Solicitar la categoría al usuario
+            
+            System.out.println("Esto hara que el precio de todos los productos de la categoria que escojas se incremente en un 10%");
             System.out.print("Ingrese la categoría a actualizar: ");
             String categoriaInput = sc.nextLine().toLowerCase();
             
@@ -143,7 +145,7 @@ información útil y de interés http://jmoral.es/blog/xml-dom.
             }
 
             if (!existe) {
-                System.out.println("Categoría no válida. Volviendo al menú...");
+                System.out.println("Categoria no valida. Volviendo al menu...");
                 return;
             }
         
@@ -152,7 +154,7 @@ información útil y de interés http://jmoral.es/blog/xml-dom.
             // Guardar los cambios en el archivo productos_actualizados.xml
             for (int i = 0; i < lista.getLength(); i++) {
                 Element producto = (Element) lista.item(i);
-                String cat = producto.getElementsByTagName("categoria").item(0).getTextContent();
+                String cat = producto.getElementsByTagName("categoria").item(0).getTextContent().toLowerCase();
                 if (cat.equals(categoriaInput)) {
                     Element precioElem = (Element) producto.getElementsByTagName("precio").item(0);
                     double precio = Double.parseDouble(precioElem.getTextContent());
