@@ -59,6 +59,9 @@ información útil y de interés http://jmoral.es/blog/xml-dom.
         try {
             Document doc = cargarDocumento();
             Element raiz = doc.getDocumentElement(); //PISTA
+            
+            
+            System.out.println("\n===== ANADA UN NUEVO PRODUCTO =====");
 
             NodeList lista = doc.getElementsByTagName("producto");
             int maxId = 0;
@@ -73,7 +76,7 @@ información útil y de interés http://jmoral.es/blog/xml-dom.
             //TODO: Solicitar al usuarios los datos del producto
             System.out.print("Nombre: ");
             String nombre = sc.nextLine();
-            System.out.print("Categoría: ");
+            System.out.print("Categoria: ");
             String categoria = sc.nextLine();
             System.out.print("Precio: ");
             String precio = sc.nextLine();
@@ -111,7 +114,7 @@ información útil y de interés http://jmoral.es/blog/xml-dom.
         }
     }
 ```
-
+![TestOpcion2](TestOp2.png)
 ## 3. Incrementar precios de una categoría (DOM)
 - Solicita al usuario una categoría (por ejemplo, “Informática”).
 - Incrementa el precio de todos los productos de esa categoría en un 10%.
