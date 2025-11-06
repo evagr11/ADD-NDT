@@ -41,6 +41,7 @@ El menú en cuestión es:
         }
     }
 ```
+![TestOpcion1](TestOp1.png)
 ## 2. Añadir un nuevo producto (DOM)
 - Solicita al usuario los datos del nuevo producto (id, nombre, categoría, precio y stock).
 - Añade un nuevo nodo <producto> al documento XML.
