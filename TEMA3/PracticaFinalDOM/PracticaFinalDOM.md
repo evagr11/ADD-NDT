@@ -132,7 +132,6 @@ información útil y de interés http://jmoral.es/blog/xml-dom.
 
             //TODO: Solicitar la categoría al usuario
             
-            
             System.out.println("\n===== ACTUALIZACION DE PRECIOS POR CATEGORIA =====");
             System.out.println("Esto hara que el precio de todos los productos de la categoria que escojas se incremente en un 10%");
             System.out.print("Ingrese la categoria a actualizar: ");
@@ -140,33 +139,22 @@ información útil y de interés http://jmoral.es/blog/xml-dom.
             
             boolean existe = false;
 
-            // Verificar si la categoría existe
+            //TODO: Recorrer el listado de productos y modificar su valor
             for (int i = 0; i < lista.getLength(); i++) {
                 Element producto = (Element) lista.item(i);
                 String cat = producto.getElementsByTagName("categoria").item(0).getTextContent().toLowerCase();
                 if (cat.equals(categoriaInput)) {
                     existe = true;
-                    break;
-                }
-            }
-
-            if (!existe) {
-                System.out.println("Categoria no valida. Volviendo al menu...");
-                return;
-            }
-        
-            //TODO: Recorrer el listado de productos y modificar su valor
-            
-            // Guardar los cambios en el archivo productos_actualizados.xml
-            for (int i = 0; i < lista.getLength(); i++) {
-                Element producto = (Element) lista.item(i);
-                String cat = producto.getElementsByTagName("categoria").item(0).getTextContent().toLowerCase();
-                if (cat.equals(categoriaInput)) {
                     Element precioElem = (Element) producto.getElementsByTagName("precio").item(0);
                     double precio = Double.parseDouble(precioElem.getTextContent());
                     double nuevoPrecio = precio * 1.10;
                     precioElem.setTextContent(String.format("%.2f", nuevoPrecio));
                 }
+            }
+            
+            if (!existe) {
+                System.out.println("Categoria no valida. Volviendo al menu...");
+                return;
             }
             
             guardarDocumento(doc, "productos_actualizados.xml");
