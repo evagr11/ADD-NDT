@@ -132,8 +132,10 @@ información útil y de interés http://jmoral.es/blog/xml-dom.
 
             //TODO: Solicitar la categoría al usuario
             
+            
+            System.out.println("\n===== ACTUALIZACION DE PRECIOS POR CATEGORIA =====");
             System.out.println("Esto hara que el precio de todos los productos de la categoria que escojas se incremente en un 10%");
-            System.out.print("Ingrese la categoría a actualizar: ");
+            System.out.print("Ingrese la categoria a actualizar: ");
             String categoriaInput = sc.nextLine().toLowerCase();
             
             boolean existe = false;
@@ -168,13 +170,16 @@ información útil y de interés http://jmoral.es/blog/xml-dom.
             }
             
             guardarDocumento(doc, "productos_actualizados.xml");
-            System.out.println("Precios actualizados para la categoría: " + categoriaInput);
+            System.out.println("Precios actualizados para la categoria: " + categoriaInput);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 ```
+![TestOpcion3](TestOp3.png)
+
+![TestOpcion3](ResultadosTestOp3.png)
 ## Material de apoyo
 Se facilitan los siguientes documentos para el desarrollo de la práctica:
 - productos.xml: listado de los productos que se deberá consultar.
