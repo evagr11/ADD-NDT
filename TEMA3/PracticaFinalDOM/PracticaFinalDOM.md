@@ -115,7 +115,60 @@ información útil y de interés http://jmoral.es/blog/xml-dom.
 - Solicita al usuario una categoría (por ejemplo, “Informática”).
 - Incrementa el precio de todos los productos de esa categoría en un 10%.
 - Guarda los cambios en un nuevo fichero productos_actualizados.xml. (Código ya implementado).
+``` java
+    // ==========================================================
+    // Método 3: Incrementar precios por categoría
+    // ==========================================================
+    public static void incrementarPreciosPorCategoria() {
+        Scanner sc = new Scanner(System.in);
+        try {
+            Document doc = cargarDocumento();
+            
+            NodeList lista = doc.getElementsByTagName("producto");
 
+            //TODO: Solicitar la categoría al usuario
+            System.out.print("Ingrese la categoría a actualizar: ");
+            String categoriaInput = sc.nextLine().toLowerCase();
+            
+            boolean existe = false;
+
+            // Verificar si la categoría existe
+            for (int i = 0; i < lista.getLength(); i++) {
+                Element producto = (Element) lista.item(i);
+                String cat = producto.getElementsByTagName("categoria").item(0).getTextContent().toLowerCase();
+                if (cat.equals(categoriaInput)) {
+                    existe = true;
+                    break;
+                }
+            }
+
+            if (!existe) {
+                System.out.println("Categoría no válida. Volviendo al menú...");
+                return;
+            }
+        
+            //TODO: Recorrer el listado de productos y modificar su valor
+            
+            // Guardar los cambios en el archivo productos_actualizados.xml
+            for (int i = 0; i < lista.getLength(); i++) {
+                Element producto = (Element) lista.item(i);
+                String cat = producto.getElementsByTagName("categoria").item(0).getTextContent();
+                if (cat.equals(categoriaInput)) {
+                    Element precioElem = (Element) producto.getElementsByTagName("precio").item(0);
+                    double precio = Double.parseDouble(precioElem.getTextContent());
+                    double nuevoPrecio = precio * 1.10;
+                    precioElem.setTextContent(String.format("%.2f", nuevoPrecio));
+                }
+            }
+            
+            guardarDocumento(doc, "productos_actualizados.xml");
+            System.out.println("Precios actualizados para la categoría: " + categoriaInput);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+```
 ## Material de apoyo
 Se facilitan los siguientes documentos para el desarrollo de la práctica:
 - productos.xml: listado de los productos que se deberá consultar.
