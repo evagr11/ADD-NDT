@@ -2,7 +2,9 @@
 
 ## Previa
 ### Parte previa 1.
-Investigue cómo instalar e instale PostgreSQL en su ordenador. Tras haber instalado PostgreSQL demuestre que puede acceder a través de la terminal a sus servicios haciendo uso del comando “psql postgres” y realice una captura de pantalla.
+Investigue cómo instalar e instale PostgreSQL en su ordenador. Tras haber instalado PostgreSQL demuestre que puede acceder a través de la terminal a sus servicios haciendo uso del comando *“psql postgres”* y **realice una captura de pantalla**.
+
+![funcionaSQL](IMAGENES/fuincionaSQL.PNG)
 
 ### Parte previa 2.
 Acceda a postgreSQL haciendo uso del comando “psql postgres” y cree un usuario con este nombre y contraseña “postgres” tal y como se muestra a continuación:
