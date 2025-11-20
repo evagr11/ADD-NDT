@@ -15,6 +15,8 @@ En este punto, haciendo uso de la terminal y comandos similares, podríamos crea
 
 Investigue cómo conectarse a la base de datos “tema4” desde DBeaver e incluya una captura de pantalla que demuestre la conexión. A continuación deberá crear una tabla con la siguiente sentencia y añadir un par de datos de ejemplo (use sus datos personales como ejemplo). Demuestre con una consulta SELECT la creación de la tabla y realice una captura de pantalla.
 
+![SelectBBDD](IMAGENES/SelectBBDD.PNG)
+
 ## Practica
 ### Parte 1.
 Deberá crear un proyecto de tipo Maven e incluir la dependencia especificado en el siguiente enlace (Driver JDBC PostgreSQL):
@@ -22,6 +24,8 @@ Deberá crear un proyecto de tipo Maven e incluir la dependencia especificado en
 https://mvnrepository.com/artifact/org.postgresql/postgresql/42.7.4 
 
 Realice una captura de pantalla con la dependencia añadida.
+
+![libreriaEnNetBeans](IMAGENES/libreriaEnNetBeans.PNG)
 
 ### Parte 2.
 El objetivo ahora es establecer una conexión entre un programa escrito en Java y nuestra base de datos haciendo uso del conector añadido con la dependencia anterior.
@@ -36,5 +40,7 @@ Una vez establecida la conexión podemos utilizar el siguiente código para most
 Explique con sus palabras que hace el código anterior línea a línea:
 
 Realice una captura de pantalla el resultado obtenido por consola:
+
+![ResultadoConsola](IMAGENES/ResultadoConsola.PNG)
 
 Incluya el código completo:
