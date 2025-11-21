@@ -13,7 +13,11 @@ A continuación cree una base de datos llamada “tema4” haciendo uso del sigu
 
 En este punto, haciendo uso de la terminal y comandos similares, podríamos crear tablas y realizar consultas pero es bastante tedioso lidiar con una terminal. Por ello vamos a utilizar una interfaz gráfica que nos permita manipular y consultar nuestras bases de datos. Para ello nos descargaremos DBeaver: https://dbeaver.io/
 
-Investigue cómo conectarse a la base de datos “tema4” desde DBeaver e incluya una captura de pantalla que demuestre la conexión. A continuación deberá crear una tabla con la siguiente sentencia y añadir un par de datos de ejemplo (use sus datos personales como ejemplo). Demuestre con una consulta SELECT la creación de la tabla y realice una captura de pantalla.
+Investigue cómo conectarse a la base de datos “tema4” desde DBeaver e **incluya una captura de pantalla** que demuestre la conexión. 
+
+![ConfiguracionBBDDSQL](IMAGENES/ConfiguracionBBDDSQL.PNG)
+
+A continuación deberá crear una tabla con la siguiente sentencia y añadir un par de datos de ejemplo (use sus datos personales como ejemplo). Demuestre con una consulta SELECT la creación de la tabla y **realice una captura de pantalla**.
 
 ![SelectBBDD](IMAGENES/SelectBBDD.PNG)
 
@@ -23,14 +27,15 @@ Deberá crear un proyecto de tipo Maven e incluir la dependencia especificado en
 
 https://mvnrepository.com/artifact/org.postgresql/postgresql/42.7.4 
 
-Realice una captura de pantalla con la dependencia añadida.
+**Realice una captura de pantalla** con la dependencia añadida.
 
 ![libreriaEnNetBeans](IMAGENES/libreriaEnNetBeans.PNG)
 
 ### Parte 2.
 El objetivo ahora es establecer una conexión entre un programa escrito en Java y nuestra base de datos haciendo uso del conector añadido con la dependencia anterior.
 
-El programa deberá conectarse a la base de datos e imprimir si la conexión ha sido o no exitosa. Realice una captura de pantalla de la salida de su programa e incluya el código utilizado.
+El programa deberá conectarse a la base de datos e imprimir si la conexión ha sido o no exitosa. **Realice una captura de pantalla** de la salida de su programa e incluya el código utilizado.
+![Conexion](IMAGENES/Conexion.PNG)
 
 Para realizar la conexión deberá utilizar el siguiente código:
 
