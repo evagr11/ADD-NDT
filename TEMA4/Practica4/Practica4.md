@@ -49,3 +49,53 @@ Realice una captura de pantalla el resultado obtenido por consola:
 ![ResultadoConsola](IMAGENES/ResultadoConsola.PNG)
 
 Incluya el código completo:
+```java
+package tema4_aadd;
+
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+
+/**
+ * Archivo para mostrar por consola todos los usuarios de la base de datos
+ * @author Eva Gallardo Romero
+ * @version 1.0
+ */
+public class Main {
+
+    private static final String URL = "jdbc:postgresql://localhost:5433/tema4";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "admin";
+        
+    public static void main(String[] args) throws SQLException {
+        Connection conn = null;
+        try{
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Conexion establecida");
+        }catch (SQLException e){
+            System.out.println("Conexion fallida");
+            System.out.println("Error: " + e.toString());
+        }
+        
+        Statement stmt = null;
+        ResultSet rs = null;
+        
+        stmt = (Statement) conn.createStatement();
+        String query = "SELECT * FROM Usuario";
+        rs = ((java.sql.Statement) stmt).executeQuery(query);
+        
+        while (rs.next()){
+            int ID = rs.getInt("ID");
+            String USERNAME = rs.getString("USERNAME");
+            String PASSWORD = rs.getString("PASSWORD");
+            String NOMBRE = rs.getString("NOMBRE");
+            System.out.println("ID: " + ID + 
+                                ", Username: " + USERNAME +
+                                ", Password: " + PASSWORD +
+                                ", Nombre: " + NOMBRE);
+        }
+    }
+}
+```
