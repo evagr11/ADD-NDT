@@ -152,7 +152,42 @@ De cara a la gestión de nuestra BBDD, deberá tener en cuenta:
  
 - Referente nuevamente al comportamiento de esta clave foránea, establezca el comportamiento de “ON DELETE SET NULL” para que cuando se borre un entrenador de la BBDD, no se eliminen todos los jugadores asociados al mismo. Esto también se establecerá durante la creación de las tablas. 
  
-- Inserte varios entrenadores y jugadores manualmente para poder realizar pruebas durante la implementación. 
+- Inserte varios entrenadores y jugadores manualmente para poder realizar pruebas durante la implementación.
+
+Codigo de DBeaver
+```SQL
+--CREACION DE TABLA
+CREATE TABLE IF NOT EXISTS ENTRENADOR (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    raza VARCHAR(50) NOT NULL,
+    n_partidos INT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS JUGADOR (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    posicion VARCHAR(50) NOT NULL,
+    herido BOOLEAN,
+    entrenador_id INT,
+    FOREIGN KEY (entrenador_id) REFERENCES ENTRENADOR(id)
+    	ON DELETE SET NULL
+);
+
+--INSERTAR DATOS
+INSERT INTO ENTRENADOR (nombre, raza, n_partidos)
+VALUES 
+('Carlos', 'Humano', 50),
+('Marta', 'Elfo', 30),
+('Luis', 'Orco', 20);
+
+INSERT INTO JUGADOR (nombre, posicion, herido, entrenador_id)
+VALUES
+('Pedro', 'Delantero', FALSE, 1),
+('Ana', 'Defensa', TRUE, 2),
+('Jorge', 'Portero', FALSE, 1),
+('Lucía', 'Centrocampista', FALSE, 3);
+```
  
 ## Tarea 3 - Clases auxiliares 
 
