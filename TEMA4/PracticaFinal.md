@@ -193,11 +193,192 @@ VALUES
 
 Diseñe e implemente en java las clases auxiliares Entrenador y Jugador. Por agilidad, se recomienda utilizar directamente las clases facilitadas en los archivos “Entrenador.java” y “Jugador.java”, adaptándolas en caso de ser necesario. 
 
+```java
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package practicafinal4;
+
+/**
+ *
+ * @author Alumno
+ */
+public class Jugador {
+
+    private int id;
+    private String nombre;
+    private String posicion;
+    private boolean herido;
+    private int entrenadorId;
+
+    // Constructor
+    public Jugador(String nombre, String posicion, double valor, boolean herido, int entrenadorId) {
+        this.nombre = nombre;
+        this.posicion = posicion;
+        this.herido = herido;
+        this.entrenadorId = entrenadorId;
+    }
+
+    // Getters y Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public String getPosicion() { return posicion; }
+    public void setPosicion(String posicion) { this.posicion = posicion; }
+
+    public boolean isHerido() { return herido; }
+    public void setHerido(boolean herido) { this.herido = herido; }
+
+    public int getEntrenadorId() { return entrenadorId; }
+    public void setEntrenadorId(int entrenadorId) { this.entrenadorId = entrenadorId; }
+}
+```
+```java
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package practicafinal4;
+
+/**
+ *
+ * @author Alumno
+ */
+public class Entrenador {
+
+    private int id;
+    private String nombre;
+    private String raza;
+    private int n_partidos;
+
+    // Constructor
+    public Entrenador(int id, String nombre, String raza, int n_partidos) { this.id = id;
+        this.nombre = nombre;
+        this.raza = raza;
+        this.n_partidos = n_partidos;
+}
+
+    // Getters y Setters
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) { this.id = id; }
+
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+
+    public String getRaza() { return raza; }
+    public void setRaza(String raza) { this.raza = raza; }
+
+    public int getPartidos() { return n_partidos; }
+    public void setPartidos(int n_partidos) { this.n_partidos = n_partidos; }
+}
+```
+
 ## Tarea 4 - Clases DAO 
 
 Vamos a implementar clases DAO (Data Access Object), o dicho en otras palabras, son clases cuyo propósito es aislar la interacción con las bases de datos, y proporcionar una interfaz clara para realizar operaciones de CRUD (Create, Read, Update, Delete). Esto nos facilitará mantener y reutilizar el código, además de modificar lo relacionado con la BBDD sin tocar el resto de código. 
 
 Antes de comenzar a implementar estas dos clases (JugadorDAO y EntrenadorDAO), se debe leer y entender el ejemplo disponible en el “ejemploDAO.java” y leer las funcionalidades solicitadas en el siguiente apartado. 
+
+```java
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package practicafinal4;
+
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+/**
+ *
+ * @author Alumno
+ */
+public class JugadorDAO {
+    
+    private Connection connection;
+    
+    public JugadorDAO(Connection connection) {
+        this.connection = connection;
+    }
+    
+    public void add(Jugador jugador) {
+        String sql = "INSERT INTO JUGADOR (nombre, posicion, herido, entrenador_id) VALUES (?, ?, ?, ?)";
+        //Evitar inyeccion SQL
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, jugador.getNombre());
+            statement.setString(2, jugador.getPosicion());
+            statement.setBoolean(3, jugador.isHerido());
+            statement.setInt(4, jugador.getEntrenadorId());
+            statement.executeUpdate();
+        } catch (SQLException sqle) {
+            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
+            sqle.printStackTrace();
+        }
+    }
+    
+    public void delete(String nombre) {
+        String sql = "DELETE FROM JUGADOR WHERE nombre = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, nombre);
+            statement.executeUpdate();
+    
+        } catch (SQLException sqle) {
+            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
+            sqle.printStackTrace();
+        }
+    }
+    
+    public boolean modify(String nombre, Jugador jugador) {
+        String sql = "UPDATE JUGADOR SET nombre = ?, posicion = ?, herido = ?, entrenador_id = ? WHERE nombre = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, jugador.getNombre());
+            statement.setString(2, jugador.getPosicion());
+            statement.setBoolean(3, jugador.isHerido());
+            statement.setInt(4, jugador.getEntrenadorId());
+            statement.executeUpdate();
+        } catch (SQLException sqle) {
+            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
+            sqle.printStackTrace();
+        }
+        return false;
+    }
+    
+    public ArrayList<Jugador> findAll() {
+        String sql = "SELECT * FROM JUGADOR ORDER BY nombre";
+        ArrayList<Jugador> JUGADOR = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Jugador jugador = new Jugador();
+                jugador.setNombre(resultSet.getString("nombre"));
+                jugador.setPosicion(resultSet.getString("posicion"));
+                jugador.setHerido(resultSet.getBoolean("her"));
+                jugador.setEntrenadorId
+                JUGADOR.add(jugador);
+            }
+        } catch (SQLException sqle) {
+            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
+            sqle.printStackTrace();
+        }
+
+        return books;
+    }
+    
+}
+```
+
 
 ## Tarea 5 - Clase Main como menú 
 
