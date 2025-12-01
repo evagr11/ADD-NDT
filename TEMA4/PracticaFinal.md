@@ -589,13 +589,21 @@ public class Main {
     }
 
     public static void mostrarMenu() {
-        System.out.println("\n--- MENÚ BLOOD BOWL ---");
+        
+        System.out.println("===============================================================");
+        System.out.println("  ____  _     ___   ___  ____    ____   _____        ___");     
+        System.out.println(" | __ )| |   / _ \\ / _ \\|  _ \\  | __ ) / _ \\ \\      / / | ");   
+        System.out.println(" |  _ \\| |  | | | | | | | | | | |  _ \\| | | \\ \\ /\\ / /| | ");   
+        System.out.println(" | |_) | |__| |_| | |_| | |_| | | |_) | |_| |\\ V  V / | |___ ");
+        System.out.println(" |____/|_____\\___/ \\___/|____/  |____/ \\___/  \\_/\\_/  |_____|");
+        System.out.println("                                                      ");
+        System.out.println("                  QUE QUIERES HACER?                     ");
+        System.out.println("===============================================================");
         System.out.println("1. Añadir (entrenador/jugador)");
         System.out.println("2. Eliminar (entrenador/jugador)");
         System.out.println("3. Listar entrenadores");
         System.out.println("4. Listar jugadores de un entrenador");
         System.out.println("5. Lesionar jugador");
-        System.out.println("6. Jugar partido (opcional)");
         System.out.println("0. Salir");
         System.out.print("Seleccione una opción: ");
     }
