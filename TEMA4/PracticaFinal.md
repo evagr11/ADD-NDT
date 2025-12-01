@@ -243,6 +243,7 @@ public class Entrenador {
     private int n_partidos;
 
     // Constructor
+    public Entrenador() {}
     public Entrenador(int id, String nombre, String raza, int n_partidos) { 
         this.id = id;
         this.nombre = nombre;
@@ -439,43 +440,6 @@ public class EntrenadorDAO {
         return ENTRENADOR;
     }
     
-    public Entrenador findByNombre(String nombre) {
-        String sql = "SELECT * FROM ENTRENADOR WHERE nombre = ?";
-        Entrenador entrenador = null;
-
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, nombre);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                entrenador = new Entrenador();
-                entrenador.setNombre(resultSet.getString("nombre"));
-                entrenador.setRaza(resultSet.getString("raza"));
-                entrenador.setPartidos(resultSet.getInt("n_partidos"));
-            }
-        } catch (SQLException sqle) {
-            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
-            sqle.printStackTrace();
-        }
-
-        return entrenador;
-    }
-    
-    
-    public boolean modify(String nombre, Entrenador entrenador) {
-        String sql = "UPDATE ENTRENADOR SET nombre = ?, raza = ?, n_partidos = ? WHERE nombre = ?";
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, entrenador.getNombre());
-            statement.setString(2, entrenador.getRaza());
-            statement.setInt(3, entrenador.getPartidos());
-            statement.executeUpdate();
-        } catch (SQLException sqle) {
-            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
-            sqle.printStackTrace();
-        }
-        return false;
-    }
 }
 ```
 
