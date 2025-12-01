@@ -412,7 +412,8 @@ public class EntrenadorDAO {
         this.connection = connection;
     }
     
-    public void add(Entrenador entrenador) {
+    // 1. Añadir nuevo entrenador
+    public void insertarEntrenador(Entrenador entrenador) {
         String sql = "INSERT INTO ENTRENADOR (nombre, raza, n_partidos) VALUES (?, ?, ?)";
         //Evitar inyeccion SQL
         try {
@@ -427,7 +428,8 @@ public class EntrenadorDAO {
         }
     }
     
-    public void delete(String nombre) {
+    // 2. Eliminar entrenador
+    public void eliminarEntrenador(String nombre) {
         String sql = "DELETE FROM ENTRENADOR WHERE nombre = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
@@ -440,21 +442,7 @@ public class EntrenadorDAO {
         }
     }
     
-    public boolean modify(String nombre, Entrenador entrenador) {
-        String sql = "UPDATE ENTRENADOR SET nombre = ?, raza = ?, n_partidos = ? WHERE nombre = ?";
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, entrenador.getNombre());
-            statement.setString(2, entrenador.getRaza());
-            statement.setInt(3, entrenador.getPartidos());
-            statement.executeUpdate();
-        } catch (SQLException sqle) {
-            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
-            sqle.printStackTrace();
-        }
-        return false;
-    }
-    
+    // 3. Listar todos los entrenadores
     public ArrayList<Entrenador> findAll() {
         String sql = "SELECT * FROM ENTRENADOR ORDER BY nombre";
         ArrayList<Entrenador> ENTRENADOR = new ArrayList<>();
@@ -463,6 +451,7 @@ public class EntrenadorDAO {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Entrenador entrenador = new Entrenador();
+                entrenador.setId(resultSet.getInt("id"));
                 entrenador.setNombre(resultSet.getString("nombre"));
                 entrenador.setRaza(resultSet.getString("raza"));
                 entrenador.setPartidos(resultSet.getInt("n_partidos"));
@@ -496,6 +485,22 @@ public class EntrenadorDAO {
         }
 
         return entrenador;
+    }
+    
+    
+    public boolean modify(String nombre, Entrenador entrenador) {
+        String sql = "UPDATE ENTRENADOR SET nombre = ?, raza = ?, n_partidos = ? WHERE nombre = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, entrenador.getNombre());
+            statement.setString(2, entrenador.getRaza());
+            statement.setInt(3, entrenador.getPartidos());
+            statement.executeUpdate();
+        } catch (SQLException sqle) {
+            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
+            sqle.printStackTrace();
+        }
+        return false;
     }
 }
 ```
