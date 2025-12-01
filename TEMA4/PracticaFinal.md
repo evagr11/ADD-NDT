@@ -205,6 +205,7 @@ public class Jugador {
     private int entrenadorId;
 
     // Constructor
+    public Jugador() {}
     public Jugador(int id, String nombre, String posicion, boolean herido, int entrenadorId) {
         this.id = id;
         this.nombre = nombre;
@@ -359,73 +360,6 @@ public class JugadorDAO {
         }
     }
     
-    
-    public ArrayList<Jugador> findAll() {
-        String sql = "SELECT * FROM JUGADOR ORDER BY nombre";
-        ArrayList<Jugador> JUGADOR = new ArrayList<>();
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                Jugador jugador = new Jugador(
-                    resultSet.getInt("id"),
-                    resultSet.getString("nombre"),
-                    resultSet.getString("posicion"),
-                    resultSet.getBoolean("herido"),
-                    resultSet.getInt("entrenador_id")
-                );
-                
-                JUGADOR.add(jugador);
-                
-            }
-        } catch (SQLException sqle) {
-            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
-            sqle.printStackTrace();
-        }
-
-        return JUGADOR;
-    }
-    
-    public Jugador findByNombre(String nombre) {
-        String sql = "SELECT * FROM JUGADOR WHERE nombre = ?";
-        Jugador jugador = null;
-
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, nombre);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                jugador = new Jugador(
-                    resultSet.getInt("id"),
-                    resultSet.getString("nombre"),
-                    resultSet.getString("posicion"),
-                    resultSet.getBoolean("herido"),
-                    resultSet.getInt("entrenador_id")
-                );
-            }
-        } catch (SQLException sqle) {
-            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
-            sqle.printStackTrace();
-        }
-
-        return jugador;
-    }
-    
-    public boolean modify(String nombre, Jugador jugador) {
-        String sql = "UPDATE JUGADOR SET nombre = ?, posicion = ?, herido = ?, entrenador_id = ? WHERE nombre = ?";
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, jugador.getNombre());
-            statement.setString(2, jugador.getPosicion());
-            statement.setBoolean(3, jugador.isHerido());
-            statement.setInt(4, jugador.getEntrenadorId());
-            statement.executeUpdate();
-        } catch (SQLException sqle) {
-            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
-            sqle.printStackTrace();
-        }
-        return false;
-    }
 }
 ```
 ```java
