@@ -205,7 +205,6 @@ public class Jugador {
     private int entrenadorId;
 
     // Constructor
-    public Jugador() {}
     public Jugador(int id, String nombre, String posicion, boolean herido, int entrenadorId) {
         this.id = id;
         this.nombre = nombre;
@@ -243,7 +242,6 @@ public class Entrenador {
     private int n_partidos;
 
     // Constructor
-    public Entrenador() {}
     public Entrenador(int id, String nombre, String raza, int n_partidos) { 
         this.id = id;
         this.nombre = nombre;
@@ -333,12 +331,13 @@ public class JugadorDAO {
             statement.setInt(1, entrenadorId);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Jugador jugador = new Jugador();
-                jugador.setId(resultSet.getInt("id"));
-                jugador.setNombre(resultSet.getString("nombre"));
-                jugador.setPosicion(resultSet.getString("posicion"));
-                jugador.setHerido(resultSet.getBoolean("herido"));
-                jugador.setEntrenadorId(resultSet.getInt("entrenador_id"));
+                Jugador jugador = new Jugador(
+                resultSet.getInt("id"),
+                resultSet.getString("nombre"),
+                resultSet.getString("posicion"),
+                resultSet.getBoolean("herido"),
+                resultSet.getInt("entrenador_id")
+                );
                 jugadores.add(jugador);
             }
         } catch (SQLException sqle) {
@@ -425,11 +424,12 @@ public class EntrenadorDAO {
             PreparedStatement statement = connection.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                Entrenador entrenador = new Entrenador();
-                entrenador.setId(resultSet.getInt("id"));
-                entrenador.setNombre(resultSet.getString("nombre"));
-                entrenador.setRaza(resultSet.getString("raza"));
-                entrenador.setPartidos(resultSet.getInt("n_partidos"));
+                Entrenador entrenador = new Entrenador(
+                resultSet.getInt("id"),
+                resultSet.getString("nombre"),
+                resultSet.getString("raza"),
+                resultSet.getInt("n_partidos")
+                );
                 ENTRENADOR.add(entrenador);
             }
         } catch (SQLException sqle) {
