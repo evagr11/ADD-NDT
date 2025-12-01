@@ -291,6 +291,7 @@ public class JugadorDAO {
         this.connection = connection;
     }
     
+    // 1. Añadir jugador
     public void add(Jugador jugador) {
         String sql = "INSERT INTO JUGADOR (nombre, posicion, herido, entrenador_id) VALUES (?, ?, ?, ?)";
         //Evitar inyeccion SQL
@@ -307,6 +308,7 @@ public class JugadorDAO {
         }
     }
     
+    // 2. Eliminar jugador
     public void delete(String nombre) {
         String sql = "DELETE FROM JUGADOR WHERE nombre = ?";
         try {
@@ -320,21 +322,43 @@ public class JugadorDAO {
         }
     }
     
-    public boolean modify(String nombre, Jugador jugador) {
-        String sql = "UPDATE JUGADOR SET nombre = ?, posicion = ?, herido = ?, entrenador_id = ? WHERE nombre = ?";
+    // 4. Listar jugadores de un entrenador
+    public ArrayList<Jugador> findByEntrenador(int entrenadorId) {
+        String sql = "SELECT * FROM JUGADOR WHERE entrenador_id = ?";
+        ArrayList<Jugador> jugadores = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, jugador.getNombre());
-            statement.setString(2, jugador.getPosicion());
-            statement.setBoolean(3, jugador.isHerido());
-            statement.setInt(4, jugador.getEntrenadorId());
-            statement.executeUpdate();
+            statement.setInt(1, entrenadorId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Jugador jugador = new Jugador();
+                jugador.setId(resultSet.getInt("id"));
+                jugador.setNombre(resultSet.getString("nombre"));
+                jugador.setPosicion(resultSet.getString("posicion"));
+                jugador.setHerido(resultSet.getBoolean("herido"));
+                jugador.setEntrenadorId(resultSet.getInt("entrenador_id"));
+                jugadores.add(jugador);
+            }
         } catch (SQLException sqle) {
-            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
+            System.out.println("Error al listar jugadores");
             sqle.printStackTrace();
         }
-        return false;
+        return jugadores;
     }
+    
+    // 5. Lesionar jugador
+    public void lesionar(int id) {
+        String sql = "UPDATE JUGADOR SET herido = TRUE WHERE id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException sqle) {
+            System.out.println("Error al lesionar jugador");
+            sqle.printStackTrace();
+        }
+    }
+    
     
     public ArrayList<Jugador> findAll() {
         String sql = "SELECT * FROM JUGADOR ORDER BY nombre";
@@ -371,7 +395,7 @@ public class JugadorDAO {
             statement.setString(1, nombre);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                Jugador jugador = new Jugador(
+                jugador = new Jugador(
                     resultSet.getInt("id"),
                     resultSet.getString("nombre"),
                     resultSet.getString("posicion"),
@@ -385,6 +409,22 @@ public class JugadorDAO {
         }
 
         return jugador;
+    }
+    
+    public boolean modify(String nombre, Jugador jugador) {
+        String sql = "UPDATE JUGADOR SET nombre = ?, posicion = ?, herido = ?, entrenador_id = ? WHERE nombre = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, jugador.getNombre());
+            statement.setString(2, jugador.getPosicion());
+            statement.setBoolean(3, jugador.isHerido());
+            statement.setInt(4, jugador.getEntrenadorId());
+            statement.executeUpdate();
+        } catch (SQLException sqle) {
+            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
+            sqle.printStackTrace();
+        }
+        return false;
     }
 }
 ```
