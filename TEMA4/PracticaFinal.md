@@ -4,6 +4,7 @@
 
 De cara a la conexión de nuestra BBDD, deberá tener en cuenta: 
 - Vamos a externalizar la conexión, por lo que crearemos un archivo “config.xml” con los parámetros de configuración de nuestra conexión separados por etiquetas (url, user, password). Un ejemplo de estructura podría ser la siguiente: 
+**config.xml**
 ```xml
 <config> 
   <url>jdbc:postgresql://localhost:5432/bloodbowl</url> 
@@ -154,7 +155,7 @@ De cara a la gestión de nuestra BBDD, deberá tener en cuenta:
  
 - Inserte varios entrenadores y jugadores manualmente para poder realizar pruebas durante la implementación.
 
-Codigo de DBeaver
+**Codigo de DBeaver**
 ```SQL
 --CREACION DE TABLA
 CREATE TABLE IF NOT EXISTS ENTRENADOR (
@@ -193,6 +194,7 @@ VALUES
 
 Diseñe e implemente en java las clases auxiliares Entrenador y Jugador. Por agilidad, se recomienda utilizar directamente las clases facilitadas en los archivos “Entrenador.java” y “Jugador.java”, adaptándolas en caso de ser necesario. 
 
+**Jugador.java**
 ```java
 package practicafinal4;
 
@@ -231,6 +233,8 @@ public class Jugador {
 }
 
 ```
+
+**Entrenador.java**
 ```java
 package practicafinal4;
 
@@ -274,6 +278,7 @@ Vamos a implementar clases DAO (Data Access Object), o dicho en otras palabras, 
 
 Antes de comenzar a implementar estas dos clases (JugadorDAO y EntrenadorDAO), se debe leer y entender el ejemplo disponible en el “ejemploDAO.java” y leer las funcionalidades solicitadas en el siguiente apartado. 
 
+**JugadorDAO.java**
 ```java
 package practicafinal4;
 
@@ -362,11 +367,9 @@ public class JugadorDAO {
     
 }
 ```
+
+**EntrenadorDAO.java**
 ```java
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package practicafinal4;
 
 import java.sql.Connection;
@@ -375,10 +378,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-/**
- *
- * @author Alumno
- */
 public class EntrenadorDAO {
         private Connection connection;
     
@@ -455,3 +454,151 @@ Las funcionalidades solicitadas serán:
 4. Listar todos los jugadores asociados a un entrenador. 
 5. Lesionar a un jugador (modifica el valor de herido para que sea TRUE). 
 6. OPCIONAL: Jugar un partido (suma 1 al n_partidos de dos entrenadores).
+
+**Main.java**
+```java
+package practicafinal4;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Connection conn = null;
+        Scanner sc = new Scanner(System.in);
+
+        try {
+            conn = DriverManager.getConnection(
+                ConfiguracionXML.getUrl(),
+                ConfiguracionXML.getUsuario(),
+                ConfiguracionXML.getPassword()
+            );
+
+            EntrenadorDAO entrenadorDAO = new EntrenadorDAO(conn);
+            JugadorDAO jugadorDAO = new JugadorDAO(conn);
+
+            int opcion;
+            do {
+                mostrarMenu();
+                System.out.print("Seleccione una opción: ");
+                opcion = sc.nextInt();
+                sc.nextLine();
+
+                switch (opcion) {
+                    case 1: // Submenú añadir
+                        System.out.println("¿Qué desea añadir?");
+                        System.out.println("1. Entrenador");
+                        System.out.println("2. Jugador");
+                        int subAdd = sc.nextInt();
+                        sc.nextLine();
+                        if (subAdd == 1) {
+                            System.out.print("Nombre: ");
+                            String nombreE = sc.nextLine();
+                            System.out.print("Raza: ");
+                            String raza = sc.nextLine();
+                            System.out.print("Número de partidos: ");
+                            int partidos = sc.nextInt();
+                            sc.nextLine();
+                            Entrenador e = new Entrenador(0, nombreE, raza, partidos);
+                            entrenadorDAO.insertarEntrenador(e);
+                        } else if (subAdd == 2) {
+                            System.out.print("Nombre: ");
+                            String nombreJ = sc.nextLine();
+                            System.out.print("Posición: ");
+                            String posicion = sc.nextLine();
+                            System.out.print("¿Está herido? (true/false): ");
+                            boolean herido = sc.nextBoolean();
+                            System.out.print("ID del entrenador: ");
+                            int entrenadorId = sc.nextInt();
+                            sc.nextLine();
+                            Jugador j = new Jugador(0, nombreJ, posicion, herido, entrenadorId);
+                            jugadorDAO.add(j);
+                        }
+                        break;
+
+                    case 2: // Submenú eliminar
+                        System.out.println("¿Qué desea eliminar?");
+                        System.out.println("1. Entrenador");
+                        System.out.println("2. Jugador");
+                        int subDel = sc.nextInt();
+                        sc.nextLine();
+                        if (subDel == 1) {
+                            System.out.print("Nombre del entrenador: ");
+                            String nombreDelE = sc.nextLine();
+                            entrenadorDAO.eliminarEntrenador(nombreDelE);
+                        } else if (subDel == 2) {
+                            System.out.print("Nombre del jugador: ");
+                            String nombreDelJ = sc.nextLine();
+                            jugadorDAO.delete(nombreDelJ);
+                        }
+                        break;
+
+                    case 3: // Listar entrenadores
+                        ArrayList<Entrenador> entrenadores = entrenadorDAO.findAll();
+                        for (int i = 0; i < entrenadores.size(); i++) {
+                            Entrenador ent = entrenadores.get(i);
+                            System.out.println(ent.getId() + " - " + ent.getNombre() +
+                                " (" + ent.getRaza() + ") Partidos: " + ent.getPartidos());
+                        }
+                        break;
+
+                    case 4: // Listar jugadores de un entrenador
+                        System.out.print("ID del entrenador: ");
+                        int idEnt = sc.nextInt();
+                        sc.nextLine();
+                        ArrayList<Jugador> jugadores = jugadorDAO.findByEntrenador(idEnt);
+                        for (int i = 0; i < jugadores.size(); i++) {
+                            Jugador jug = jugadores.get(i);
+                            System.out.println(jug.getId() + " - " + jug.getNombre() +
+                                " (" + jug.getPosicion() + ") Herido: " + jug.isHerido());
+                        }
+                        break;
+
+                    case 5: // Lesionar jugador
+                        System.out.print("ID del jugador a lesionar: ");
+                        int idJug = sc.nextInt();
+                        sc.nextLine();
+                        jugadorDAO.lesionar(idJug);
+                        break;
+
+                    case 0:
+                        System.out.println("Saliendo...");
+                        break;
+
+                    default:
+                        System.out.println("Opción no válida");
+                }
+
+            } while (opcion != 0);
+
+        } catch (SQLException sqle) {
+            System.out.println("Error de conexión con la base de datos");
+            sqle.printStackTrace();
+        } finally {
+            try {
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            sc.close();
+        }
+    }
+
+    public static void mostrarMenu() {
+        System.out.println("\n--- MENÚ BLOOD BOWL ---");
+        System.out.println("1. Añadir (entrenador/jugador)");
+        System.out.println("2. Eliminar (entrenador/jugador)");
+        System.out.println("3. Listar entrenadores");
+        System.out.println("4. Listar jugadores de un entrenador");
+        System.out.println("5. Lesionar jugador");
+        System.out.println("6. Jugar partido (opcional)");
+        System.out.println("0. Salir");
+        System.out.print("Seleccione una opción: ");
+    }
+}
+
+```
