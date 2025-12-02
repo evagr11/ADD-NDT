@@ -210,6 +210,10 @@ VALUES
 ('Ana', 'Defensa', TRUE, 2),
 ('Jorge', 'Portero', FALSE, 1),
 ('Lucía', 'Centrocampista', FALSE, 3);
+
+--BORRAR TABLA Y DEPENDENCIA
+DROP TABLE IF EXISTS JUGADOR, ENTRENADOR CASCADE;
+DROP TABLE JUGADOR;
 ```
  
 ## Tarea 3 - Clases auxiliares 
