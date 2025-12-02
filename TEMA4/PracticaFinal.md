@@ -519,10 +519,6 @@ public class JugadorDAO {
     /**
      * Elimina un jugador de la base de datos según su nombre.
      * 
-     * ⚠️ Nota: si existen varios jugadores con el mismo nombre,
-     * se eliminarán todos. Para mayor seguridad se recomienda
-     * implementar eliminación por ID.
-     * 
      * @param nombre nombre del jugador a eliminar
      */
     public void delete(String nombre) {
@@ -654,10 +650,6 @@ public class EntrenadorDAO {
 
     /**
      * Elimina un entrenador de la base de datos según su nombre.
-     * 
-     * ⚠️ Nota: si existen varios entrenadores con el mismo nombre,
-     * se eliminarán todos. Para mayor seguridad se recomienda
-     * implementar eliminación por ID.
      * 
      * @param nombre nombre del entrenador a eliminar
      */
