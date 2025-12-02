@@ -6,11 +6,12 @@ De cara a la conexión de nuestra BBDD, deberá tener en cuenta:
 - Vamos a externalizar la conexión, por lo que crearemos un archivo “config.xml” con los parámetros de configuración de nuestra conexión separados por etiquetas (url, user, password). Un ejemplo de estructura podría ser la siguiente: 
 **config.xml**
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <config> 
-  <url>jdbc:postgresql://localhost:5432/bloodbowl</url> 
-  <user>postgres</user> 
-  <password>1234</password> 
-</config>
+    <url>jdbc:postgresql://localhost:5433/bloodbowl</url> 
+    <user>postgres</user> 
+    <password>admin</password> 
+</config> 
 ```
 - Deberemos leer dicho archivo .xml de cara a realizar la conexión, por lo que crearemos una clase que gestione la lectura del mismo y cargue la configuración. Se facilita el archivo “ConfiguracionXML.java” como plantilla, debiendo completar los apartados señalados con un TODO en comentarios. 
 
@@ -18,7 +19,7 @@ De cara a la conexión de nuestra BBDD, deberá tener en cuenta:
 
 **ConfiguracionXML.java**
 ```java
-package proyectofinal4;
+package practicafinal4;
 
 import java.io.File;
 import javax.xml.parsers.DocumentBuilder;
@@ -111,7 +112,6 @@ public class ConfiguracionXML {
         return password;
     }
 }
-
 ```
   
  
@@ -222,7 +222,7 @@ Diseñe e implemente en java las clases auxiliares Entrenador y Jugador. Por agi
 
 **Jugador.java**
 ```java
-package proyectofinal4;
+package practicafinal4;
 
 /**
  * Clase que representa a un jugador dentro del sistema Blood Bowl.
@@ -341,270 +341,7 @@ public class Jugador {
 
 **Entrenador.java**
 ```java
-package proyectofinal4;
-
-/**
- * Clase que representa a un entrenador dentro del sistema Blood Bowl.
- * 
- * Cada entrenador tiene un identificador único, un nombre, una raza
- * y un número de partidos jugados. Esta clase actúa como un POJO
- * (Plain Old Java Object) que se utiliza para transportar datos entre
- * la aplicación y la base de datos.
- * 
- * @author evaga
- */
-public class Entrenador {
-
-    /** Identificador único del entrenador en la base de datos */
-    private int id;
-    /** Nombre del entrenador */
-    private String nombre;
-    /** Raza asociada al entrenador */
-    private String raza;
-    /** Número de partidos jugados por el entrenador */
-    private int n_partidos;
-
-    /**
-     * Constructor de la clase Entrenador.
-     * 
-     * @param id identificador único del entrenador
-     * @param nombre nombre del entrenador
-     * @param raza raza asociada al entrenador
-     * @param n_partidos número de partidos jugados
-     */
-    public Entrenador(int id, String nombre, String raza, int n_partidos) { 
-        this.id = id;
-        this.nombre = nombre;
-        this.raza = raza;
-        this.n_partidos = n_partidos;
-    }
-
-    /**
-     * Obtiene el identificador del entrenador.
-     * 
-     * @return id del entrenador
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * Establece el identificador del entrenador.
-     * 
-     * @param id nuevo identificador
-     */
-    public void setId(int id) { 
-        this.id = id; 
-    }
-
-    /**
-     * Obtiene el nombre del entrenador.
-     * 
-     * @return nombre del entrenador
-     */
-    public String getNombre() { 
-        return nombre; 
-    }
-
-    /**
-     * Establece el nombre del entrenador.
-     * 
-     * @param nombre nuevo nombre
-     */
-    public void setNombre(String nombre) { 
-        this.nombre = nombre; 
-    }
-
-    /**
-     * Obtiene la raza del entrenador.
-     * 
-     * @return raza del entrenador
-     */
-    public String getRaza() { 
-        return raza; 
-    }
-
-    /**
-     * Establece la raza del entrenador.
-     * 
-     * @param raza nueva raza
-     */
-    public void setRaza(String raza) { 
-        this.raza = raza; 
-    }
-
-    /**
-     * Obtiene el número de partidos jugados por el entrenador.
-     * 
-     * @return número de partidos
-     */
-    public int getPartidos() { 
-        return n_partidos; 
-    }
-
-    /**
-     * Establece el número de partidos jugados por el entrenador.
-     * 
-     * @param n_partidos nuevo número de partidos
-     */
-    public void setPartidos(int n_partidos) { 
-        this.n_partidos = n_partidos; 
-    }
-}
-
-```
-
-## Tarea 4 - Clases DAO 
-
-Vamos a implementar clases DAO (Data Access Object), o dicho en otras palabras, son clases cuyo propósito es aislar la interacción con las bases de datos, y proporcionar una interfaz clara para realizar operaciones de CRUD (Create, Read, Update, Delete). Esto nos facilitará mantener y reutilizar el código, además de modificar lo relacionado con la BBDD sin tocar el resto de código. 
-
-Antes de comenzar a implementar estas dos clases (JugadorDAO y EntrenadorDAO), se debe leer y entender el ejemplo disponible en el “ejemploDAO.java” y leer las funcionalidades solicitadas en el siguiente apartado. 
-
-**JugadorDAO.java**
-```java
-package proyectofinal4;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
-/**
- * Clase DAO (Data Access Object) para gestionar las operaciones
- * relacionadas con la entidad {@link Jugador} en la base de datos.
- * 
- * Proporciona métodos para insertar, eliminar, listar y actualizar
- * jugadores utilizando consultas SQL seguras con {@link PreparedStatement}.
- * 
- * Esta clase actúa como intermediaria entre la aplicación y la base
- * de datos, encapsulando la lógica de acceso a datos de los jugadores.
- * 
- * @author evaga
- */
-public class JugadorDAO {
-    
-    /** Conexión activa con la base de datos */
-    private Connection connection;
-    
-    /**
-     * Constructor de la clase.
-     * 
-     * @param connection conexión JDBC ya establecida con la base de datos
-     */
-    public JugadorDAO(Connection connection) {
-        this.connection = connection;
-    }
-    
-    // 1. Añadir jugador
-
-    /**
-     * Inserta un nuevo jugador en la base de datos.
-     * 
-     * @param jugador objeto {@link Jugador} con los datos a insertar
-     */
-    public void add(Jugador jugador) {
-        String sql = "INSERT INTO JUGADOR (nombre, posicion, herido, entrenador_id) VALUES (?, ?, ?, ?)";
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, jugador.getNombre());
-            statement.setString(2, jugador.getPosicion());
-            statement.setBoolean(3, jugador.isHerido());
-            if (jugador.getEntrenadorId() > 0)
-                statement.setInt(4, jugador.getEntrenadorId());
-            else{
-                statement.setNull(4, java.sql.Types.INTEGER);
-            }
-
-            ResultSet rs = statement.executeQuery();
-            if (rs.next()){
-                int generateId = rs.getInt(1);
-                jugador.setId(generateId);
-            }
-        } catch (SQLException sqle) {
-            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
-            sqle.printStackTrace();
-        }
-    }
-    
-    // 2. Eliminar jugador
-
-    /**
-     * Elimina un jugador de la base de datos según su nombre.
-     * 
-     * @param nombre nombre del jugador a eliminar
-     */
-    public void delete(String nombre) {
-        String sql = "DELETE FROM JUGADOR WHERE nombre = ?";
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setString(1, nombre);
-            statement.executeUpdate();
-    
-        } catch (SQLException sqle) {
-            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
-            sqle.printStackTrace();
-        }
-    }
-    
-    // 4. Listar jugadores de un entrenador
-
-    /**
-     * Recupera todos los jugadores asociados a un entrenador específico.
-     * 
-     * @param entrenadorId identificador del entrenador
-     * @return lista de objetos {@link Jugador} pertenecientes al entrenador indicado
-     */
-    public ArrayList<Jugador> findByEntrenador(int entrenadorId) {
-        String sql = "SELECT * FROM JUGADOR WHERE entrenador_id = ?";
-        ArrayList<Jugador> jugadores = new ArrayList<>();
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, entrenadorId);
-            ResultSet resultSet = statement.executeQuery();
-            while (resultSet.next()) {
-                Jugador jugador = new Jugador(
-                    resultSet.getInt("id"),
-                    resultSet.getString("nombre"),
-                    resultSet.getString("posicion"),
-                    resultSet.getBoolean("herido"),
-                    resultSet.getInt("entrenador_id")
-                );
-                jugadores.add(jugador);
-            }
-        } catch (SQLException sqle) {
-            System.out.println("Error al listar jugadores");
-            sqle.printStackTrace();
-        }
-        return jugadores;
-    }
-    
-    // 5. Lesionar jugador
-
-    /**
-     * Marca como herido a un jugador en la base de datos.
-     * 
-     * @param id identificador del jugador a lesionar
-     */
-    public void lesionar(int id) {
-        String sql = "UPDATE JUGADOR SET herido = TRUE WHERE id = ?";
-        try {
-            PreparedStatement statement = connection.prepareStatement(sql);
-            statement.setInt(1, id);
-            statement.executeUpdate();
-        } catch (SQLException sqle) {
-            System.out.println("Error al lesionar jugador");
-            sqle.printStackTrace();
-        }
-    }
-    
-}
-
-```
-
-**EntrenadorDAO.java**
-```java
-package proyectofinal4;
+package practicafinal4;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -713,6 +450,269 @@ public class EntrenadorDAO {
 
 ```
 
+## Tarea 4 - Clases DAO 
+
+Vamos a implementar clases DAO (Data Access Object), o dicho en otras palabras, son clases cuyo propósito es aislar la interacción con las bases de datos, y proporcionar una interfaz clara para realizar operaciones de CRUD (Create, Read, Update, Delete). Esto nos facilitará mantener y reutilizar el código, además de modificar lo relacionado con la BBDD sin tocar el resto de código. 
+
+Antes de comenzar a implementar estas dos clases (JugadorDAO y EntrenadorDAO), se debe leer y entender el ejemplo disponible en el “ejemploDAO.java” y leer las funcionalidades solicitadas en el siguiente apartado. 
+
+**JugadorDAO.java**
+```java
+package practicafinal4;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+/**
+ * Clase DAO (Data Access Object) para gestionar las operaciones
+ * relacionadas con la entidad {@link Jugador} en la base de datos.
+ * 
+ * Proporciona métodos para insertar, eliminar, listar y actualizar
+ * jugadores utilizando consultas SQL seguras con {@link PreparedStatement}.
+ * 
+ * Esta clase actúa como intermediaria entre la aplicación y la base
+ * de datos, encapsulando la lógica de acceso a datos de los jugadores.
+ * 
+ * @author evaga
+ */
+public class JugadorDAO {
+    
+    /** Conexión activa con la base de datos */
+    private Connection connection;
+    
+    /**
+     * Constructor de la clase.
+     * 
+     * @param connection conexión JDBC ya establecida con la base de datos
+     */
+    public JugadorDAO(Connection connection) {
+        this.connection = connection;
+    }
+    
+    // 1. Añadir jugador
+
+    /**
+     * Inserta un nuevo jugador en la base de datos.
+     * 
+     * @param jugador objeto {@link Jugador} con los datos a insertar
+     */
+    public void add(Jugador jugador) {
+        String sql = "INSERT INTO JUGADOR (nombre, posicion, herido, entrenador_id) VALUES (?, ?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, jugador.getNombre());
+            statement.setString(2, jugador.getPosicion());
+            statement.setBoolean(3, jugador.isHerido());
+            if (jugador.getEntrenadorId() > 0)
+                statement.setInt(4, jugador.getEntrenadorId());
+            else{
+                statement.setNull(4, java.sql.Types.INTEGER);
+            }
+
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()){
+                int generateId = rs.getInt(1);
+                jugador.setId(generateId);
+            }
+        } catch (SQLException sqle) {
+            if (jugador.getEntrenadorId() == 0){
+                System.out.println("Jugador anadido sin entrenador");
+            } else {
+                sqle.printStackTrace();
+            }
+        }
+    }
+    
+    // 2. Eliminar jugador
+
+    /**
+     * Elimina un jugador de la base de datos según su nombre.
+     * 
+     * @param nombre nombre del jugador a eliminar
+     */
+    public void delete(String nombre) {
+        String sql = "DELETE FROM JUGADOR WHERE nombre = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, nombre);
+            statement.executeUpdate();
+    
+        } catch (SQLException sqle) {
+            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
+            sqle.printStackTrace();
+        }
+    }
+    
+    // 4. Listar jugadores de un entrenador
+
+    /**
+     * Recupera todos los jugadores asociados a un entrenador específico.
+     * 
+     * @param entrenadorId identificador del entrenador
+     * @return lista de objetos {@link Jugador} pertenecientes al entrenador indicado
+     */
+    public ArrayList<Jugador> findByEntrenador(int entrenadorId) {
+        String sql = "SELECT * FROM JUGADOR WHERE entrenador_id = ?";
+        ArrayList<Jugador> jugadores = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, entrenadorId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Jugador jugador = new Jugador(
+                    resultSet.getInt("id"),
+                    resultSet.getString("nombre"),
+                    resultSet.getString("posicion"),
+                    resultSet.getBoolean("herido"),
+                    resultSet.getInt("entrenador_id")
+                );
+                jugadores.add(jugador);
+            }
+        } catch (SQLException sqle) {
+            System.out.println("Error al listar jugadores");
+            sqle.printStackTrace();
+        }
+        return jugadores;
+    }
+    
+    // 5. Lesionar jugador
+
+    /**
+     * Marca como herido a un jugador en la base de datos.
+     * 
+     * @param id identificador del jugador a lesionar
+     */
+    public void lesionar(int id) {
+        String sql = "UPDATE JUGADOR SET herido = TRUE WHERE id = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException sqle) {
+            System.out.println("Error al lesionar jugador");
+            sqle.printStackTrace();
+        }
+    }
+    
+}
+
+```
+
+**EntrenadorDAO.java**
+```java
+package practicafinal4;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+/**
+ * Clase DAO (Data Access Object) para gestionar las operaciones
+ * relacionadas con la entidad {@link Entrenador} en la base de datos.
+ * 
+ * Proporciona métodos para insertar, eliminar y listar entrenadores
+ * utilizando consultas SQL seguras con {@link PreparedStatement}.
+ * 
+ * Esta clase actúa como intermediaria entre la aplicación y la base
+ * de datos, encapsulando la lógica de acceso a datos.
+ * 
+ * @author evaga
+ */
+public class EntrenadorDAO {
+    
+    /** Conexión activa con la base de datos */
+    private Connection connection;
+    
+    /**
+     * Constructor de la clase.
+     * 
+     * @param connection conexión JDBC ya establecida con la base de datos
+     */
+    public EntrenadorDAO(Connection connection) {
+        this.connection = connection;
+    }
+    
+    // 1. Añadir nuevo entrenador
+
+    /**
+     * Inserta un nuevo entrenador en la base de datos.
+     * 
+     * @param entrenador objeto {@link Entrenador} con los datos a insertar
+     */
+    public void insertarEntrenador(Entrenador entrenador) {
+        String sql = "INSERT INTO ENTRENADOR (nombre, raza, n_partidos) VALUES (?, ?, ?)";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, entrenador.getNombre());
+            statement.setString(2, entrenador.getRaza());
+            statement.setInt(3, entrenador.getPartidos());
+            statement.executeUpdate();
+        } catch (SQLException sqle) {
+            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
+            sqle.printStackTrace();
+        }
+    }
+    
+    // 2. Eliminar entrenador
+
+    /**
+     * Elimina un entrenador de la base de datos según su nombre.
+     * 
+     * @param nombre nombre del entrenador a eliminar
+     */
+    public void eliminarEntrenador(String nombre) {
+        String sql = "DELETE FROM ENTRENADOR WHERE nombre = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.setString(1, nombre);
+            statement.executeUpdate();
+    
+        } catch (SQLException sqle) {
+            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
+            sqle.printStackTrace();
+        }
+    }
+    
+    // 3. Listar todos los entrenadores
+
+    /**
+     * Recupera todos los entrenadores almacenados en la base de datos.
+     * 
+     * @return lista de objetos {@link Entrenador} con los datos de cada entrenador
+     */
+    public ArrayList<Entrenador> findAll() {
+        String sql = "SELECT * FROM ENTRENADOR ORDER BY id";
+        ArrayList<Entrenador> entrenadores = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Entrenador entrenador = new Entrenador(
+                    resultSet.getInt("id"),
+                    resultSet.getString("nombre"),
+                    resultSet.getString("raza"),
+                    resultSet.getInt("n_partidos")
+                );
+                entrenadores.add(entrenador);
+            }
+        } catch (SQLException sqle) {
+            System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
+            sqle.printStackTrace();
+        }
+
+        return entrenadores;
+    }
+    
+}
+
+
+```
+
 
 ## Tarea 5 - Clase Main como menú 
 
@@ -728,210 +728,53 @@ Las funcionalidades solicitadas serán:
 
 **Main.java**
 ```java
-package proyectofinal4;
+package tema4_aadd;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.sql.ResultSet;
 
 /**
- * Clase principal de la aplicación Blood Bowl.
- * 
- * Contiene el método {@code main} que inicia la ejecución del programa,
- * establece la conexión con la base de datos PostgreSQL utilizando
- * los parámetros definidos en {@link ConfiguracionXML}, y gestiona
- * la interacción con el usuario a través de un menú en consola.
- * 
- * Desde este menú se pueden realizar las siguientes operaciones:
- * <ul>
- *   <li>Añadir entrenadores o jugadores</li>
- *   <li>Eliminar entrenadores o jugadores</li>
- *   <li>Listar todos los entrenadores</li>
- *   <li>Listar jugadores de un entrenador específico</li>
- *   <li>Marcar como herido a un jugador</li>
- *   <li>Salir de la aplicación</li>
- * </ul>
- * 
- * La clase utiliza los DAOs {@link EntrenadorDAO} y {@link JugadorDAO}
- * para realizar las operaciones sobre la base de datos.
- * 
- * @author evaga
+ * Archivo para mostrar por consola todos los usuarios de la base de datos
+ * @author Eva Gallardo Romero
+ * @version 1.0
  */
 public class Main {
 
-    /**
-     * Método principal que arranca la aplicación.
-     * 
-     * <p>Establece la conexión con la base de datos, instancia los DAOs
-     * y muestra un menú interactivo en consola para que el usuario
-     * pueda realizar operaciones sobre entrenadores y jugadores.</p>
-     * 
-     * @param args argumentos de línea de comandos (no utilizados)
-     */
-    public static void main(String[] args) {
+    private static final String URL = "jdbc:postgresql://localhost:5433/tema4";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "admin";
+        
+    public static void main(String[] args) throws SQLException {
         Connection conn = null;
-        Scanner sc = new Scanner(System.in);
-
-        try {
-            conn = DriverManager.getConnection(
-                ConfiguracionXML.getUrl(),
-                ConfiguracionXML.getUsuario(),
-                ConfiguracionXML.getPassword()
-            );
-
-            EntrenadorDAO entrenadorDAO = new EntrenadorDAO(conn);
-            JugadorDAO jugadorDAO = new JugadorDAO(conn);
-
-            int opcion;
-            do {
-                mostrarMenu();
-                opcion = sc.nextInt();
-                sc.nextLine();
-
-                switch (opcion) {
-                    case 1: // Submenú añadir
-                        System.out.println("Que desea anadir?");
-                        System.out.println("1. Entrenador");
-                        System.out.println("2. Jugador");
-                        int subAdd = sc.nextInt();
-                        sc.nextLine();
-                        if (subAdd == 1) {
-                            System.out.print("Nombre: ");
-                            String nombreE = sc.nextLine();
-                            System.out.print("Raza: ");
-                            String raza = sc.nextLine();
-                            System.out.print("Numero de partidos: ");
-                            int partidos = sc.nextInt();
-                            sc.nextLine();
-                            Entrenador e = new Entrenador(0, nombreE, raza, partidos);
-                            entrenadorDAO.insertarEntrenador(e);
-                        } else if (subAdd == 2) {
-                            System.out.print("Nombre: ");
-                            String nombreJ = sc.nextLine();
-                            System.out.print("Posicion: ");
-                            String posicion = sc.nextLine();
-                            System.out.print("Esta herido? (true/false): ");
-                            String heridoStr = sc.nextLine().trim().toLowerCase();
-                            boolean herido;
-                            if (heridoStr.startsWith("t")) {
-                                herido = true;
-                            } else if (heridoStr.startsWith("f")) {
-                                herido = false;
-                            } else {
-                                System.out.println("Entrada no reconocida, se asumira false.");
-                                herido = false;
-                            }
-                            System.out.print("ID del entrenador: ");
-                            int entrenadorId = sc.nextInt();
-                            sc.nextLine();
-                            Jugador j = new Jugador(0, nombreJ, posicion, herido, entrenadorId);
-                            jugadorDAO.add(j);
-                        }
-                        break;
-
-                    case 2: // Submenú eliminar
-                        System.out.println("Que desea eliminar?");
-                        System.out.println("1. Entrenador");
-                        System.out.println("2. Jugador");
-                        int subDel = sc.nextInt();
-                        sc.nextLine();
-                        if (subDel == 1) {
-                            System.out.print("Nombre del entrenador: ");
-                            String nombreDelE = sc.nextLine();
-                            entrenadorDAO.eliminarEntrenador(nombreDelE);
-                        } else if (subDel == 2) {
-                            System.out.print("Nombre del jugador: ");
-                            String nombreDelJ = sc.nextLine();
-                            jugadorDAO.delete(nombreDelJ);
-                        }
-                        break;
-
-                    case 3: // Listar entrenadores
-                        ArrayList<Entrenador> entrenadores = entrenadorDAO.findAll();
-                        for (int i = 0; i < entrenadores.size(); i++) {
-                            Entrenador ent = entrenadores.get(i);
-                            System.out.println(ent.getId() + " - " + ent.getNombre() +
-                                " (" + ent.getRaza() + ") Partidos: " + ent.getPartidos());
-                        }
-                        break;
-
-                    case 4: // Listar jugadores de un entrenador
-                        System.out.print("ID del entrenador: ");
-                        int idEnt = sc.nextInt();
-                        sc.nextLine();
-                        ArrayList<Jugador> jugadores = jugadorDAO.findByEntrenador(idEnt);
-                        for (int i = 0; i < jugadores.size(); i++) {
-                            Jugador jug = jugadores.get(i);
-                            System.out.println(jug.getId() + " - " + jug.getNombre() +
-                                " (" + jug.getPosicion() + ") Herido: " + jug.isHerido());
-                        }
-                        break;
-
-                    case 5: // Lesionar jugador
-                        System.out.print("ID del jugador a lesionar: ");
-                        int idJug = sc.nextInt();
-                        sc.nextLine();
-                        jugadorDAO.lesionar(idJug);
-                        break;
-
-                    case 0:
-                        System.out.println("Saliendo...");
-                        break;
-
-                    default:
-                        System.out.println("Opcion no valida");
-                }
-
-            } while (opcion != 0);
-
-        } catch (SQLException sqle) {
-            System.out.println("Error de conexion con la base de datos");
-            sqle.printStackTrace();
-        } finally {
-            try {
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            sc.close();
+        try{
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Conexion establecida");
+        }catch (SQLException e){
+            System.out.println("Conexion fallida");
+            System.out.println("Error: " + e.toString());
+        }
+        
+        Statement stmt = null;
+        ResultSet rs = null;
+        
+        stmt = (Statement) conn.createStatement();
+        String query = "SELECT * FROM Usuario";
+        rs = ((java.sql.Statement) stmt).executeQuery(query);
+        
+        while (rs.next()){
+            int ID = rs.getInt("ID");
+            String USERNAME = rs.getString("USERNAME");
+            String PASSWORD = rs.getString("PASSWORD");
+            String NOMBRE = rs.getString("NOMBRE");
+            System.out.println("ID: " + ID + 
+                                ", Username: " + USERNAME +
+                                ", Password: " + PASSWORD +
+                                ", Nombre: " + NOMBRE);
         }
     }
-
-    /**
-     * Muestra en consola el menú principal de la aplicación.
-     * 
-     * Incluye las opciones disponibles para el usuario:
-     * <ul>
-     *   <li>1: Añadir entrenador o jugador</li>
-     *   <li>2: Eliminar entrenador o jugador</li>
-     *   <li>3: Listar entrenadores</li>
-     *   <li>4: Listar jugadores de un entrenador</li>
-     *   <li>5: Lesionar jugador</li>
-     *   <li>0: Salir</li>
-     * </ul>
-     */
-    public static void mostrarMenu() {
-        
-        System.out.println("===============================================================");
-        System.out.println("  ____  _     ___   ___  ____    ____   _____        ___");     
-        System.out.println(" | __ )| |   / _ \\ / _ \\|  _ \\  | __ ) / _ \\ \\      / / | ");   
-        System.out.println(" |  _ \\| |  | | | | | | | | | | |  _ \\| | | \\ \\ /\\ / /| | ");   
-        System.out.println(" | |_) | |__| |_| | |_| | |_| | | |_) | |_| |\\ V  V / | |___ ");
-        System.out.println(" |____/|_____\\___/ \\___/|____/  |____/ \\___/  \\_/\\_/  |_____|");
-        System.out.println("                                                      ");
-        System.out.println("                       QUE QUIERES HACER?                     ");
-        System.out.println("===============================================================");
-        System.out.println("1. Anadir (entrenador/jugador)");
-        System.out.println("2. Eliminar (entrenador/jugador)");
-        System.out.println("3. Listar entrenadores");
-        System.out.println("4. Listar jugadores de un entrenador");
-        System.out.println("5. Lesionar jugador");
-        System.out.println("0. Salir");
-        System.out.print("Seleccione una opcion: ");
-    }
 }
-
 
 ```
