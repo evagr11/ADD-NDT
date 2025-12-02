@@ -510,8 +510,17 @@ public class JugadorDAO {
             statement.setString(1, jugador.getNombre());
             statement.setString(2, jugador.getPosicion());
             statement.setBoolean(3, jugador.isHerido());
-            statement.setInt(4, jugador.getEntrenadorId());
-            statement.executeUpdate();
+            if (jugador.getEntrenadorId() > 0)
+                statement.setInt(4, jugador.getEntrenadorId());
+            else{
+                statement.setNull(4, java.sql.Types.INTEGER);
+            }
+
+            ResultSet rs = statement.executeQuery();
+            if (rs.next()){
+                int generateId = rs.getInt(1);
+                jugador.setId(generateId);
+            }
         } catch (SQLException sqle) {
             System.out.println("No se ha podido conectar con el servidor de base de datos. Comprueba que los datos son correctos y que el servidor se ha iniciado");
             sqle.printStackTrace();
