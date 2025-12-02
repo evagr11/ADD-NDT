@@ -50,6 +50,9 @@ https://mvnrepository.com/artifact/org.postgresql/postgresql/42.7.4
 El objetivo ahora es establecer una conexión entre un programa escrito en Java y nuestra base de datos haciendo uso del conector añadido con la dependencia anterior.
 
 El programa deberá conectarse a la base de datos e imprimir si la conexión ha sido o no exitosa. **Realice una captura de pantalla** de la salida de su programa e incluya el código utilizado.
+
+Para realizar la conexión deberá utilizar el siguiente código:
+
 ```java
 private static final String URL = "jdbc:postgresql://localhost:5433/nombredb;
 private static final String USER = "nombre";
@@ -61,7 +64,6 @@ conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
 ![Conexion](IMAGENES/Conexion.PNG)
 
-Para realizar la conexión deberá utilizar el siguiente código:
 
 ### Parte 3.
 Una vez establecida la conexión podemos utilizar el siguiente código para mostrar la información de la BDD:
