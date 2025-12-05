@@ -17,17 +17,18 @@
 ## Ejercicio 2. (0.5 puntos)
   **Haciendo uso de la clase Java.io.File deberá crear los siguientes directorios dentro de la carpeta "P1" (no confundir con incluir dentro de la carpeta creada en el ejercicio 1): "Lunes, Martes, Miércoles, Jueves, Viernes, Sábado, Domingo".**
   ```java
-  import java.io.File;
+import java.io.File;
 
-  public class MyClass {
+public class MyClass {
     public static void main(String args[]) {
-      String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
-      for (String dia : dias) {
-          File dir = new File ("P1/" + dia);
-          dir.mkdir();
-      }
+        String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
+        
+        for (int i = 0; i < dias.length; i++) {
+            File dir = new File("P1/" + dias[i]);
+            dir.mkdir();
+        }
     }
-  }
+}
   ```
 ## Ejercicio 3. (1 puntos)
   **Haciendo uso de la clase Java.io.File deberá mover los siguientes directorios: "Lunes, Martes,
@@ -38,7 +39,8 @@ Miércoles, Jueves, Viernes, Sábado, Domingo" dentro de la carpeta "cine_granad
   public class MyClass {
     public static void main(String args[]) {
       String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
-      for (String dia : dias) {
+      
+      for (int i = 0; i < dias.length; i++) {
           File origen = new File ("P1/" + dia);
           File destino = new File ("P1/cine_granada/" + dia);
           origen.renameTo(destino);
@@ -69,7 +71,8 @@ añada al código de los ejercicios 1 y 2 comprobaciones para no crear el direct
   public class MyClass {
     public static void main(String args[]) {
       String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
-      for (String dia : dias) {
+      
+      for (int i = 0; i < dias.length; i++) {
           File dir = new File ("P1/" + dia);
           if (!dir. exists()) {
               dir.mkdir();
@@ -89,6 +92,7 @@ un mensaje como el siguiente "Se ha creado el directorio con ruta absoluta: /…
   public class MyClass {
     public static void main(String args[]) {
       File fichero = new File ("P1/cine_granada");
+
       if (!fichero.exists()) {
           fichero.mkdir();
           System.out.println("Se ha creado el directorio con ruta absoluta:" + fichero.getAbsolutePath());
@@ -103,7 +107,8 @@ un mensaje como el siguiente "Se ha creado el directorio con ruta absoluta: /…
   public class MyClass {
     public static void main(String args[]) {
       String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
-      for (String dia : dias) {
+      
+      for (int i = 0; i < dias.length; i++) {
           File dir = new File ("P1/" + dia);
           if (!dir. exists()) {
               dir.mkdir();
@@ -122,7 +127,8 @@ un mensaje como el siguiente "Se ha creado el directorio con ruta absoluta: /…
       String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
     
       System.out.println("Archivos creados hasta ahora:");
-      for (String dia : dias) {
+      
+      for (int i = 0; i < dias.length; i++) {
           File origen = new File ("P1/" + dia);
           File destino = new File ("P1/cine_granada/" + dia);
           origen.renameTo(destino);
@@ -143,7 +149,8 @@ un mensaje como el siguiente "Se ha creado el directorio con ruta absoluta: /…
       String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
   
       System.out.println("Archivos creados hasta ahora:");
-      for (String dia : dias) {
+      
+      for (int i = 0; i < dias.length; i++) {
           File archivo = new File("P1/cine_granada/" + dia + "/sesiones.txt");
           System.out.println("· Ruta relativa: " + archivo.getPath());
       }
