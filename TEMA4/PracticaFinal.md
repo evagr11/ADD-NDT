@@ -57,23 +57,37 @@ public class ConfiguracionXML {
      */
     static {
         try {
+            // Crea un objeto File que apunta al fichero config.xml
             File file = new File("config.xml");
-            
+
+            // Obtiene una instancia de la fábrica de constructores de documentos XML
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            // Crea el parser DOM (DocumentBuilder) a partir de la fábrica
             DocumentBuilder builder = factory.newDocumentBuilder();
+            // Parsea el fichero XML y lo carga en memoria como un objeto Document
             Document doc = builder.parse(file);
+            // Normaliza la estructura del documento (elimina nodos vacíos, etc.)
             doc.getDocumentElement().normalize();
-            
+
+            // Configura la fábrica para ignorar espacios en blanco entre elementos
             factory.setIgnoringElementContentWhitespace(true);
-            
+
+            // Crea un objeto XPath para realizar consultas sobre el XML
             XPath xPath = XPathFactory.newInstance().newXPath();
+            // Define la expresión XPath para seleccionar el nodo raíz <config>
             String expression = "/config";
+            // Compila y evalúa la expresión XPath sobre el documento, obteniendo los nodos <config>
             NodeList nodeList = (NodeList) xPath.compile(expression).evaluate(doc, XPathConstants.NODESET);
-            
+
+            // Recorre todos los nodos encontrados (en este caso, los <config>)
             for (int i = 0; i < nodeList.getLength(); i++){
+                // Obtiene el nodo actual
                 Node nNode = nodeList.item(i);
+                // Imprime el nombre del nodo actual (debería ser "config")
                 System.out.println("Current Element: " + nNode.getNodeName());
+                // Convierte el nodo a tipo Element para acceder a sus hijos
                 Element eElement = (Element) nNode;
+                // Extrae el texto del primer elemento <url> y lo asigna a la variable url
                 url = eElement.getElementsByTagName("url").item(0).getTextContent();
                 usuario = eElement.getElementsByTagName("user").item(0).getTextContent();
                 password = eElement.getElementsByTagName("password").item(0).getTextContent();
@@ -504,15 +518,22 @@ public class JugadorDAO {
      * @param jugador objeto {@link Jugador} con los datos a insertar
      */
     public void add(Jugador jugador) {
+        // Defino la sentencia SQL con parámetros (?) para insertar un nuevo jugador en la tabla JUGADOR
         String sql = "INSERT INTO JUGADOR (nombre, posicion, herido, entrenador_id) VALUES (?, ?, ?, ?)";
         try {
+            // Preparo la sentencia SQL para poder asignar valores dinámicamente
             PreparedStatement statement = connection.prepareStatement(sql);
+            // Asigno el valor del nombre del jugador al primer parámetro (?)
             statement.setString(1, jugador.getNombre());
             statement.setString(2, jugador.getPosicion());
             statement.setBoolean(3, jugador.isHerido());
+
+            // Compruebo si el jugador tiene un entrenador asociado (>0)
             if (jugador.getEntrenadorId() > 0)
+                // Si tiene entrenador, asigno su ID al cuarto parámetro (?)
                 statement.setInt(4, jugador.getEntrenadorId());
             else{
+                // Si no tiene entrenador, asigno NULL al cuarto parámetro
                 statement.setNull(4, java.sql.Types.INTEGER);
             }
 
@@ -542,6 +563,8 @@ public class JugadorDAO {
         try {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setString(1, nombre);
+
+            // Ejecuto la sentencia DELETE en la base de datos
             statement.executeUpdate();
     
         } catch (SQLException sqle) {
@@ -560,11 +583,19 @@ public class JugadorDAO {
      */
     public ArrayList<Jugador> findByEntrenador(int entrenadorId) {
         String sql = "SELECT * FROM JUGADOR WHERE entrenador_id = ?";
+        // Creo una lista vacía donde se almacenarán los jugadores encontrados
         ArrayList<Jugador> jugadores = new ArrayList<>();
         try {
+            // Preparo la sentencia SQL para poder asignar valores dinámicamente
             PreparedStatement statement = connection.prepareStatement(sql);
+    
+            // Asigno el valor del entrenadorId recibido como argumento al parámetro (?)
             statement.setInt(1, entrenadorId);
+    
+            // Ejecuto la consulta SELECT y obtengo el resultado en un ResultSet
             ResultSet resultSet = statement.executeQuery();
+    
+            // Recorro todas las filas devueltas por la consulta
             while (resultSet.next()) {
                 Jugador jugador = new Jugador(
                     resultSet.getInt("id"),
@@ -573,6 +604,7 @@ public class JugadorDAO {
                     resultSet.getBoolean("herido"),
                     resultSet.getInt("entrenador_id")
                 );
+                // Añade el jugador creado a la lista
                 jugadores.add(jugador);
             }
         } catch (SQLException sqle) {
