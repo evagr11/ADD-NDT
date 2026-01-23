@@ -29,11 +29,11 @@ Por defecto Spring Boot como ya hemos mencionado en las diapositivas del tema, g
    ![configuracionSpring2](IMAGENES/CapturaConfiguracionParte2.PNG)
 
 Como vemos en la segunda línea, la base de datos está definida en memoria:
-| ``` spring...... ``` |
+| ``` spring.datasource.url=jdbc:h2:file:∼/test; ``` |
 |--------------------------------------------------------------------------------------|
 
 Lo vamos a cambiar para utilizar una base de datos embebida:
-| ``` spring...... ``` |
+| ``` spring.datasource.url=jdbc:h2:mem:testdb; ``` |
 |--------------------------------------------------------------------------------------|
 
 ### Parte 3. 
@@ -43,7 +43,7 @@ Deberá crear a continuación una tabla (de libre elección, pero con al menos 3
    ![configuracionBBDD](IMAGENES/CapturaBaseDatos.PNG)
 
 Otra cosa que podemos habilitar en Spring Boot es el acceso a nuestra base de datos o a nuestro panel de gestión de base de datos. Para ello añadimos la siguiente línea a nuestro fichero “application.properties”:
-| ``` spring...... ``` |
+| ``` spring.h2.console.enabled=true ``` |
 |--------------------------------------------------------------------------------------|
 
 Incluya el contenido del archivo completo con la nueva configuración añadida:
