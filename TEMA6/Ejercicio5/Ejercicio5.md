@@ -76,6 +76,7 @@ public class ConexionBD {
 ```
 
 ## MenuPrincipal.java
+![MenuPrincipal](IMAGENES/MenuPrincipal.png)
 ```java
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -279,6 +280,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 ```
 
 ## AnadirUsuario.java
+![AnadirUsuario](IMAGENES/AnadirUsuario.png)
 ```java
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -464,6 +466,7 @@ public class AnadirUsuario extends javax.swing.JFrame {
 ```
 
 ## AnadirProducto.java
+![AnadirProducto](IMAGENES/AnadirProducto.png)
 ```java
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -671,6 +674,7 @@ public class AnadirProducto extends javax.swing.JFrame {
 ```
 
 ## AnadirPedido.java
+![AnadirPedido](IMAGENES/AnadirPedido.png)
 ```java
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
