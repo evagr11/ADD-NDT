@@ -391,7 +391,7 @@ public class AnadirUsuario extends javax.swing.JFrame {
 
                 // Comprobar resultado
                 if (filas > 0) {
-                    System.out.println("Se insertó correctamente");
+                    System.out.println("Se inserto correctamente");
                     TextFieldNombre.setText("");
                 } else {
                     System.out.println("No se pudo insertar");
@@ -405,7 +405,7 @@ public class AnadirUsuario extends javax.swing.JFrame {
                 ex.printStackTrace();
             }
         }else{
-            System.out.println("El nombre no puede estar vacíos");
+            System.out.println("El nombre no puede estar vacios");
         }
 
     }                                         
@@ -447,6 +447,7 @@ public class AnadirUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel tituloAnadirUsuario;
     // End of variables declaration                   
 }
+
 ```
 
 ## AnadirProducto.java
