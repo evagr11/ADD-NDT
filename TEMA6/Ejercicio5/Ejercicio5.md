@@ -56,6 +56,25 @@ CREATE TABLE pedido (
 );
 ```
 
+## ConexionBD.java
+```java
+package com.example.practica5;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+public class ConexionBD {
+
+    private static final String URL = "jdbc:h2:file:/data/practica5";
+    private static final String USER = "sa";
+    private static final String PASSWORD = "password";
+
+    public static Connection getConnection() throws Exception {
+        return DriverManager.getConnection(URL, USER, PASSWORD);
+    }
+}
+```
+
 ## MenuPrincipal.java
 ```java
 /*
@@ -63,6 +82,8 @@ CREATE TABLE pedido (
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.example.practica5;
+
+import java.sql.Connection;
 
 /**
  *
@@ -77,6 +98,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
+        setTitle("Menú principal");
     }
 
     /**
@@ -173,12 +195,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         javax.swing.JPanel panel = new javax.swing.JPanel(new java.awt.BorderLayout());
         
         try {
-            String URL_CONEXION = "jdbc:h2:file:/data/practica5";
-            String usuario = "sa";
-            String password = "password";
+            Connection conn = ConexionBD.getConnection();
 
-            // Abrir conexión con la base de datos
-            java.sql.Connection conn = java.sql.DriverManager.getConnection(URL_CONEXION, usuario, password);
             // Consulta SQL muestra todos los pedidos
             java.sql.Statement stmt = conn.createStatement();
             java.sql.ResultSet rs = stmt.executeQuery("SELECT * FROM pedido");
@@ -258,7 +276,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton mostrarPedidos;
     // End of variables declaration                   
 }
-
 ```
 
 ## AnadirUsuario.java
@@ -286,6 +303,8 @@ public class AnadirUsuario extends javax.swing.JFrame {
      */
     public AnadirUsuario() {
         initComponents();
+        setTitle("Añadir usuario");
+        TextFieldNombre.setText("Ej: PEPE");
     }
 
     /**
@@ -370,14 +389,9 @@ public class AnadirUsuario extends javax.swing.JFrame {
 
         if (!nombre.trim().isEmpty()) {
 
-            // Datos de conexión
-            String URL_CONEXION = "jdbc:h2:file:/data/practica5";
-            String usuario = "sa";
-            String password = "password";
-
             try {
                 // Abrir conexión con la base de datos 
-                Connection conn = DriverManager.getConnection(URL_CONEXION, usuario, password);
+                Connection conn = ConexionBD.getConnection();
 
                 // Consulta SQL
                 String sql = "INSERT INTO usuarios (nombre) VALUES (?)";
@@ -447,7 +461,6 @@ public class AnadirUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel tituloAnadirUsuario;
     // End of variables declaration                   
 }
-
 ```
 
 ## AnadirProducto.java
@@ -457,6 +470,8 @@ public class AnadirUsuario extends javax.swing.JFrame {
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.example.practica5;
+
+import java.sql.Connection;
 
 /**
  *
@@ -471,6 +486,7 @@ public class AnadirProducto extends javax.swing.JFrame {
      */
     public AnadirProducto() {
         initComponents();
+        setTitle("Añadir producto");
     }
 
     /**
@@ -570,7 +586,7 @@ public class AnadirProducto extends javax.swing.JFrame {
 
         // PRIMERA VALIDACIÓN: comprobar que los campos no están vacíos
         if (nombre.trim().isEmpty() || precioTexto.trim().isEmpty()) {
-            System.out.println("El nombre y el precio no pueden estar vacíos");
+            System.out.println("El nombre y el precio no pueden estar vacios");
             return;
         }
 
@@ -579,16 +595,12 @@ public class AnadirProducto extends javax.swing.JFrame {
         try {
             precio = Double.parseDouble(precioTexto);
         } catch (NumberFormatException e) {
-            System.out.println("El precio debe ser un número válido");
+            System.out.println("El precio debe ser un numero valido");
             return;
         }
 
         try {
-            String URL_CONEXION = "jdbc:h2:file:/data/practica5";
-            String usuario = "sa";
-            String password = "password";
-
-            java.sql.Connection conn = java.sql.DriverManager.getConnection(URL_CONEXION, usuario, password);
+            Connection conn = ConexionBD.getConnection();
 
             String sql = "INSERT INTO productos (nombre, precio) VALUES (?, ?)";
             java.sql.PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -683,12 +695,12 @@ public class AnadirPedido extends javax.swing.JFrame {
         initComponents();
         cargarUsuarios();
         cargarProductos();
+        setTitle("Añadir pedido");
     }
     
     private void cargarUsuarios() {
         try {
-            String URL = "jdbc:h2:file:/data/practica5";
-            Connection conn = java.sql.DriverManager.getConnection(URL, "sa", "password");
+            Connection conn = ConexionBD.getConnection();
 
             String sql = "SELECT id, nombre FROM usuarios";
             java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
@@ -710,8 +722,7 @@ public class AnadirPedido extends javax.swing.JFrame {
     
     private void cargarProductos() {
         try {
-            String URL = "jdbc:h2:file:/data/practica5";
-            Connection conn = java.sql.DriverManager.getConnection(URL, "sa", "password");
+            Connection conn = ConexionBD.getConnection();
 
             String sql = "SELECT id, nombre FROM productos";
             java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
@@ -863,7 +874,7 @@ public class AnadirPedido extends javax.swing.JFrame {
                 return;
             }
         } catch (NumberFormatException e) {
-            System.out.println("La cantidad debe ser un número entero");
+            System.out.println("La cantidad debe ser un numero entero");
             return;
         }
 
@@ -872,8 +883,7 @@ public class AnadirPedido extends javax.swing.JFrame {
         int idProducto = Integer.parseInt(productoSeleccionado.split(" - ")[0]);
 
         try {
-            String URL = "jdbc:h2:file:/data/practica5";
-            Connection conn = java.sql.DriverManager.getConnection(URL, "sa", "password");
+            Connection conn = ConexionBD.getConnection();
 
             String sql = "INSERT INTO pedido (id_usuario, id_producto, cantidad) VALUES (?, ?, ?)";
             java.sql.PreparedStatement stmt = conn.prepareStatement(sql);
