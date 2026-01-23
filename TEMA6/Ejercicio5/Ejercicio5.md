@@ -165,12 +165,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         
         // Crear ventana para mostrar pedidos
         javax.swing.JFrame pedidosFrame = new javax.swing.JFrame("Pedidos Realizados"); 
+        pedidosFrame.setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         pedidosFrame.setSize(600, 400); // Tamaño de la ventana 
         
 
         // Panel principal con BorderLayout para colocar la tabla en el centro
         javax.swing.JPanel panel = new javax.swing.JPanel(new java.awt.BorderLayout());
-
+        
         try {
             String URL_CONEXION = "jdbc:h2:file:/data/practica5";
             String usuario = "sa";
@@ -204,7 +205,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             // Crear tabla Swing con el modelo generado
             javax.swing.JTable table = new javax.swing.JTable(model);
-            
+            panel.add(new javax.swing.JScrollPane(table), java.awt.BorderLayout.CENTER);
+
             rs.close();
             stmt.close();
             conn.close();
@@ -256,6 +258,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton mostrarPedidos;
     // End of variables declaration                   
 }
+
 ```
 
 ## AnadirUsuario.java
