@@ -1,4 +1,8 @@
 # Ejercicio
+> **Nota:**  
+> - **Comprobar que hay en el puerto 8080** -> ``` netstat -ano | findstr :8080 ```  
+> - **Cortar proceso** -> ``` taskkill /PID <PID> /F ```
+
 ## application.properties
 ```
 spring.application.name=practica5
