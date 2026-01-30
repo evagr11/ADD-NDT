@@ -2,7 +2,7 @@
 
 En esta práctica vamos a trabajar con las siguientes tecnologías:
 
-// TODO : insertar foto apuntes
+![Imagen1](IMAGENES/Imagen1.PNG)
 
 ## Parte 1: PostgreSQL (base de datos)
 Acceda a la siguiente página: https://www.postgresql.org/download/ y descargue PostgreSQL.
@@ -30,11 +30,11 @@ A continuación podemos probar a conectar la base de datos previamente creada co
 
 Para ello debemos dirigirnos a la opción de añadir una conexión con una base de datos. Dentro del menú que aparece debemos indicar que nos queremos conectar a una base de datos de tipo PostgreSQL:
 
-// TODO : insertar foto apuntes
+![Imagen2](IMAGENES/Imagen2.PNG)
 
 Tras esto debemos rellenar información acerca nuestra base de datos que previamente hemos configurado, **sustituyendo los datos necesarios por los que esté utilizando en su proyecto**:
 
-// TODO : insertar foto apuntes
+![Imagen3](IMAGENES/Imagen3.PNG)
 
 ![ConfiguracionDBeaver](IMAGENES/CapturaConfiguracionDBeaverP7.PNG)
 
