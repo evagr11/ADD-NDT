@@ -12,15 +12,13 @@
 
 ## PASO 2 — Copiar tu proyecto Spring Boot dentro del Maven
 En tu proyecto Spring Boot original tienes algo así:
-```
-src/main/java/com/example/practica7/Practica7Application.java
-```
+|``` src/main/java/com/example/practica7/Practica7Application.java ```|
+|-----------------------|
 Haz lo siguiente:
 1. Copia todo el paquete com.example.practica7
 2. Pégalo dentro de:
-```
-src/main/java/com/eva/practica7/
-```
+| ``` src/main/java/com/eva/practica7/ ``` |
+|-----------------------|
 Si Eclipse te pregunta si quieres actualizar el package, dile que sí.
 
 Tu clase principal debe quedar así:
@@ -98,9 +96,8 @@ Tu pom.xml debe tener esta estructura mínima:
 
 ## PASO 4 — Configurar application.properties
 En:
-```
-src/main/resources/application.properties
-```
+| ``` src/main/resources/application.properties ``` |
+|-----------------------|
 Pon:
 ```
 spring.application.name=practica7
@@ -116,9 +113,8 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 1. Clic derecho en el proyecto
 2. Run As → Maven Build…
 3. En Goals, escribe:
-```
-spring-boot:run
-```
+| ``` spring-boot:run ``` |
+|-----------------------|
 4. Run.
 
 # Cambiar la version del proyecto
