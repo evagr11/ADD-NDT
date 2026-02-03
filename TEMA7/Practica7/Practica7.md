@@ -70,7 +70,7 @@ Piense en dos conceptos que estén relacionados y represente dichos conceptos co
 
 Ejemplo conceptual de relación: Una película tendrá de atributos id, nombre, duración, etc... Una sesión de cine tendrá los atributos id, hora, id_película donde id_película hace referencia al id de la película de la otra clase persistente.
 
-** Codigo ```Autor.java``` **
+ Codigo ```Autor.java``` 
 ---
 ```java
 package com.example.practica7;
@@ -108,7 +108,7 @@ public class Autor {
 }
 ```
 
-** Codigo ```Libro.java``` **
+ Codigo ```Libro.java``` 
 ---
 ```java
 package com.example.practica7;
@@ -155,6 +155,7 @@ public class Libro {
 ```
 
 Una vez creadas las **clases persistentes**, lance el programa a continuación para que se creen las dos clases persistentes anteriores y haciendo uso de DBeaver muestre que las dos tablas anteriores se han creado:
+
 ![Diagrama](IMAGENES/CapturaDiagramaP7.PNG)
 
 ### Parte 2: Creación de las clases service.
@@ -171,7 +172,8 @@ nueva hora).
 - Obtener uno o varios objetos dado un atributo diferente del id (parámetro).
 
 (En mi ejemplo podríamos tener un método que obtenga las sesiones que empiecen a una determinada hora).
-** Codigo ```AutorService.java``` **
+
+ Codigo ```AutorService.java``` 
 ---
 ```java
 package com.example.practica7;
@@ -316,7 +318,7 @@ public class AutorService {
 }
 ```
 
-** Codigo ```Practica7Application.java``` **
+ Codigo ```LibroService.java``` 
 ---
 ```java
 package com.example.practica7;
@@ -464,7 +466,7 @@ captura mostrada a continuación trabaja sobre mi ejemplo para que sea más clar
 aplicarlo sobre vuestro caso y poner comentarios similares):
 ![Referencia2](IMAGENES/Ref2P7.PNG)
 
-** Codigo ```Practica7Application.java``` **
+ Codigo ```Practica7Application.java``` 
 ---
 ```java
 package com.example.practica7;
