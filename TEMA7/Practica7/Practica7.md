@@ -1,5 +1,9 @@
 # Practica 7
 
+> **Nota:**  
+> - **Comprobar que hay en el puerto 8080** -> ``` netstat -ano | findstr :8080 ```  
+> - **Cortar proceso** -> ``` taskkill /PID <PID> /F ```
+---
 En esta práctica vamos a trabajar con las siguientes tecnologías:
 
 ![Imagen1](IMAGENES/Imagen1.PNG)
