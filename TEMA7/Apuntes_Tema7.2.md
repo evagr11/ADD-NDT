@@ -57,7 +57,7 @@ Para transformar una clase común de Java en una entidad que Hibernate pueda man
 
 - **Atributos y Mapeo de Columnas**: Los atributos de la clase se convertirán en las **columnas** de la tabla.
   - **Clave Primaria**: Se define un atributo ```id``` (de tipo ```Long```) marcado con **```@Id```**. La anotación **```@GeneratedValue(strategy = GenerationType.IDENTITY)```** se usa para que la base de datos genere este número automáticamente.
-  - **Otros atributosv: Se incluyen ```titulo``` (String), ```director``` (String) y ```duracion``` (int).
+  - **Otros atributos**: Se incluyen ```titulo``` (String), ```director``` (String) y ```duracion``` (int).
 
 - **Estructura Interna:**
   - **Constructores**: Es obligatorio crear un **constructor vacío** (por defecto) y es recomendable uno con parámetros para facilitar la creación de objetos.
