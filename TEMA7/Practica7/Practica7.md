@@ -97,12 +97,12 @@ A continuación vamos a probar todas las operaciones que hemos programado median
 Deberá realizar en el método main( ) las siguientes operaciones sobre la clase no relacionada (la
 captura mostrada a continuación trabaja sobre mi ejemplo para que sea más claro. Debéis
 aplicarlo sobre vuestro caso y poner comentarios similares):
-//TODO: CapturaApuntes ![.](IMAGENES/.PNG)
+![Referencia1](IMAGENES/Ref1P7.PNG)
 
 #### Parte 3.2. Operaciones de la clase relacionada
 Deberá realizar en el método main( ) las siguientes operaciones sobre la clase relacionada (la
 captura mostrada a continuación trabaja sobre mi ejemplo para que sea más claro. Debéis
 aplicarlo sobre vuestro caso y poner comentarios similares):
-//TODO: CapturaApuntes ![.](IMAGENES/.PNG)
+![Referencia2](IMAGENES/Ref2P7.PNG)
 
 //TODO: Captura ![.](IMAGENES/.PNG)
