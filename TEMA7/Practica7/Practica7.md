@@ -66,9 +66,10 @@ spring.application.name=practica7
 spring.datasource.url=jdbc:postgresql://localhost:5433/acceso_a_datos
 spring.datasource.username=postgres
 spring.datasource.password=admin
+
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show=true
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgrSQLDialect
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
 ```
 Para lanzar una aplicación Spring Boot deberá añadir la siguiente configuración, recuerde que este paso cambiará si usa Ant o Gradle para su proyecto:
 
@@ -111,6 +112,7 @@ public class Autor {
     }
 
     public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
     public String getNacionalidad() { return nacionalidad; }
@@ -473,78 +475,141 @@ public class Practica7Application implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         
-        System.out.println("\n--- INICIO DE LAS PRUEBAS ---");
-
-        // ==========================================
-        // PARTE 3.1: OPERACIONES CLASE NO RELACIONADA (AUTOR)
-        // ==========================================
+        System.out.println("\n--- INICIO DE LAS PRUEBAS ---\n");
+        // --- AUTORES ---
+        Long idAutor1 = insertarAutor(autorService, "Miguel de Cervantes", "Española");
+        Long idAutor2 = insertarAutor(autorService, "Gabriel García Márquez", "Colombiana");
+        borrarAutor(autorService, idAutor1); 
+        obtenerAutorPorId(autorService, idAutor2); 
+        actualizarNacionalidad(autorService, idAutor2); 
+        buscarPorNombre(autorService); 
         
-        // 1. Insertar un autor
-        Autor autor1 = new Autor("Miguel de Cervantes", "Española");
-        Long idAutor1 = autorService.insertarAutor(autor1);
-        System.out.println("1. Autor insertado con ID: " + idAutor1);
+        // --- LIBROS ---
+        Long idLibro1 = insertarLibro(libroService, idAutor2, "Cien años de soledad", "978-1234");
+        Long idLibro2 = insertarLibro(libroService, idAutor2, "El amor en los tiempos del cólera", "978-5678");
+        borrarLibro(libroService, idLibro1); 
+        obtenerLibroPorId(libroService, idLibro2); 
+        actualizarTitulo(libroService, idLibro2); 
+        buscarLibroPorIsbn(libroService); 
+        System.out.println("\n--- FIN DE LAS PRUEBAS ---");
 
-        // 2. Insertar otro autor
-        Autor autor2 = new Autor("Gabriel Garcia Marquez", "Colombiana");
-        Long idAutor2 = autorService.insertarAutor(autor2);
-        System.out.println("2. Autor insertado con ID: " + idAutor2);
-
-        // 3. Borrar el primero (Cervantes)
-        autorService.borrarAutor(autor1);
-        System.out.println("3. Primer autor borrado.");
-
-        // 4. Obtener por id y mostrar por pantalla la película (Autor en nuestro caso)
-        Autor buscadoId = autorService.obtenerAutorPorId(idAutor2);
-        if (buscadoId != null) {
-            System.out.println("4. Autor obtenido por ID: " + buscadoId.getNombre());
-        }
-
-        // 5. Actualizar un atributo de la película (Autor)
-        autorService.actualizarNacionalidad(idAutor2, "Latinoamericana");
-        System.out.println("5. Atributo actualizado.");
-
-        // 6. Obtener por otro atributo y mostrar por pantalla la película (Autor)
-        List<Autor> listaNom = autorService.obtenerAutoresPorNombre("Gabriel Garcia Marquez");
-        System.out.println("6. Resultado búsqueda por nombre: " + listaNom.size() + " autores encontrados.");
-
-
-        // ==========================================
-        // PARTE 3.2: OPERACIONES CLASE RELACIONADA (LIBRO)
-        // ==========================================
-
-        // 7. Insertar una sesión (Libro) donde se reproduzca la película (Autor) anteriormente creada.
-        // Usamos el autor2 que todavía existe en la BD
-        Libro libro1 = new Libro("Cien años de soledad", "978-1234", autor2);
-        Long idLibro1 = libroService.insertarLibro(libro1);
-        System.out.println("7. Libro insertado con relación al Autor ID: " + autor2.getId());
-
-        // 8. Insertar una sesión (Libro) donde se reproduzca la película (Autor) anteriormente creada para otra hora (u otro ISBN).
-        Libro libro2 = new Libro("El amor en los tiempos del cólera", "978-5678", autor2);
-        Long idLibro2 = libroService.insertarLibro(libro2);
-        System.out.println("8. Segundo libro insertado para el mismo autor.");
-
-        // 9. Borrar la primera sesión (Libro).
-        libroService.borrarLibro(libro1);
-        System.out.println("9. Primer libro borrado.");
-
-        // 10. Obtener por id y mostrar por pantalla la sesión (Libro)
-        Libro libroBuscado = libroService.obtenerLibroPorId(idLibro2);
-        if (libroBuscado != null) {
-            System.out.println("10. Libro obtenido por ID: " + libroBuscado.getTitulo());
-        }
-
-        // 11. Actualizar un atributo de la sesión (Libro)
-        libroService.actualizarTitulo(idLibro2, "El amor en los tiempos del cólera (Edición Especial)");
-        System.out.println("11. Título del libro actualizado.");
-
-        // 12. Obtener por otro atributo y mostrar por pantalla la sesión (Libro)
-        List<Libro> librosIsbn = libroService.obtenerLibrosPorIsbn("978-5678");
-        if (!librosIsbn.isEmpty()) {
-            System.out.println("12. Libro obtenido por ISBN: " + librosIsbn.get(0).getTitulo());
-        }
-
-        System.out.println("--- FIN DE LAS PRUEBAS ---");
     }
+    
+    private Long insertarAutor(AutorService autorService, String nombre, String nacionalidad) {
+
+        Autor autor = new Autor(nombre, nacionalidad);
+        Long id = autorService.insertarAutor(autor);
+
+        System.out.println(
+                "[1] Autor insertado -> " + autor.getNombre() + 
+                " (" + autor.getNacionalidad() + 
+                "), ID: " + id);
+
+        return id;
+    }
+
+    private void borrarAutor(AutorService autorService, Long idAutor) {
+        Autor autor = autorService.obtenerAutorPorId(idAutor);
+        autorService.borrarAutor(autor);
+
+        System.out.println(
+                "[2] Autor borrado -> " + autor.getNombre() + 
+                " (" + autor.getNacionalidad() + 
+                "), ID: " + autor.getId());
+    }
+
+    private void obtenerAutorPorId(AutorService autorService, Long idAutor) {
+        Autor autor = autorService.obtenerAutorPorId(idAutor);
+
+        System.out.println(
+                "[3] Autor obtenido por ID -> " + autor.getNombre() + 
+                " (" + autor.getNacionalidad() + 
+                "), ID: " + autor.getId());
+    }
+    
+    private void actualizarNacionalidad(AutorService autorService, Long idAutor) {
+        Autor autor = autorService.obtenerAutorPorId(idAutor);
+        String anterior = autor.getNacionalidad();
+
+        autorService.actualizarNacionalidad(idAutor, "Latinoamericana");
+
+        System.out.println(
+                "[4] Nacionalidad actualizada -> " + autor.getNombre() + 
+                ": " + anterior + " -> Latinoamericana");
+    }
+    
+    private void buscarPorNombre(AutorService autorService) {
+        List<Autor> autores = autorService.obtenerAutoresPorNombre("Gabriel García Márquez");
+
+        System.out.println("[5] Búsqueda por nombre -> " + autores.size() + " autor(es) encontrado(s)");
+        for (int i = 0; i < autores.size(); i++) {
+            Autor a = autores.get(i);
+            System.out.println(
+                    "     - " + a.getNombre() + 
+                    " (" + a.getNacionalidad() + ")");
+        }
+
+    }
+    
+    private Long insertarLibro(LibroService libroService, Long idAutor, String titulo, String isbn) {
+
+        Autor autor = new Autor();
+        autor.setId(idAutor);
+
+        Libro libro = new Libro(titulo, isbn, autor);
+        Long id = libroService.insertarLibro(libro);
+
+        System.out.println(
+                "[6] Libro insertado -> " + libro.getTitulo() + 
+                " (ISBN: " + libro.getIsbn() + 
+                "), ID: " + id);
+
+        return id;
+    }
+
+    
+    private void borrarLibro(LibroService libroService, Long idLibro) {
+        Libro libro = libroService.obtenerLibroPorId(idLibro);
+        libroService.borrarLibro(libro);
+
+        System.out.println(
+                "[7] Libro borrado -> " + libro.getTitulo() + 
+                " (ISBN: " + libro.getIsbn() + 
+                "), ID: " + libro.getId());
+    }
+
+    private void obtenerLibroPorId(LibroService libroService, Long idLibro) {
+        Libro libro = libroService.obtenerLibroPorId(idLibro);
+
+        System.out.println(
+                "[8] Libro obtenido por ID -> " + libro.getTitulo() + 
+                " (ISBN: " + libro.getIsbn() + ")");
+    }
+
+    private void actualizarTitulo(LibroService libroService, Long idLibro) {
+        Libro libro = libroService.obtenerLibroPorId(idLibro);
+        String anterior = libro.getTitulo();
+
+        libroService.actualizarTitulo(idLibro, anterior + " (Edición Especial)");
+
+        System.out.println(
+                "[9] Título actualizado -> " + anterior + 
+                " -> " + libro.getTitulo());
+    }
+
+    private void buscarLibroPorIsbn(LibroService libroService) {
+        List<Libro> libros = libroService.obtenerLibrosPorIsbn("978-5678");
+
+        System.out.println("[10] Búsqueda por ISBN -> " + libros.size() + " libro(s) encontrado(s)");
+        for (int i = 0; i < libros.size(); i++) {
+            Libro l = libros.get(i);
+            System.out.println(
+                    "     - " + l.getTitulo() + 
+                    " (ISBN: " + l.getIsbn() + ")");
+        }
+
+    }
+
 }
 ```
 
