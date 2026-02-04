@@ -222,11 +222,13 @@ public class AutorService {
         
         try {
             transaction = session.beginTransaction();
-            
+
+			// Borra este autor.
+			// Si ya está dentro de la sesión, bórralo directamente.
+			// Si no lo está, primero mézclalo (merge) para obtener una versión gestionada y luego bórralo.
             session.remove(session.contains(autor) ? autor : session.merge(autor));
             
             transaction.commit();
-            System.out.println("Autor borrado correctamente");
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -244,19 +246,11 @@ public class AutorService {
         
         try {
             transaction = session.beginTransaction();
-            
             Autor autor = session.get(Autor.class, id);
             
-            if (autor != null) {
-                autor.setNacionalidad(nuevaNacionalidad);
-                
-                session.merge(autor);
-                
-                transaction.commit();
-                System.out.println("Autor actualizado con éxito.");
-            } else {
-                System.out.println("No se encontró el autor con ID: " + id);
-            }
+            autor.setNacionalidad(nuevaNacionalidad);
+            session.merge(autor);
+            transaction.commit();
             
         } catch (Exception e) {
             if (transaction != null) {
@@ -276,11 +270,6 @@ public class AutorService {
         try {
             autor = session.get(Autor.class, id);
             
-            if (autor != null) {
-                System.out.println("Autor encontrado: " + autor.getNombre());
-            } else {
-                System.out.println("No existe ningún autor con el ID: " + id);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -298,12 +287,6 @@ public class AutorService {
             listaAutores = session.createQuery("FROM Autor WHERE nombre = :n", Autor.class)
                                   .setParameter("n", nombreParametro)
                                   .list();
-            
-            if (listaAutores != null && !listaAutores.isEmpty()) {
-                System.out.println("Se han encontrado " + listaAutores.size() + " autores.");
-            } else {
-                System.out.println("No se encontraron autores con el nombre: " + nombreParametro);
-            }
             
         } catch (Exception e) {
             e.printStackTrace();
@@ -345,7 +328,7 @@ public class LibroService {
         
         try {
             transaction = session.beginTransaction();
-            session.persist(libro); // Se persiste el libro con su relación al autor
+            session.persist(libro); 
             transaction.commit();
             return libro.getId();
         } catch (Exception e) {
@@ -366,10 +349,8 @@ public class LibroService {
         
         try {
             transaction = session.beginTransaction();
-            // Usamos remove/delete para eliminar el libro
             session.remove(session.contains(libro) ? libro : session.merge(libro));
             transaction.commit();
-            System.out.println("Libro borrado correctamente");
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -387,11 +368,6 @@ public class LibroService {
         
         try {
             libro = session.get(Libro.class, id);
-            if (libro != null) {
-                System.out.println("Libro encontrado: " + libro.getTitulo());
-            } else {
-                System.out.println("No existe ningún libro con el ID: " + id);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -409,14 +385,10 @@ public class LibroService {
             transaction = session.beginTransaction();
             Libro libro = session.get(Libro.class, id);
             
-            if (libro != null) {
-                libro.setTitulo(nuevoTitulo);
-                session.merge(libro); // Sincroniza los cambios
-                transaction.commit();
-                System.out.println("Título del libro actualizado con éxito.");
-            } else {
-                System.out.println("No se encontró el libro con ID: " + id);
-            }
+            libro.setTitulo(nuevoTitulo);
+            session.merge(libro); 
+
+			transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -433,14 +405,11 @@ public class LibroService {
         List<Libro> listaLibros = null;
         
         try {
-            // "Libro" es la clase, "isbn" es el atributo en Java
+            
             listaLibros = session.createQuery("FROM Libro WHERE isbn = :i", Libro.class)
                                   .setParameter("i", isbnParam)
                                   .list();
             
-            if (listaLibros != null && !listaLibros.isEmpty()) {
-                System.out.println("Se han encontrado " + listaLibros.size() + " libros con ese ISBN.");
-            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
