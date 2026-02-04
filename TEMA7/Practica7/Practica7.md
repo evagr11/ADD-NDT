@@ -59,6 +59,17 @@ Rellene en el archivo application.properties con los siguientes campos, sustituy
 
 ![ConfiguracionAppProperties](IMAGENES/CapturaConfiguracionAppPropertiesP7.PNG)
 
+Codigo ```application.properties``` 
+---
+```
+spring.application.name=practica7
+spring.datasource.url=jdbc:postgresql://localhost:5433/acceso_a_datos
+spring.datasource.username=postgres
+spring.datasource.password=admin
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgrSQLDialect
+```
 Para lanzar una aplicación Spring Boot deberá añadir la siguiente configuración, recuerde que este paso cambiará si usa Ant o Gradle para su proyecto:
 
 ![Funcionando](IMAGENES/CapturaFuncionandoP7.PNG)
