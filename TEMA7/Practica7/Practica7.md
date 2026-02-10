@@ -196,6 +196,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+
 import java.util.List;
 
 @Service
@@ -297,10 +302,20 @@ public class AutorService {
         List<Autor> listaAutores = null;
         
         try {
+        	/*
             listaAutores = session.createQuery("FROM Autor WHERE nombre = :n", Autor.class)
                                   .setParameter("n", nombreParametro)
-                                  .list();
-            
+                                  .list();*/
+        	CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        	
+        	CriteriaQuery<Autor> criteriaQuery = criteriaBuilder.createQuery(Autor.class);
+        	
+        	Root<Autor> root = criteriaQuery.from(Autor.class);
+        	
+        	criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("nombre"), nombreParametro));
+        	
+        	listaAutores = session.createQuery(criteriaQuery).getResultList();
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -324,6 +339,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction; 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
+
 import java.util.List;
 
 @Service
@@ -419,9 +439,21 @@ public class LibroService {
         
         try {
             
+        	/*
             listaLibros = session.createQuery("FROM Libro WHERE isbn = :i", Libro.class)
                                   .setParameter("i", isbnParam)
-                                  .list();
+                                  .list();*/
+            
+
+        	CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+        	
+        	CriteriaQuery<Libro> criteriaQuery = criteriaBuilder.createQuery(Libro.class);
+        	
+        	Root<Libro> root = criteriaQuery.from(Libro.class);
+        	
+        	criteriaQuery.select(root).where(criteriaBuilder.equal(root.get("isbn"), isbnParam));
+        	
+        	listaLibros = session.createQuery(criteriaQuery).getResultList();
             
         } catch (Exception e) {
             e.printStackTrace();
