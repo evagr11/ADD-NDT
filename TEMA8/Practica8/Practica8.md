@@ -10,7 +10,22 @@ En la práctica de los temas 7 y 8 creamos dos clases persistentes con sus servi
 ### Parte 1. Creación de la clase controller. (1 punto)
 Cree una clase controlador, para ello incluya las anotaciones correspondientes vistas en teoría. Deberá establecer ya la ruta base al recurso que ofrecerá este controlador y tener como atributo el servicio correspondiente.
 
-// TODO: ![Imagen1](IMAGENES/Imagen1.PNG)
+```java
+package com.example.practica7;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/autores")
+public class AutorController {
+	@Autowired
+	private AutorService autorService;
+	
+
+}
+```
 
 ### Parte 2
 #### Parte 2.1 Creación de un método POST. (1 punto)
@@ -21,14 +36,21 @@ Dentro de la clase controlador vamos a crear nuestro primer método de la API qu
 - **Insertará** un objeto en la base de datos.
 - **Devuelve** el id del objeto insertado así como un código HTTP 201.
 
-// TODO: ![Imagen1](IMAGENES/Imagen1.PNG)
+```java
+    @PostMapping 
+    public ResponseEntity<Long> insertarAutor(@RequestBody Autor autor) { 
+        
+        Long id = autorService.insertarAutor(autor);
+        
+        return new ResponseEntity<>(id, HttpStatus.CREATED);
+    }
+```
 
 #### Parte 2.2 Prueba del método POST. (1 punto)
 A continuación deberá hacer uso de Postman para crear una petición HTTP que inserte un objeto en la base de datos. Antes de realizar esto asegúrese de borrar todo el contenido de la base de datos para una mayor claridad en las capturas y borre todo lo que se añadió en el método main del proyecto en la práctica anterior.
 
-// TODO: ![Imagen1](IMAGENES/Imagen1.PNG)
-// TODO: ![Imagen1](IMAGENES/Imagen1.PNG)
-// TODO: ![Imagen1](IMAGENES/Imagen1.PNG)
+![Imagen1](IMAGENES/Captura1Postman(2.2).PNG)
+![Imagen1](IMAGENES/Captura2Postman(2.2).PNG)
 
 ### Parte 3
 #### Parte 3.1 Creación de un método PUT. (1 punto)
@@ -39,7 +61,17 @@ Dentro de la clase controlador vamos a crear un método de la API que nos permit
 - **Actualizará** un objeto en la base de datos identificado por dicho ID y le pondrá un nuevo valor de atributo (dependerá del método del servicio).
 - **Devuelve** el código HTTP 200.
 
-// TODO: ![Imagen3](IMAGENES/Imagen3.PNG)
+```java
+    @PutMapping("/{id}") 
+    public ResponseEntity<Void> actualizarNacionalidad(
+            @PathVariable Long id,
+            @RequestParam String nuevaNacionalidad
+    ) {
+        autorService.actualizarNacionalidad(id, nuevaNacionalidad);
+        
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+```
 
 #### Parte 3.2 Prueba del método PUT. (1 punto)
 A continuación deberá hacer uso de Postman para crear una petición HTTP que actualice un objeto de la base de datos.
@@ -97,4 +129,5 @@ Dentro de la clase controlador vamos a crear un método de la API que nos permit
 - **Obtendrá** todos los datos de la base de datos que cumplan la condición.
 - **Devuelve**:
     - Si hay datos: Una lista de objetos y el código HTTP 200.
+
     - Si no existen datos: El código HTTP 204.
