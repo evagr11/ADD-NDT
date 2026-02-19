@@ -76,9 +76,8 @@ Dentro de la clase controlador vamos a crear un método de la API que nos permit
 #### Parte 3.2 Prueba del método PUT. (1 punto)
 A continuación deberá hacer uso de Postman para crear una petición HTTP que actualice un objeto de la base de datos.
 
-// TODO: ![Imagen4](IMAGENES/Imagen4.PNG)
-// TODO: ![Imagen5](IMAGENES/Imagen5.PNG)
-// TODO: ![Imagen6](IMAGENES/Imagen6.PNG)
+![Imagen4](IMAGENES/Captura1Postman(3.2).PNG)
+![Imagen5](IMAGENES/Captura2Postman(3.2).PNG)
 
 ### Parte 4
 #### Parte 4.1 Creación de un método GET por ID. (1 punto)
@@ -91,14 +90,24 @@ Dentro de la clase controlador vamos a crear un método de la API que nos permit
     - Si existe un elemento con dicho ID: El objeto y el código HTTP 200.
     - Si no existe: El código HTTP 404.
 
-// TODO: ![Imagen7](IMAGENES/Imagen7.PNG)
+```java
+    @GetMapping("/{id}") 
+    public ResponseEntity<Autor> obtenerAutorPorId(@PathVariable Long id) { 
+
+        Autor autor = autorService.obtenerAutorPorId(id);
+        
+        if (autor != null) {
+            return new ResponseEntity<>(autor, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+```
 
 #### Parte 4.2 Prueba del método GET por ID. (1 punto)
 A continuación deberá hacer uso de Postman para crear una petición HTTP que obtenga un objeto de la base de datos.
 
-// TODO: ![Imagen8](IMAGENES/Imagen8.PNG)
-// TODO: ![Imagen9](IMAGENES/Imagen9.PNG)
-// TODO: ![Imagen10](IMAGENES/Imagen10.PNG)
+![Imagen8](IMAGENES/Captura1Postman(4.2).PNG)
 
 ### Parte 5
 #### Parte 5.1 Creación de un método GET genérico. (1 punto)
@@ -111,15 +120,40 @@ Dentro de la clase controlador vamos a crear un método de la API que nos permit
     - Si hay datos: Una lista de objetos y el código HTTP 200.
     - Si no existen datos: El código HTTP 204.
 
-// TODO: ![Imagen11](IMAGENES/Imagen11.PNG)
-// TODO: ![Imagen12](IMAGENES/Imagen12.PNG)
+```java
+    public List<Autor> obtenerTodos() {
+        Session session = sessionFactory.openSession();
+        List<Autor> lista = null;
+        try {
+            lista = session.createQuery("FROM Autor", Autor.class).list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return lista;
+    }
+```
+
+```java
+    @GetMapping("/") 
+    public ResponseEntity<List<Autor>> obtenerTodos() {
+        
+        List<Autor> autores = autorService.obtenerTodos();
+        
+        if (autores != null && !autores.isEmpty()) {
+            return new ResponseEntity<>(autores, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+```
 
 #### Parte 5.2 Prueba del método GET genérico. (1 punto)
 A continuación deberá hacer uso de Postman para crear una petición HTTP que obtenga todos los datos de la base de datos.
 
-// TODO: ![Imagen13](IMAGENES/Imagen13.PNG)
-// TODO: ![Imagen14](IMAGENES/Imagen14.PNG)
-// TODO: ![Imagen15](IMAGENES/Imagen15.PNG)
+![Imagen13](IMAGENES/Captura1Postman(5.2).PNG)
+![Imagen14](IMAGENES/Captura2Postman(5.2).PNG)
 
 ### Parte 6 Creación de un método GET por otro atributo. (1 punto)
 Dentro de la clase controlador vamos a crear un método de la API que nos permitirá obtener todos los datos de la base de datos que cumplan una determinada condición a través de peticiones HTTP. (Recuerde que ya creamos en nuestro servicio un método para ello, en mi caso era obtener películas con duración menor a X minutos). Para ello deberá crear un método que cumpla con lo siguiente:
@@ -131,3 +165,7 @@ Dentro de la clase controlador vamos a crear un método de la API que nos permit
     - Si hay datos: Una lista de objetos y el código HTTP 200.
 
     - Si no existen datos: El código HTTP 204.
+
+![Imagen13](IMAGENES/Captura1Postman(6.1).PNG)
+![Imagen14](IMAGENES/Captura2Postman(6.1).PNG)
+
