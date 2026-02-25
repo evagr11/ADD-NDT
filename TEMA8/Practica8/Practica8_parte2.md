@@ -19,7 +19,7 @@ Deberá crear un método para insertar elementos.
 
 ```java
     @PostMapping
-    public ResponseEntity<?> insertarLibro(
+    public ResponseEntity<Object> insertarLibro(
             @RequestBody Libro libro,  
             @RequestParam Long idAutor
     ) {
@@ -54,7 +54,7 @@ descriptivo y el código HTTP 404.
 
 ```java
     @PutMapping("/{id}/titulo")
-    public ResponseEntity<?> actualizarTitulo(
+    public ResponseEntity<String> actualizarTitulo(
             @PathVariable Long id, 
             @RequestParam String nuevoTitulo) { 
     	
@@ -84,7 +84,7 @@ mensaje de error descriptivo y el código HTTP 404.
 
 ```java
     @PutMapping("/{id}/autor/{idAutor}")
-    public ResponseEntity<?> actualizarAutor(@PathVariable Long id, @PathVariable Long idAutor) {
+    public ResponseEntity<String> actualizarAutor(@PathVariable Long id, @PathVariable Long idAutor) {
         Libro libro = libroService.obtenerLibroPorId(id);
         if (libro == null) {
             return new ResponseEntity<>("Error: No se encontró el libro con ID " + id, HttpStatus.NOT_FOUND);
@@ -116,7 +116,7 @@ Deberá crear un método para eliminar un elemento. En mi caso:
 
 ```java
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> eliminarLibro(@PathVariable Long id) {
+	public ResponseEntity<String> eliminarLibro(@PathVariable Long id) {
 	    Libro libro = libroService.obtenerLibroPorId(id);
 	     
 	    if (libro == null) {
@@ -149,7 +149,7 @@ Deberá crear un método para obtener un elemento dado un id.
 
 ```java
 	@GetMapping("/{id}")
-	public ResponseEntity<?> obtenerLibroPorId(@PathVariable Long id) {
+	public ResponseEntity<Object> obtenerLibroPorId(@PathVariable Long id) {
 	    Libro libro = libroService.obtenerLibroPorId(id);
 
 	    if (libro != null) {
@@ -173,19 +173,13 @@ Deberá crear un método para obtener un elemento dado un id.
 
 ```java
 	@GetMapping
-	public ResponseEntity<?> obtenerTodos() {
+	public ResponseEntity<List<Libro>> obtenerTodos() {
 	    List<Libro> libros = libroService.obtenerTodos();
 
-	    if (libros != null && !libros.isEmpty()) {
-	        return new ResponseEntity<>(libros, HttpStatus.OK);
-	    } else {
-	        return new ResponseEntity<>(
-	            "No se encontraron libros en la base de datos.", 
-	            HttpStatus.NOT_FOUND
-	        );
-	    }
+	    return new ResponseEntity<>(libros, HttpStatus.OK);
 	}
 ```
 
 ![Imagen1](IMAGENES/Captura6Parte2.PNG)
+
 ![Imagen2](IMAGENES/Captura6.2Parte2.PNG)
