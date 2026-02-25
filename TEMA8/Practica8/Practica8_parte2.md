@@ -97,7 +97,6 @@ mensaje de error descriptivo y el código HTTP 404.
 
         libro.setAutor(nuevoAutor);
         
-        // CAMBIO AQUÍ: Usamos el nuevo método de actualización
         libroService.actualizarLibro(libro); 
         
         return new ResponseEntity<>(HttpStatus.OK);
@@ -183,3 +182,4 @@ Deberá crear un método para obtener un elemento dado un id.
 ![Imagen1](IMAGENES/Captura6Parte2.PNG)
 
 ![Imagen2](IMAGENES/Captura6.2Parte2.PNG)
+
