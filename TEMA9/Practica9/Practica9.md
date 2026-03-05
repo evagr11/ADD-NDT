@@ -1,9 +1,5 @@
 # Practica 9
 
-> **Nota:**  
-> - **Comprobar que hay en el puerto 8080** -> ``` netstat -ano | findstr :8080 ```  
-> - **Cortar proceso** -> ``` taskkill /PID <PID> /F ```
----
 ## Ejercicio 
 En esta práctica vamos a aprender a utilizar una base de datos en línea (nube) no relacional y veremos como establecer la conexión con nuestra aplicación desarrollada en Java haciendo uso de SpringBoot. Concretamente utilizaremos una base de datos MongoDB haciendo uso de sus SaaS (Software as a service) MongoDB Atlas.
 
@@ -51,7 +47,7 @@ Como siempre, nos dirigimos a https://start.spring.io/ y cambiamos los metadatos
 Tras esto, genere el proyecto e inclúyalo en Eclipse.
 
 ### Parte 7. Conectar la aplicación con MongoDB Atlas
-En el archivo “application.properties” añadimos una nueva propiedad “spring.data.mongodb.uri=“ y pegamos sin espacios la cadena de conexión que obtuvimos en el paso 4.
+En el archivo “application.properties” añadimos una nueva propiedad “spring.mongodb.uri=“ y pegamos sin espacios la cadena de conexión que obtuvimos en el paso 4.
 Pruebe a iniciar la aplicación. Si falla revise que la cadena de conexión esté actualizada siguiendo este formato:
 
 ```mongodb+srv://<usuario>:<contraseña>@<cluster>.mongodb.net/<nombreBaseDatos>?retryWrites=true&w=majority```
