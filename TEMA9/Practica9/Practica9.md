@@ -70,7 +70,51 @@ Debe crear este documento llamado “Transaction” que debe tener como campos.
 
 Debe crear adicionalmente un constructor con parámetros para inicializar dichos campos así como todos los getters y setters.
 
-![Imagen8](IMAGENES/Captura8P9.PNG)
+```java
+package com.example.practica9;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Date;
+
+@Document(collection = "AccesoADatosCollection")
+public class Transaction {
+
+    @Id
+    private String id;
+
+    private String description;
+    private double quantity;
+    private boolean income;
+    private Date date;
+
+    public Transaction() {}
+
+    public Transaction(String id, String description, double quantity, boolean income, Date date) {
+        this.id = id;
+        this.description = description;
+        this.quantity = quantity;
+        this.income = income;
+        this.date = date;
+    }
+
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public double getQuantity() { return quantity; }
+    public void setQuantity(double quantity) { this.quantity = quantity; }
+
+    public boolean isIncome() { return income; }
+    public void setIncome(boolean income) { this.income = income; }
+
+    public Date getDate() { return date; }
+    public void setDate(Date date) { this.date = date; }
+}
+```
 
 ### Parte 9. Creación de un repositorio
 A continuación debemos crear un repositorio (MongoRepository) que es una interfaz que proporciona un conjunto de operaciones CRUD (crear, leer, actualizar, eliminar) para interactuar con nuestra base de datos de tipo MongoDB. Recuerde que, como hemos visto en teoría, esta interfaz proporciona por defecto una serie de métodos que podemos utilizar para manipular los datos de la base de datos.
@@ -84,7 +128,42 @@ No obstante vamos a crear algunos métodos personalizados útiles para nuestra a
 - Obtener los gastos de una cantidad menor a una dada.
 - Obtener los gastos de una cantidad mayor a una dada.
 
-![Imagen9](IMAGENES/Captura9P9.PNG)
+```java
+package com.example.practica9;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Date;
+import java.util.List;
+
+@Repository
+public interface TransactionRepository extends MongoRepository<Transaction, String> {
+
+    // Obtener los gastos 
+    List<Transaction> findByIncomeFalse();
+    // Obtener los ingresos
+    List<Transaction> findByIncomeTrue();
+
+    // Obtener todas las transacciones del último mes
+    List<Transaction> findByDateAfter(Date date);
+
+    // Obtener transacciones con valor superior a un valor
+    List<Transaction> findByQuantityGreaterThan(double quantity);
+    // Obtener transacciones con valor entre dos valores
+    List<Transaction> findByQuantityBetween(double min, double max);
+
+    // Obtener gastos entre dos fechas
+    List<Transaction> findByIncomeFalseAndDateBetween(Date start, Date end);
+
+    // Obtener gastos de cantidad menor a una dada
+    List<Transaction> findByIncomeFalseAndQuantityLessThan(double quantity);
+    // Obtener gastos de cantidad mayor a una dada
+    List<Transaction> findByIncomeFalseAndQuantityGreaterThan(double quantity);
+    
+    List<Transaction> findByDescriptionContainingIgnoreCase(String text);
+}
+```
 
 ### Parte 10. Probando la aplicación.
 En la clase main de la aplicación SpringBoot deberá implementar la interfaz “CommandLineRunner” que nos permitirá ejecutar código específico justo después de que la aplicación Spring Boot haya arrancado. Lo utilizaremos para definir el siguiente método:
@@ -106,6 +185,69 @@ Y dentro de este deberá incluir la siguiente funcionalidad:
 
 Debe mostrar por consola los resultados de las consultas de obtención de datos.
 
-![Imagen10](IMAGENES/Captura10P9.PNG)
+```java
+package com.example.practica9;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+
+@SpringBootApplication
+public class Practica9Application implements CommandLineRunner {
+
+    @Autowired
+    private TransactionRepository repository;
+
+    public static void main(String[] args) {
+        SpringApplication.run(Practica9Application.class, args);
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+
+        // Borrar todos los datos
+        repository.deleteAll();
+        
+        Date f1 = new Date(126, 0, 5);   // 5 enero 2026
+        Date f2 = new Date(126, 0, 28);  // 28 enero 2026
+        Date f3 = new Date(126, 1, 10);  // 10 febrero 2026
+        Date f4 = new Date(126, 1, 25);  // 25 febrero 2026
+        Date f5 = new Date(126, 2, 8);   // 8 marzo 2026 
+
+        // Insertar datos de prueba
+        List<Transaction> lista = Arrays.asList(
+                new Transaction(null, "Compra supermercado", 45.50, false, f1),
+                new Transaction(null, "Nómina mensual", 1200.00, true, f2),
+                new Transaction(null, "Compra ordenador", 850.00, false, f3),
+                new Transaction(null, "Venta de bicicleta", 150.00, true, f4),
+                new Transaction(null, "Cena restaurante", 32.00, false, f5)
+        );
+
+        repository.saveAll(lista);
+
+        // Consultas
+        System.out.println("=== INGRESOS ===");
+        repository.findByIncomeTrue().forEach(System.out::println);
+
+        System.out.println("=== GASTOS ===");
+        repository.findByIncomeFalse().forEach(System.out::println);
+
+        System.out.println("=== ENTRE DOS FECHAS ===");
+        repository.findByIncomeFalseAndDateBetween(f1, f4).forEach(System.out::println);
+
+        System.out.println("=== DESCRIPCIÓN CONTIENE 'Compra' ===");
+        repository.findByDescriptionContainingIgnoreCase("Compra").forEach(System.out::println);
+        
+        System.out.println("=== CANTIDAD > 100 ===");
+        repository.findByQuantityGreaterThan(100).forEach(System.out::println);
+    }
+}
+```
 ![Imagen11](IMAGENES/Captura11P9.PNG)
 ![Imagen12](IMAGENES/Captura12P9.PNG)
