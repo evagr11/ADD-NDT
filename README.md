@@ -44,6 +44,37 @@ public class AccesoADatos {
 ```
 
 
+## 🧭 Índice del Módulo
+
+### `BLOQUE I` Fundamentos de Programación
+<p>
+  <a href="#tema-1-ficheros-y-directorios"><img src="https://img.shields.io/badge/📁-Tema_1:_Ficheros-blue?style=for-the-badge&logoColor=white"/></a>
+  <a href="#tema-2-flujos-de-datos-avanzados"><img src="https://img.shields.io/badge/🌊-Tema_2:_Flujos-blue?style=for-the-badge&logoColor=white"/></a>
+  <a href="#tema-3-procesamiento-xml-dom--xpath"><img src="https://img.shields.io/badge/📄-Tema_3:_XML-green?style=for-the-badge&logoColor=white"/></a>
+  <a href="#tema-4-jdbc-y-postgresql"><img src="https://img.shields.io/badge/🐘-Tema_4:_JDBC-orange?style=for-the-badge&logoColor=white"/></a>
+</p>
+
+### `EXAMEN` Evaluación
+<p>
+  <a href="#examen-1er-trimestre"><img src="https://img.shields.io/badge/🎯-1er_Trimestre-red?style=for-the-badge&logoColor=white"/></a>
+</p>
+
+### `BLOQUE II` Desarrollo Empresarial
+<p>
+  <a href="#tema-6-spring-boot--h2"><img src="https://img.shields.io/badge/🍃-Tema_6:_Spring_H2-brightgreen?style=for-the-badge&logoColor=white"/></a>
+  <a href="#tema-7-orm-con-hibernate-y-jpa"><img src="https://img.shields.io/badge/🔄-Tema_7:_ORM_JPA-yellow?style=for-the-badge&logoColor=white"/></a>
+  <a href="#tema-8-apis-rest-con-spring-boot"><img src="https://img.shields.io/badge/🌐-Tema_8:_REST_APIs-blueviolet?style=for-the-badge&logoColor=white"/></a>
+  <a href="#tema-9-nosql-y-mongodb"><img src="https://img.shields.io/badge/🍃-Tema_9:_MongoDB-success?style=for-the-badge&logoColor=white"/></a>
+</p>
+
+### `RECURSOS`
+<p>
+  <a href="#proyectos-destacados"><img src="https://img.shields.io/badge/⭐-Proyectos-gold?style=for-the-badge&logoColor=black"/></a>
+  <a href="#stack-tecnológico-del-módulo"><img src="https://img.shields.io/badge/🛠️-Stack_Tech-gray?style=for-the-badge&logoColor=white"/></a>
+  <a href="#cómo-usar-este-repositorio"><img src="https://img.shields.io/badge/📖-Guía_de_Uso-lightblue?style=for-the-badge&logoColor=black"/></a>
+  <a href="#progreso-del-módulo"><img src="https://img.shields.io/badge/📊-Progreso-ff69b4?style=for-the-badge&logoColor=white"/></a>
+</p>
+
 ## 🗂️ Índice de Contenidos
 
 
