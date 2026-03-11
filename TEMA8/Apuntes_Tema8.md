@@ -1,9 +1,5 @@
 # TEMA 8: Implementación de APIs en Java
 
-Enlaces de apoyo: 
-
-- TODO : [Diferencia entre ODBC y JDBC en Java](https://es.differkinome.com/articles/database/difference-between-odbc-and-jdbc.html)
-
 ## Controllers (Controladores)
 
 En el ecosistema de **Spring Boot**, el controlador es la pieza fundamental para construir una API, ya que actúa como la puerta de entrada a la aplicación.

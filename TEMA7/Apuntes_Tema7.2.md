@@ -1,9 +1,5 @@
 # TEMA 7.2: Explorando el mapeo objeto relacional
 
-Enlaces de apoyo: 
-
-- TODO : [Diferencia entre ODBC y JDBC en Java](https://es.differkinome.com/articles/database/difference-between-odbc-and-jdbc.html)
-
 ## Clases persistentes
 Las **clases persistentes** son aquellas que nos permiten guardar la información de sus objetos directamente en una base de datos. Su objetivo principal es servir de puente **para almacenar los atributos de un objeto** en un sistema de almacenamiento relacional.
 

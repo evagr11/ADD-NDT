@@ -1,9 +1,5 @@
 # TEMA 7.1: El mapeo objeto relacional
 
-Enlaces de apoyo: 
-
-- TODO : [Diferencia entre ODBC y JDBC en Java](https://es.differkinome.com/articles/database/difference-between-odbc-and-jdbc.html)
-
 ## Mapeo objeto relacional (ORM)
 
 ### ¿Qué es el ORM?
