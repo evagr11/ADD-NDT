@@ -16,7 +16,7 @@
   <img src="https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white&color=A78BFA" alt="Hibernate"/>
 </div>
 
----
+<br>
 
 ## 📚 ¿Qué es ADD-NDT?
 
@@ -42,6 +42,8 @@ public class AccesoADatos {
     }
 }
 ```
+
+<br>
 
 ## 🧭 Índice del Módulo
 
@@ -74,9 +76,11 @@ public class AccesoADatos {
   <a href="https://github.com/evagr11/ADD-NDT?tab=readme-ov-file#progreso-del-módulo"><img src="https://img.shields.io/badge/📊-Progreso-ff69b4?style=for-the-badge&logoColor=white"/></a>
 </p>
 
+<br>
+
 ## 🗂️ Índice de Contenidos
 
-
+<br>
 
 ### 🟦 TEMA 1: Ficheros y Directorios
 
@@ -101,6 +105,8 @@ public class AccesoADatos {
 
 ---
 
+<br>
+
 #### 🎬 Ejercicios Tema 1 — cine_granada y días de la semana  
 📍 `ADD-NDT/TEMA1/Ejercicio_Tema1.md`
 
@@ -119,6 +125,8 @@ public class AccesoADatos {
 
 ---
 
+<br>
+
 #### 🍿 Práctica Final 1 — Reviews de películas  
 📍 `ADD-NDT/TEMA1/PRactica_Final1.md` + `# REVIEWS DE PELÍCULAS.txt`
 
@@ -136,6 +144,8 @@ public class AccesoADatos {
 - 💾 Persistencia en `users.txt` y `reviews/Nombre-ID.txt`
 
 ---
+
+<br>
 
 ## 🟦 TEMA 2: Flujos de Datos Avanzados
 
@@ -158,6 +168,7 @@ public class AccesoADatos {
 
 ---
 
+<br>
 
 ## 🟦 TEMA 3: Procesamiento XML (DOM + XPath)
 
@@ -170,6 +181,8 @@ public class AccesoADatos {
 
 ---
 
+<br>
+
 ### 📘 Práctica 1 — Parseador DOM básico  
 📍 `ADD-NDT/TEMA3/Practica.md`
 
@@ -181,6 +194,8 @@ public class AccesoADatos {
 | Recorrido de nodos | Extracción de atributos y elementos |
 
 ---
+
+<br>
 
 ### 🛒 Práctica Final DOM — Gestor de productos  
 📍 `ADD-NDT/TEMA3/PracticaFinalDOM.md`
@@ -196,6 +211,8 @@ public class AccesoADatos {
 
 ---
 
+<br>
+
 ### 📂 Códigos completos  
 📍 `ADD-NDT/TEMA3/PracticaFinalDOM/CodigosCompletos.md`
 
@@ -209,6 +226,7 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
+<br>
 
 ## 🟦 TEMA 4: JDBC y PostgreSQL
 
@@ -220,6 +238,8 @@ Incluye implementación detallada, comentada y funcional.
 </p>
 
 ---
+
+<br>
 
 ### 🗄️ Práctica 4 — Base de datos con PostgreSQL  
 📍 `ADD-NDT/TEMA4/Practica4/Practica4.md`
@@ -235,6 +255,8 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
+<br>
+
 ## 🟦 EXAMEN 1ER TRIMESTRE
 
 <p align="center">
@@ -246,10 +268,10 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
+<br>
+
 ### 📁 Recopilación de archivos del Examen Práctico  
 📍 `ADD-NDT/examen_1er_trimestre/`
-
----
 
 ### 🧩 Configuración mediante XML
 
@@ -264,6 +286,8 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
+<br>
+
 ### 🗄️ Persistencia y Patrón DAO
 
 | Archivo | Función |
@@ -276,6 +300,8 @@ Incluye implementación detallada, comentada y funcional.
 - `ResultSet` para recorrer resultados  
 
 ---
+
+<br>
 
 ### 🧠 Lógica de Aplicación y Control
 
@@ -291,6 +317,8 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
+<br>
+
 ### 👤 Modelo de Datos
 
 | Archivo | Descripción |
@@ -304,6 +332,8 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
+<br>
+
 ## 🟦 TEMA 6: Spring Boot + H2
 
 <p align="center">
@@ -314,6 +344,8 @@ Incluye implementación detallada, comentada y funcional.
 </p>
 
 ---
+
+<br>
 
 ### ⚙️ Práctica 5 — Spring Boot + Base de Datos H2  
 📍 `ADD-NDT/TEMA6/Practica5.md`
@@ -327,6 +359,8 @@ Incluye implementación detallada, comentada y funcional.
 | h2-console | Acceso y administración de tablas desde el navegador |
 
 ---
+
+<br>
 
 ### 🖥️ Ejercicio 5 — Gestión de procesos y persistencia  
 📍 `ADD-NDT/TEMA6/Ejercicio5.md`
@@ -353,6 +387,8 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
+<br>
+
 ## 🟦 TEMA 7: ORM con Hibernate y JPA
 
 <p align="center">
@@ -363,6 +399,8 @@ Incluye implementación detallada, comentada y funcional.
 </p>
 
 ---
+
+<br>
 
 ### 📘 Tema 7.1 — ORM e Hibernate  
 📍 `ADD-NDT/TEMA7/Apuntes_Tema7.1.md`
@@ -375,6 +413,8 @@ Incluye implementación detallada, comentada y funcional.
 | Componentes Hibernate | Objetos de persistencia • `.properties` • HQL |
 
 ---
+
+<br>
 
 ### 🧩 Tema 7.2 — Clases Persistentes y Operaciones  
 📍 `ADD-NDT/TEMA7/Apuntes_Tema7.2.md`
@@ -408,6 +448,8 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
+<br>
+
 ### 🛠️ Práctica 7 — Relaciones y CRUD  
 📍 `ADD-NDT/TEMA7/Practica7.md`
 
@@ -420,6 +462,8 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
+<br>
+
 ### 🖥️ Guía de Eclipse y Spring Boot  
 📍 `ADD-NDT/TEMA7/ApuntesEclipse.md`
 
@@ -429,6 +473,7 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
+<br>
 
 ## 🟦 TEMA 8: APIs REST con Spring Boot
 
@@ -441,6 +486,8 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
+<br>
+
 ### 📘 Apuntes del Tema 8 — Implementación de APIs en Java  
 📍 `ADD-NDT/TEMA8/Apuntes_Tema8.md`
 
@@ -452,6 +499,8 @@ Incluye implementación detallada, comentada y funcional.
 | `ResponseEntity` + `HttpStatus` | Respuestas personalizadas (200, 201, 204, 404) |
 
 ---
+
+<br>
 
 ### 🛠️ Práctica 8.1 — Construcción de API básica  
 📍 `ADD-NDT/TEMA8/Practica8_parte1.md`
@@ -466,6 +515,8 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
+<br>
+
 ### 🔗 Práctica 8.2 — APIs con Relaciones y Claves Externas  
 📍 `ADD-NDT/TEMA8/Practica8_parte2.md`
 
@@ -479,6 +530,8 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
+<br>
+
 ### 📂 Códigos Completos y Documentación de Pruebas  
 📍 `ADD-NDT/TEMA8/`
 
@@ -488,6 +541,7 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
+<br>
 
 ## 🟦 TEMA 9: NoSQL y MongoDB
 
@@ -500,6 +554,8 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
+<br>
+
 ### 📘 Tema 9.1 — Introducción a NoSQL  
 📍 `ADD-NDT/TEMA9/Apuntes_Tema9.1.md`
 
@@ -511,6 +567,8 @@ Incluye implementación detallada, comentada y funcional.
 | Tipos de NoSQL | Clave‑valor • Documentos • Columnas • Grafos |
 
 ---
+
+<br>
 
 ### 🍃 Tema 9.2 — MongoDB y Teorema de CAP  
 📍 `ADD-NDT/TEMA9/Apuntes_Tema9.2.md`
@@ -536,6 +594,8 @@ MongoDB se clasifica como **CP**.
 
 ---
 
+<br>
+
 ### 🛠️ Tema 9.3 — Integración con Spring Boot  
 📍 `ADD-NDT/TEMA9/Apuntes_Tema9.3.md`
 
@@ -549,6 +609,8 @@ MongoDB se clasifica como **CP**.
 | `MongoRepository` | CRUD automático + consultas por keywords |
 
 ---
+
+<br>
 
 ### 💰 Práctica 9 — Control de Gastos e Ingresos  
 📍 `ADD-NDT/TEMA9/Practica9.md`
@@ -574,6 +636,8 @@ MongoDB se clasifica como **CP**.
 
 ---
 
+<br>
+
 ## 🚀 Proyectos Destacados
 
 <div align="center">
@@ -593,6 +657,8 @@ MongoDB se clasifica como **CP**.
 </div>
 
 ---
+
+<br>
 
 ## 🛠️ Stack Tecnológico del Módulo
 
@@ -614,6 +680,8 @@ MongoDB se clasifica como **CP**.
 
 ---
 
+<br>
+
 ## 📖 Cómo usar este repositorio
 
 ```bash
@@ -634,6 +702,8 @@ cd ADD-NDT/TEMA9    # MongoDB
 
 ---
 
+<br>
+
 ## 🎯 Progreso del Módulo
 
 - [x] Tema 1: Ficheros y directorios
@@ -647,6 +717,8 @@ cd ADD-NDT/TEMA9    # MongoDB
 - [x] Tema 9: MongoDB
 
 ---
+
+<br>
 
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0072ff,50:ff00ff,100:7a2ff7&height=100&section=footer" width="100%"/>
