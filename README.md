@@ -94,6 +94,8 @@ public class AccesoADatos {
 #### 📚 Ejercicio_Final1 — Biblioteca con directorios y ficheros  
 📍 `ADD-NDT/TEMA1/Ejercicio_Final1.md`
 
+<div align="center">
+  
 | 🎯 Concepto | 📝 Descripción |
 |:-----------:|:--------------|
 | 📁 | Creación de directorios y subdirectorios |
@@ -103,6 +105,8 @@ public class AccesoADatos {
 | 🎲 | Escritura/lectura con **acceso aleatorio** (Ciencia) |
 | 📋 | Listado de contenido de la biblioteca |
 
+</div>
+
 ---
 
 <br>
@@ -110,6 +114,8 @@ public class AccesoADatos {
 #### 🎬 Ejercicios Tema 1 — cine_granada y días de la semana  
 📍 `ADD-NDT/TEMA1/Ejercicio_Tema1.md`
 
+<div align="center">
+  
 | # | Ejercicio | Tipo |
 |:-:|:----------|:----:|
 | 1 | Crear directorio `cine_granada` | <img src="https://img.shields.io/badge/DIR-FFE66D?style=flat-square&labelColor=2C3E50"/> |
@@ -122,6 +128,7 @@ public class AccesoADatos {
 | 8 | Escritura/lectura con **bytes** | <img src="https://img.shields.io/badge/BYTES-FF8B94?style=flat-square&labelColor=2C3E50"/> |
 | 9 | Escritura/lectura con **caracteres** | <img src="https://img.shields.io/badge/CHARS-FFD93D?style=flat-square&labelColor=2C3E50"/> |
 | 10 | Escritura/lectura con **acceso aleatorio** | <img src="https://img.shields.io/badge/RANDOM-6BCB77?style=flat-square&labelColor=2C3E50"/> |
+</div>
 
 ---
 
@@ -158,6 +165,8 @@ public class AccesoADatos {
 ### 📘 Preguntas sobre flujos de datos  
 📍 `ADD-NDT/TEMA2/Preguntas.md`
 
+<div align="center">
+  
 | 🔧 Componente | 📝 Descripción |
 |--------------|----------------|
 | `PushbackReader` | Métodos `read()` y `unread()` para devolver caracteres al buffer. |
@@ -165,6 +174,8 @@ public class AccesoADatos {
 | `StreamTokenizer` | Tokenización de texto: palabras, números y símbolos. |
 | `LineNumberReader` | Lectura con contador automático de líneas. |
 | `DataInputStream` | Lectura de datos primitivos; importancia del orden y manejo de **EOFException**. |
+
+</div>
 
 ---
 
@@ -186,12 +197,16 @@ public class AccesoADatos {
 ### 📘 Práctica 1 — Parseador DOM básico  
 📍 `ADD-NDT/TEMA3/Practica.md`
 
+<div align="center">
+  
 | 🔧 Componente | 📝 Descripción |
 |--------------|----------------|
 | `DocumentBuilderFactory` / `DocumentBuilder` | Creación del parser DOM |
 | Lectura DOM | Carga del XML en memoria como árbol |
 | XPath (`/class/student`) | Consultas selectivas sobre nodos |
 | Recorrido de nodos | Extracción de atributos y elementos |
+
+</div>
 
 ---
 
@@ -216,11 +231,15 @@ public class AccesoADatos {
 ### 📂 Códigos completos  
 📍 `ADD-NDT/TEMA3/PracticaFinalDOM/CodigosCompletos.md`
 
+<div align="center">
+  
 | Archivo | Contenido |
 |---------|-----------|
 | `DOMManager` | Gestión centralizada del parser DOM |
 | `GestorProductosXML` | CRUD completo sobre productos |
 | `productos.xml` | Ejemplo real de estructura XML |
+
+</div>
 
 Incluye implementación detallada, comentada y funcional.
 
@@ -244,6 +263,8 @@ Incluye implementación detallada, comentada y funcional.
 ### 🗄️ Práctica 4 — Base de datos con PostgreSQL  
 📍 `ADD-NDT/TEMA4/Practica4/Practica4.md`
 
+<div align="center">
+  
 | 🔧 Tarea | 📝 Descripción |
 |---------|----------------|
 | 🛠️ Instalación | Instalación y configuración inicial de PostgreSQL |
@@ -252,6 +273,8 @@ Incluye implementación detallada, comentada y funcional.
 | 🔌 Conexión JDBC | Conexión desde Java mediante `DriverManager` |
 | 🔍 Consultas SQL | Ejecución de consultas `SELECT` |
 | 📜 Código completo | Implementación en Java para listar usuarios |
+
+</div>
 
 ---
 
@@ -275,9 +298,13 @@ Incluye implementación detallada, comentada y funcional.
 
 ### 🧩 Configuración mediante XML
 
+<div align="center">
+  
 | Archivo | Función |
 |---------|---------|
 | `ConfiguracionXML.java` | Lectura y procesamiento del archivo `config.xml` usando **DOM** y **XPath** |
+
+</div>
 
 **Incluye:**
 - Carga del XML  
@@ -290,9 +317,13 @@ Incluye implementación detallada, comentada y funcional.
 
 ### 🗄️ Persistencia y Patrón DAO
 
+<div align="center">
+  
 | Archivo | Función |
 |---------|---------|
 | `AlumnoDAO.java` | Gestión de la comunicación con la base de datos |
+
+</div>
 
 **Tecnologías utilizadas:**
 - **JDBC**  
@@ -305,9 +336,13 @@ Incluye implementación detallada, comentada y funcional.
 
 ### 🧠 Lógica de Aplicación y Control
 
+<div align="center">
+  
 | Archivo | Función |
 |---------|---------|
 | `Main.java` | Punto de entrada de la aplicación |
+
+</div>
 
 **Responsabilidades:**
 - Cargar configuración desde XML  
@@ -321,10 +356,14 @@ Incluye implementación detallada, comentada y funcional.
 
 ### 👤 Modelo de Datos
 
+<div align="center">
+  
 | Archivo | Descripción |
 |---------|-------------|
 | `Alumno.java` | Representación del objeto de negocio Alumno |
 
+</div
+  
 **Incluye:**
 - Atributos del alumno  
 - Constructores  
@@ -350,13 +389,17 @@ Incluye implementación detallada, comentada y funcional.
 ### ⚙️ Práctica 5 — Spring Boot + Base de Datos H2  
 📍 `ADD-NDT/TEMA6/Practica5.md`
 
-| 🔧 Tarea | 📝 Descripción |
-|---------|----------------|
-| Configuración inicial | Creación del proyecto con **Spring Initializr** (Maven + Java) |
-| Dependencias | H2 Database • Spring Data JPA • Spring Web |
-| `application.properties` | Activación de la BD embebida y la consola **H2 Console** |
-| `data.sql` | Creación automática de tablas y datos iniciales |
-| h2-console | Acceso y administración de tablas desde el navegador |
+<div align="center">
+  
+  | 🔧 Tarea | 📝 Descripción |
+  |---------|----------------|
+  | Configuración inicial | Creación del proyecto con **Spring Initializr** (Maven + Java) |
+  | Dependencias | H2 Database • Spring Data JPA • Spring Web |
+  | `application.properties` | Activación de la BD embebida y la consola **H2 Console** |
+  | `data.sql` | Creación automática de tablas y datos iniciales |
+  | h2-console | Acceso y administración de tablas desde el navegador |
+
+</div>
 
 ---
 
@@ -371,11 +414,15 @@ Incluye implementación detallada, comentada y funcional.
 
 #### 🗄️ Tablas de la base de datos
 
+<div align="center">
+  
 | Tabla | Campos |
 |-------|--------|
 | **Usuarios** | `id` (SERIAL), `nombre` (VARCHAR) |
 | **Productos** | `id`, `nombre`, `precio` (DECIMAL) |
 | **Pedido** | Relaciones con usuarios y productos mediante **claves foráneas** |
+
+</div>
 
 #### 🧩 Clases Java implementadas
 
