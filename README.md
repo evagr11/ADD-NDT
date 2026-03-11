@@ -716,8 +716,6 @@ cd ADD-NDT/TEMA9    # MongoDB
 - [x] Tema 8: APIs REST
 - [x] Tema 9: MongoDB
 
----
-
 <br>
 
 <div align="center">
