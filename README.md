@@ -545,14 +545,14 @@ Incluye implementación detallada, comentada y funcional.
 
 ## 🟦 TEMA 9: NoSQL y MongoDB
 
+<br>
+
 <p align="center">
   <img src="https://img.shields.io/badge/NoSQL-4ECDC4?style=flat-square&logo=mongodb&logoColor=white"/>
   <img src="https://img.shields.io/badge/MongoDB-34D399?style=flat-square&logo=mongodb&logoColor=white"/>
   <img src="https://img.shields.io/badge/CAP_Theorem-A78BFA?style=flat-square"/>
   <img src="https://img.shields.io/badge/Spring_Data_MongoDB-FF6B6B?style=flat-square"/>
 </p>
-
----
 
 <br>
 
@@ -568,7 +568,6 @@ Incluye implementación detallada, comentada y funcional.
 
 ---
 
-<br>
 
 ### 🍃 Tema 9.2 — MongoDB y Teorema de CAP  
 📍 `ADD-NDT/TEMA9/Apuntes_Tema9.2.md`
@@ -594,7 +593,6 @@ MongoDB se clasifica como **CP**.
 
 ---
 
-<br>
 
 ### 🛠️ Tema 9.3 — Integración con Spring Boot  
 📍 `ADD-NDT/TEMA9/Apuntes_Tema9.3.md`
@@ -610,7 +608,6 @@ MongoDB se clasifica como **CP**.
 
 ---
 
-<br>
 
 ### 💰 Práctica 9 — Control de Gastos e Ingresos  
 📍 `ADD-NDT/TEMA9/Practica9.md`
@@ -633,6 +630,7 @@ MongoDB se clasifica como **CP**.
 
 #### 🚀 Inicialización automática
 - Uso de **CommandLineRunner** para cargar y limpiar datos de prueba en la nube.
+<br>
 
 ---
 
@@ -656,11 +654,11 @@ MongoDB se clasifica como **CP**.
 
 </div>
 
----
-
 <br>
 
 ## 🛠️ Stack Tecnológico del Módulo
+
+<br>
 
 <div align="center">
 
@@ -677,8 +675,6 @@ MongoDB se clasifica como **CP**.
 ![DBeaver](https://img.shields.io/badge/DBeaver-382923?style=for-the-badge&logo=dbeaver&logoColor=white&color=F472B6)
 
 </div>
-
----
 
 <br>
 
@@ -700,8 +696,6 @@ cd ADD-NDT/TEMA9    # MongoDB
 
 > 💡 **Tip**: Cada tema contiene archivos `.md` con el código completo y explicaciones paso a paso.
 
----
-
 <br>
 
 ## 🎯 Progreso del Módulo
@@ -715,8 +709,6 @@ cd ADD-NDT/TEMA9    # MongoDB
 - [x] Tema 7: Hibernate/JPA
 - [x] Tema 8: APIs REST
 - [x] Tema 9: MongoDB
-
-<br>
 
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0072ff,50:ff00ff,100:7a2ff7&height=100&section=footer" width="100%"/>
