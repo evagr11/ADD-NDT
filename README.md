@@ -46,7 +46,7 @@ public class AccesoADatos {
 
 ### `BLOQUE I` Fundamentos de Programación
 <p>
-  <a href="?tab=readme-ov-file#tema-1-ficheros-y-directorios"><img src="https://img.shields.io/badge/📁-Tema_1:_Ficheros-blue?style=for-the-badge&logoColor=white"/></a>
+  <a ref="[#tema-1-ficheros-y-directorios](https://github.com/evagr11/ADD-NDT?tab=readme-ov-file#-tema-1-ficheros-y-directorios)"><img src="https://img.shields.io/badge/📁-Tema_1:_Ficheros-blue?style=for-the-badge&logoColor=white"/></a>
   <a href="#tema-2-flujos-de-datos-avanzados"><img src="https://img.shields.io/badge/🌊-Tema_2:_Flujos-blue?style=for-the-badge&logoColor=white"/></a>
   <a href="#tema-3-procesamiento-xml-dom--xpath"><img src="https://img.shields.io/badge/📄-Tema_3:_XML-green?style=for-the-badge&logoColor=white"/></a>
   <a href="#tema-4-jdbc-y-postgresql"><img src="https://img.shields.io/badge/🐘-Tema_4:_JDBC-orange?style=for-the-badge&logoColor=white"/></a>
