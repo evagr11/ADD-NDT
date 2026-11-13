@@ -4,14 +4,14 @@
 
 <div align="center">
   <a href="https://github.com/evagr11/ADD-NDT" target="_blank"><img src="https://img.shields.io/badge/Ver_Código-1A1625?style=for-the-badge&logo=github&logoColor=white" alt="Ver Código"></a>
-  <a href="#-índice-de-contenidos"><img src="https://img.shields.io/badge/Ir_al_Índice-A78BFA?style=for-the-badge&logo=bookstack&logoColor=white" alt="Ir al Índice"></a>
+  <a href="#índice-de-contenidos"><img src="https://img.shields.io/badge/Ir_al_Índice-A78BFA?style=for-the-badge&logo=bookstack&logoColor=white" alt="Ir al Índice"></a>
 </div>
 
 <div align="center">
   <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com/?font=JetBrains+Mono&size=18&duration=3500&pause=800&color=C084FC&center=true&vCenter=true&width=600&lines=Java+%E2%86%94+Ficheros+%E2%86%94+XML;JDBC+%E2%86%94+PostgreSQL+%E2%86%94+Hibernate;Spring+Boot+%E2%86%94+APIs+REST;NoSQL+con+MongoDB+Atlas" alt="Typing SVG" /></a>
 </div>
 
-# 🚀 Sobre el Proyecto
+# Sobre el Proyecto
 
 **ADD-NDT** reúne todos mis apuntes, prácticas y exámenes de la asignatura **Acceso a Datos**: desde leer y escribir ficheros en Java hasta montar una API REST con Spring Boot o guardar documentos en MongoDB Atlas. Cada tema tiene sus apuntes en Markdown y cada práctica incluye el código completo, explicado paso a paso, con capturas de la ejecución.
 
@@ -37,12 +37,12 @@ public class AccesoADatos {
 }
 ```
 
-✨ **Características principales:**
+**Características principales:**
 
-*   📖 **Apuntes por tema:** Teoría resumida en Markdown, con ejemplos de código para cada concepto.
-*   💻 **Prácticas completas:** Enunciado, código final comentado y capturas de cada paso (NetBeans, DBeaver, Postman, H2 Console, MongoDB Atlas).
-*   🎯 **Exámenes prácticos:** Los dos exámenes trimestrales con su código y el proyecto comprimido.
-*   🧭 **Recorrido completo:** De los ficheros planos a las bases de datos relacionales, el ORM, las APIs REST y el NoSQL, en el orden en que se aprende.
+*   **Apuntes por tema:** Teoría resumida en Markdown, con ejemplos de código para cada concepto.
+*   **Prácticas completas:** Enunciado, código final comentado y capturas de cada paso (NetBeans, DBeaver, Postman, H2 Console, MongoDB Atlas).
+*   **Exámenes prácticos:** Los dos exámenes trimestrales con su código y el proyecto comprimido.
+*   **Recorrido completo:** De los ficheros planos a las bases de datos relacionales, el ORM, las APIs REST y el NoSQL, en el orden en que se aprende.
 
 ### Galería de Prácticas
 
@@ -54,13 +54,13 @@ public class AccesoADatos {
 | <img src="TEMA7/Practica7/IMAGENES/CapturaDiagramaP7.PNG" alt="Diagrama entidad-relación de las tablas libros y autores en DBeaver" width="100%"/> | <img src="TEMA6/Practica5/IMAGENES/CapturaBBDDTabla.PNG" alt="Consola H2 con la tabla PRODUCTO" width="100%"/> |
 | *Relación 1:N generada con JPA.* | *Base de datos embebida accesible desde el navegador.* |
 
-# 🧠 Contexto del Proyecto
+# Contexto del Proyecto
 
 Este repositorio corresponde a la asignatura **Acceso a Datos** del ciclo formativo de **Desarrollo de Aplicaciones Multiplataforma (DAM)**, que cursé en **New Digital Talent** (de ahí el **NDT** del nombre). Empezó con la evaluación inicial de la asignatura y fue creciendo tema a tema hasta el examen del segundo trimestre.
 
 Lo organicé así para tener en un único sitio la teoría, el código que funciona y la prueba de que funciona, y poder volver a cualquier tema sin tener que rehacer la práctica. La siguiente etapa de la asignatura está en [acceso-a-datos](https://github.com/evagr11/acceso-a-datos).
 
-# 🛠️ Stack Tecnológico
+# Stack Tecnológico
 
 <div align="center">
   <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white&color=C084FC" alt="Java"/>
@@ -91,37 +91,37 @@ Lo organicé así para tener en un único sitio la teoría, el código que funci
 
 </div>
 
-# 🧭 Índice de Contenidos
+# Índice de Contenidos
 
 <div align="center">
 
 | Bloque | Tema | Contenido |
 | :----: | :--- | :-------- |
-| 🧪 | [Evaluación inicial](#-evaluación-inicial) | Prueba de nivel de Java y SQL |
-| `I` | [Tema 1: Ficheros y Directorios](#-tema-1-ficheros-y-directorios) | Apuntes · 2 ejercicios · Práctica final |
-| `I` | [Tema 2: Flujos de Datos](#-tema-2-flujos-de-datos-avanzados) | Apuntes · Preguntas |
-| `I` | [Tema 3: XML con DOM y XPath](#-tema-3-procesamiento-xml-dom--xpath) | Apuntes · Práctica · Práctica final |
-| `I` | [Tema 4: JDBC y PostgreSQL](#-tema-4-jdbc-y-postgresql) | Apuntes · Práctica 4 · Práctica final |
-| 🎯 | [Examen 1er Trimestre](#-examen-1er-trimestre) | XML + DAO + JDBC |
-| `II` | [Tema 6: Spring Boot + H2](#-tema-6-spring-boot--h2) | Práctica 5 · Ejercicio 5 |
-| `II` | [Tema 7: ORM con Hibernate y JPA](#-tema-7-orm-con-hibernate-y-jpa) | Apuntes 7.1 y 7.2 · Práctica 7 · Guía de Eclipse |
-| `II` | [Tema 8: APIs REST](#-tema-8-apis-rest-con-spring-boot) | Apuntes · Práctica 8 (2 partes) · Códigos |
-| `II` | [Tema 9: NoSQL y MongoDB](#-tema-9-nosql-y-mongodb) | Apuntes 9.1, 9.2 y 9.3 · Práctica 9 |
-| 🎯 | [Examen 2º Trimestre](#-examen-2º-trimestre) | Spring Data MongoDB |
+| | [Evaluación inicial](#evaluación-inicial) | Prueba de nivel de Java y SQL |
+| `I` | [Tema 1: Ficheros y Directorios](#tema-1-ficheros-y-directorios) | Apuntes · 2 ejercicios · Práctica final |
+| `I` | [Tema 2: Flujos de Datos](#tema-2-flujos-de-datos-avanzados) | Apuntes · Preguntas |
+| `I` | [Tema 3: XML con DOM y XPath](#tema-3-procesamiento-xml-dom--xpath) | Apuntes · Práctica · Práctica final |
+| `I` | [Tema 4: JDBC y PostgreSQL](#tema-4-jdbc-y-postgresql) | Apuntes · Práctica 4 · Práctica final |
+| | [Examen 1er Trimestre](#examen-1er-trimestre) | XML + DAO + JDBC |
+| `II` | [Tema 6: Spring Boot + H2](#tema-6-spring-boot--h2) | Práctica 5 · Ejercicio 5 |
+| `II` | [Tema 7: ORM con Hibernate y JPA](#tema-7-orm-con-hibernate-y-jpa) | Apuntes 7.1 y 7.2 · Práctica 7 · Guía de Eclipse |
+| `II` | [Tema 8: APIs REST](#tema-8-apis-rest-con-spring-boot) | Apuntes · Práctica 8 (2 partes) · Códigos |
+| `II` | [Tema 9: NoSQL y MongoDB](#tema-9-nosql-y-mongodb) | Apuntes 9.1, 9.2 y 9.3 · Práctica 9 |
+| | [Examen 2º Trimestre](#examen-2º-trimestre) | Spring Data MongoDB |
 
 </div>
 
 <br>
 
-## 🧪 Evaluación Inicial
+## Evaluación Inicial
 
-📍 [`EvaluaciónInicial.md`](EvaluaciónInicial.md)
+[`EvaluaciónInicial.md`](EvaluaciónInicial.md)
 
 Prueba de nivel no calificable del inicio de la asignatura, con preguntas de **Programación (Java)**: clases y objetos, excepciones, herencia… y de **Bases de Datos (SQL)**.
 
 ---
 
-## 🟦 Tema 1: Ficheros y Directorios
+## Tema 1: Ficheros y Directorios
 
 <p align="center">
   <img src="https://img.shields.io/badge/Java_IO-FF6B6B?style=flat-square&logo=openjdk&logoColor=white"/>
@@ -130,26 +130,26 @@ Prueba de nivel no calificable del inicio de la asignatura, con preguntas de **P
   <img src="https://img.shields.io/badge/Acceso_Aleatorio-F38181?style=flat-square"/>
 </p>
 
-📖 **Apuntes:** [`TEMA1/Apuntes_Tema1.md`](TEMA1/Apuntes_Tema1.md): clase `File`, acceso secuencial por bytes y por caracteres y acceso aleatorio.
+**Apuntes:** [`TEMA1/Apuntes_Tema1.md`](TEMA1/Apuntes_Tema1.md): clase `File`, acceso secuencial por bytes y por caracteres y acceso aleatorio.
 
-### 📚 Ejercicio Final 1: Biblioteca con directorios y ficheros
-📍 [`TEMA1/Ejercicio_Final1.md`](TEMA1/Ejercicio_Final1.md)
+### Ejercicio Final 1: Biblioteca con directorios y ficheros
+[`TEMA1/Ejercicio_Final1.md`](TEMA1/Ejercicio_Final1.md)
 
 <div align="center">
 
-| 🎯 Concepto | 📝 Descripción |
-| :---------: | :------------- |
-| 📁 | Creación de directorios y subdirectorios |
-| 📄 | Creación de archivos `catalogo.txt` |
-| 🔢 | Escritura y lectura con **bytes** (Novela) |
-| 🔤 | Escritura y lectura con **caracteres** (Poesía) |
-| 🎲 | Escritura y lectura con **acceso aleatorio** (Ciencia) |
-| 📋 | Listado del contenido de la biblioteca |
+| Descripción |
+| :------------- |
+| Creación de directorios y subdirectorios |
+| Creación de archivos `catalogo.txt` |
+| Escritura y lectura con **bytes** (Novela) |
+| Escritura y lectura con **caracteres** (Poesía) |
+| Escritura y lectura con **acceso aleatorio** (Ciencia) |
+| Listado del contenido de la biblioteca |
 
 </div>
 
-### 🎬 Ejercicios Tema 1: cine_granada y días de la semana
-📍 [`TEMA1/Ejercicios_Tema1.md`](TEMA1/Ejercicios_Tema1.md)
+### Ejercicios Tema 1: cine_granada y días de la semana
+[`TEMA1/Ejercicios_Tema1.md`](TEMA1/Ejercicios_Tema1.md)
 
 <div align="center">
 
@@ -168,8 +168,8 @@ Prueba de nivel no calificable del inicio de la asignatura, con preguntas de **P
 
 </div>
 
-### 🍿 Práctica Final 1: Reviews de películas
-📍 [`TEMA1/Practica_Final1.md`](TEMA1/Practica_Final1.md)
+### Práctica Final 1: Reviews de películas
+[`TEMA1/Practica_Final1.md`](TEMA1/Practica_Final1.md)
 
 <p align="center">
   <img src="https://img.shields.io/badge/POO-FF6B6B?style=for-the-badge&logo=openjdk&logoColor=white"/>
@@ -177,16 +177,16 @@ Prueba de nivel no calificable del inicio de la asignatura, con preguntas de **P
   <img src="https://img.shields.io/badge/Persistencia-95E1D3?style=for-the-badge"/>
 </p>
 
-**🎭 Clases principales:** `User` | `Review`
+**Clases principales:** `User` | `Review`
 
-**⚙️ Funcionalidades:**
-- 👤 Crear y eliminar usuarios
-- ⭐ Añadir y mostrar reviews
-- 💾 Persistencia en `users.txt` y `reviews/Nombre-ID.txt`
+**Funcionalidades:**
+- Crear y eliminar usuarios
+- Añadir y mostrar reviews
+- Persistencia en `users.txt` y `reviews/Nombre-ID.txt`
 
 ---
 
-## 🟦 Tema 2: Flujos de Datos Avanzados
+## Tema 2: Flujos de Datos Avanzados
 
 <p align="center">
   <img src="https://img.shields.io/badge/Streams-4ECDC4?style=flat-square"/>
@@ -194,14 +194,14 @@ Prueba de nivel no calificable del inicio de la asignatura, con preguntas de **P
   <img src="https://img.shields.io/badge/Lectura_&_Procesamiento-95E1D3?style=flat-square"/>
 </p>
 
-📖 **Apuntes:** [`TEMA2/Apuntes_Tema2.md`](TEMA2/Apuntes_Tema2.md): streams de ficheros y arrays, tuberías entre hilos, análisis de flujos y datos primitivos.
+**Apuntes:** [`TEMA2/Apuntes_Tema2.md`](TEMA2/Apuntes_Tema2.md): streams de ficheros y arrays, tuberías entre hilos, análisis de flujos y datos primitivos.
 
-### 📘 Preguntas sobre flujos de datos
-📍 [`TEMA2/Preguntas.md`](TEMA2/Preguntas.md)
+### Preguntas sobre flujos de datos
+[`TEMA2/Preguntas.md`](TEMA2/Preguntas.md)
 
 <div align="center">
 
-| 🔧 Componente | 📝 Descripción |
+| Componente | Descripción |
 | :------------ | :------------- |
 | `PushbackReader` | Métodos `read()` y `unread()` para devolver caracteres al buffer |
 | `PipedInputStream` / `PipedOutputStream` | Comunicación entre hilos mediante tuberías |
@@ -213,7 +213,7 @@ Prueba de nivel no calificable del inicio de la asignatura, con preguntas de **P
 
 ---
 
-## 🟦 Tema 3: Procesamiento XML (DOM + XPath)
+## Tema 3: Procesamiento XML (DOM + XPath)
 
 <p align="center">
   <img src="https://img.shields.io/badge/XML-4ECDC4?style=flat-square&logo=xml&logoColor=white"/>
@@ -222,14 +222,14 @@ Prueba de nivel no calificable del inicio de la asignatura, con preguntas de **P
   <img src="https://img.shields.io/badge/Transformers-F38181?style=flat-square"/>
 </p>
 
-📖 **Apuntes:** [`TEMA3/Apuntes_Tema3.md`](TEMA3/Apuntes_Tema3.md)
+**Apuntes:** [`TEMA3/Apuntes_Tema3.md`](TEMA3/Apuntes_Tema3.md)
 
-### 📘 Práctica: Parseador DOM básico
-📍 [`TEMA3/Practica.md`](TEMA3/Practica.md)
+### Práctica: Parseador DOM básico
+[`TEMA3/Practica.md`](TEMA3/Practica.md)
 
 <div align="center">
 
-| 🔧 Componente | 📝 Descripción |
+| Componente | Descripción |
 | :------------ | :------------- |
 | `DocumentBuilderFactory` / `DocumentBuilder` | Creación del parser DOM |
 | Lectura DOM | Carga del XML en memoria como árbol |
@@ -238,13 +238,13 @@ Prueba de nivel no calificable del inicio de la asignatura, con preguntas de **P
 
 </div>
 
-### 🛒 Práctica Final DOM: Gestor de productos
-📍 [`TEMA3/PracticaFinalDOM/PracticaFinalDOM.md`](TEMA3/PracticaFinalDOM/PracticaFinalDOM.md) · Código: [`CodigosCompletos.md`](TEMA3/PracticaFinalDOM/CodigosCompletos.md)
+### Práctica Final DOM: Gestor de productos
+[`TEMA3/PracticaFinalDOM/PracticaFinalDOM.md`](TEMA3/PracticaFinalDOM/PracticaFinalDOM.md) · Código: [`CodigosCompletos.md`](TEMA3/PracticaFinalDOM/CodigosCompletos.md)
 
-**🧭 Menú interactivo:**
-1. 📄 Mostrar productos
-2. ➕ Añadir producto
-3. 💲 Incrementar precios por categoría
+**Menú interactivo:**
+1. Mostrar productos
+2. Añadir producto
+3. Incrementar precios por categoría
 
 <div align="center">
 
@@ -260,7 +260,7 @@ Los cambios se guardan en el XML con `Transformer`, e incluye validaciones y mej
 
 ---
 
-## 🟦 Tema 4: JDBC y PostgreSQL
+## Tema 4: JDBC y PostgreSQL
 
 <p align="center">
   <img src="https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white"/>
@@ -269,31 +269,31 @@ Los cambios se guardan en el XML con `Transformer`, e incluye validaciones y mej
   <img src="https://img.shields.io/badge/DAO-95E1D3?style=flat-square"/>
 </p>
 
-📖 **Apuntes:** [`TEMA4/Apuntes_Tema4.md`](TEMA4/Apuntes_Tema4.md)
+**Apuntes:** [`TEMA4/Apuntes_Tema4.md`](TEMA4/Apuntes_Tema4.md)
 
-### 🗄️ Práctica 4: Base de datos con PostgreSQL
-📍 [`TEMA4/Practica4/Practica4.md`](TEMA4/Practica4/Practica4.md)
+### Práctica 4: Base de datos con PostgreSQL
+[`TEMA4/Practica4/Practica4.md`](TEMA4/Practica4/Practica4.md)
 
 <div align="center">
 
-| 🔧 Tarea | 📝 Descripción |
+| Tarea | Descripción |
 | :------- | :------------- |
-| 🛠️ Instalación | Instalación y configuración inicial de PostgreSQL |
-| 👤 Usuario y BD | Creación del usuario y de la base de datos `tema4` |
-| 🧱 Tabla `Usuarios` | Definición y creación de la tabla |
-| 🔌 Conexión JDBC | Conexión desde Java mediante `DriverManager` |
-| 🔍 Consultas SQL | Ejecución de consultas `SELECT` |
+| Instalación | Instalación y configuración inicial de PostgreSQL |
+| Usuario y BD | Creación del usuario y de la base de datos `tema4` |
+| Tabla `Usuarios` | Definición y creación de la tabla |
+| Conexión JDBC | Conexión desde Java mediante `DriverManager` |
+| Consultas SQL | Ejecución de consultas `SELECT` |
 
 </div>
 
-### 🧩 Práctica Final: Conexión, tablas y DAO
-📍 [`TEMA4/PracticaFinal.md`](TEMA4/PracticaFinal.md)
+### Práctica Final: Conexión, tablas y DAO
+[`TEMA4/PracticaFinal.md`](TEMA4/PracticaFinal.md)
 
 Configuración de la conexión, creación de las tablas, clases auxiliares, **clases DAO** y una clase `Main` con menú para manejarlo todo.
 
 ---
 
-## 🎯 Examen 1er Trimestre
+## Examen 1er Trimestre
 
 <p align="center">
   <img src="https://img.shields.io/badge/XML-4ECDC4?style=flat-square&logo=xml&logoColor=white"/>
@@ -302,7 +302,7 @@ Configuración de la conexión, creación de las tablas, clases auxiliares, **cl
   <img src="https://img.shields.io/badge/Java-95E1D3?style=flat-square&logo=openjdk&logoColor=white"/>
 </p>
 
-📍 [`examen_1er_trimestre/examen.md`](examen_1er_trimestre/examen.md) · Proyecto: [`examen_1er_trimestre.zip`](examen_1er_trimestre/examen_1er_trimestre.zip)
+[`examen_1er_trimestre/examen.md`](examen_1er_trimestre/examen.md) · Proyecto: [`examen_1er_trimestre.zip`](examen_1er_trimestre/examen_1er_trimestre.zip)
 
 <div align="center">
 
@@ -317,7 +317,7 @@ Configuración de la conexión, creación de las tablas, clases auxiliares, **cl
 
 ---
 
-## 🟦 Tema 6: Spring Boot + H2
+## Tema 6: Spring Boot + H2
 
 <p align="center">
   <img src="https://img.shields.io/badge/Spring_Initializr-6DB33F?style=flat-square&logo=spring&logoColor=white"/>
@@ -326,12 +326,12 @@ Configuración de la conexión, creación de las tablas, clases auxiliares, **cl
   <img src="https://img.shields.io/badge/Spring_Web-FF6B6B?style=flat-square"/>
 </p>
 
-### ⚙️ Práctica 5: Spring Boot + Base de Datos H2
-📍 [`TEMA6/Practica5/Practica5.md`](TEMA6/Practica5/Practica5.md)
+### Práctica 5: Spring Boot + Base de Datos H2
+[`TEMA6/Practica5/Practica5.md`](TEMA6/Practica5/Practica5.md)
 
 <div align="center">
 
-| 🔧 Tarea | 📝 Descripción |
+| Tarea | Descripción |
 | :------- | :------------- |
 | Configuración inicial | Proyecto creado con **Spring Initializr** (Maven + Java) |
 | Dependencias | H2 Database • Spring Data JPA • Spring Web |
@@ -341,10 +341,10 @@ Configuración de la conexión, creación de las tablas, clases auxiliares, **cl
 
 </div>
 
-### 🖥️ Ejercicio 5: Gestión de procesos y persistencia
-📍 [`TEMA6/Ejercicio5/Ejercicio5.md`](TEMA6/Ejercicio5/Ejercicio5.md)
+### Ejercicio 5: Gestión de procesos y persistencia
+[`TEMA6/Ejercicio5/Ejercicio5.md`](TEMA6/Ejercicio5/Ejercicio5.md)
 
-**🧪 Notas técnicas:** comprobar el puerto **8080** con `netstat` y cerrar procesos por **PID** con `taskkill`.
+**Notas técnicas:** comprobar el puerto **8080** con `netstat` y cerrar procesos por **PID** con `taskkill`.
 
 <div align="center">
 
@@ -356,11 +356,11 @@ Configuración de la conexión, creación de las tablas, clases auxiliares, **cl
 
 </div>
 
-**🧩 Clases Java:** `MenuPrincipal` · `AnadirUsuario` · `AnadirProducto` · `AnadirPedido` · `ConexionBD`
+**Clases Java:** `MenuPrincipal` · `AnadirUsuario` · `AnadirProducto` · `AnadirPedido` · `ConexionBD`
 
 ---
 
-## 🟦 Tema 7: ORM con Hibernate y JPA
+## Tema 7: ORM con Hibernate y JPA
 
 <p align="center">
   <img src="https://img.shields.io/badge/Hibernate-A78BFA?style=flat-square&logo=hibernate&logoColor=white"/>
@@ -369,12 +369,12 @@ Configuración de la conexión, creación de las tablas, clases auxiliares, **cl
   <img src="https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white"/>
 </p>
 
-### 📘 Tema 7.1: ORM e Hibernate
-📍 [`TEMA7/Apuntes_Tema7.1.md`](TEMA7/Apuntes_Tema7.1.md)
+### Tema 7.1: ORM e Hibernate
+[`TEMA7/Apuntes_Tema7.1.md`](TEMA7/Apuntes_Tema7.1.md)
 
 <div align="center">
 
-| 🔧 Concepto | 📝 Descripción |
+| Concepto | Descripción |
 | :---------- | :------------- |
 | ORM | Puente entre la POO y las bases de datos relacionales |
 | Equivalencias | **Clases ↔ Tablas**, **Objetos ↔ Filas**, **Atributos ↔ Columnas** |
@@ -383,27 +383,27 @@ Configuración de la conexión, creación de las tablas, clases auxiliares, **cl
 
 </div>
 
-### 🧩 Tema 7.2: Clases persistentes y operaciones
-📍 [`TEMA7/Apuntes_Tema7.2.md`](TEMA7/Apuntes_Tema7.2.md)
+### Tema 7.2: Clases persistentes y operaciones
+[`TEMA7/Apuntes_Tema7.2.md`](TEMA7/Apuntes_Tema7.2.md)
 
 <div align="center">
 
 | Apartado | Contenido |
 | :------- | :-------- |
-| 🧱 Clases persistentes | Constructor por defecto, atributo **ID** y encapsulamiento |
-| 🏷️ Anotaciones JPA | `@Entity` · `@Table` · `@Id` · `@GeneratedValue` |
-| 🗄️ `application.properties` | URL de conexión, usuario, contraseña y `spring.jpa.hibernate.ddl-auto` |
-| 🔄 Operaciones CRUD | `.persist()` · `.get()` · `.delete()` · `.merge()` |
-| 🔍 Consultas avanzadas | `CriteriaBuilder` · `CriteriaQuery` · `Root` |
+| Clases persistentes | Constructor por defecto, atributo **ID** y encapsulamiento |
+| Anotaciones JPA | `@Entity` · `@Table` · `@Id` · `@GeneratedValue` |
+| `application.properties` | URL de conexión, usuario, contraseña y `spring.jpa.hibernate.ddl-auto` |
+| Operaciones CRUD | `.persist()` · `.get()` · `.delete()` · `.merge()` |
+| Consultas avanzadas | `CriteriaBuilder` · `CriteriaQuery` · `Root` |
 
 </div>
 
-### 🛠️ Práctica 7: Relaciones y CRUD
-📍 [`TEMA7/Practica7/Practica7.md`](TEMA7/Practica7/Practica7.md)
+### Práctica 7: Relaciones y CRUD
+[`TEMA7/Practica7/Practica7.md`](TEMA7/Practica7/Practica7.md)
 
 <div align="center">
 
-| 🔧 Tarea | 📝 Descripción |
+| Tarea | Descripción |
 | :------- | :------------- |
 | Instalación | PostgreSQL + DBeaver |
 | Proyecto | Creación con Spring Initializr + JPA |
@@ -412,14 +412,14 @@ Configuración de la conexión, creación de las tablas, clases auxiliares, **cl
 
 </div>
 
-### 🖥️ Guía de Eclipse y Spring Boot
-📍 [`TEMA7/Practica7/ApuntesEclipse.md`](TEMA7/Practica7/ApuntesEclipse.md)
+### Guía de Eclipse y Spring Boot
+[`TEMA7/Practica7/ApuntesEclipse.md`](TEMA7/Practica7/ApuntesEclipse.md)
 
 Creación de proyectos **Maven**, configuración del **JDK 17** y solución de errores de versión del JRE.
 
 ---
 
-## 🟦 Tema 8: APIs REST con Spring Boot
+## Tema 8: APIs REST con Spring Boot
 
 <p align="center">
   <img src="https://img.shields.io/badge/REST_API-4ECDC4?style=flat-square&logo=springboot&logoColor=white"/>
@@ -428,12 +428,12 @@ Creación de proyectos **Maven**, configuración del **JDK 17** y solución de e
   <img src="https://img.shields.io/badge/HTTP_Status-F38181?style=flat-square"/>
 </p>
 
-### 📘 Apuntes del Tema 8: Implementación de APIs en Java
-📍 [`TEMA8/Apuntes_Tema8.md`](TEMA8/Apuntes_Tema8.md)
+### Apuntes del Tema 8: Implementación de APIs en Java
+[`TEMA8/Apuntes_Tema8.md`](TEMA8/Apuntes_Tema8.md)
 
 <div align="center">
 
-| 🔧 Concepto | 📝 Descripción |
+| Concepto | Descripción |
 | :---------- | :------------- |
 | `@RestController` | Punto de entrada de la API |
 | `@RequestMapping` | Rutas con buenas prácticas (sustantivos, minúsculas, guiones) |
@@ -442,8 +442,8 @@ Creación de proyectos **Maven**, configuración del **JDK 17** y solución de e
 
 </div>
 
-### 🛠️ Práctica 8.1: API básica
-📍 [`TEMA8/Practica8/Practica8_parte1.md`](TEMA8/Practica8/Practica8_parte1.md)
+### Práctica 8.1: API básica
+[`TEMA8/Practica8/Practica8_parte1.md`](TEMA8/Practica8/Practica8_parte1.md)
 
 <div align="center">
 
@@ -457,8 +457,8 @@ Creación de proyectos **Maven**, configuración del **JDK 17** y solución de e
 
 </div>
 
-### 🔗 Práctica 8.2: APIs con relaciones y claves externas
-📍 [`TEMA8/Practica8/Practica8_parte2.md`](TEMA8/Practica8/Practica8_parte2.md)
+### Práctica 8.2: APIs con relaciones y claves externas
+[`TEMA8/Practica8/Practica8_parte2.md`](TEMA8/Practica8/Practica8_parte2.md)
 
 <div align="center">
 
@@ -472,14 +472,14 @@ Creación de proyectos **Maven**, configuración del **JDK 17** y solución de e
 
 </div>
 
-### 📂 Códigos completos y pruebas
-📍 [`TEMA8/Practica8/CódigosCompletosP8.md`](TEMA8/Practica8/CódigosCompletosP8.md)
+### Códigos completos y pruebas
+[`TEMA8/Practica8/CódigosCompletosP8.md`](TEMA8/Practica8/CódigosCompletosP8.md)
 
 Clases finales **Autor** y **Libro** con sus controladores y servicios, capturas de **Postman** con pruebas reales (POST, PUT, DELETE, GET) y las tablas *autores* y *libros* en **DBeaver**.
 
 ---
 
-## 🟦 Tema 9: NoSQL y MongoDB
+## Tema 9: NoSQL y MongoDB
 
 <p align="center">
   <img src="https://img.shields.io/badge/NoSQL-4ECDC4?style=flat-square&logo=mongodb&logoColor=white"/>
@@ -488,12 +488,12 @@ Clases finales **Autor** y **Libro** con sus controladores y servicios, capturas
   <img src="https://img.shields.io/badge/Spring_Data_MongoDB-FF6B6B?style=flat-square"/>
 </p>
 
-### 📘 Tema 9.1: Introducción a NoSQL
-📍 [`TEMA9/Apuntes_Tema9.1.md`](TEMA9/Apuntes_Tema9.1.md)
+### Tema 9.1: Introducción a NoSQL
+[`TEMA9/Apuntes_Tema9.1.md`](TEMA9/Apuntes_Tema9.1.md)
 
 <div align="center">
 
-| 🔧 Concepto | 📝 Descripción |
+| Concepto | Descripción |
 | :---------- | :------------- |
 | NoSQL | Bases de datos con esquemas flexibles (JSON) |
 | Clúster | Escalabilidad, alta disponibilidad, resiliencia y balanceadores |
@@ -502,22 +502,22 @@ Clases finales **Autor** y **Libro** con sus controladores y servicios, capturas
 
 </div>
 
-### 🍃 Tema 9.2: MongoDB y teorema CAP
-📍 [`TEMA9/Apuntes_Tema9.2.md`](TEMA9/Apuntes_Tema9.2.md)
+### Tema 9.2: MongoDB y teorema CAP
+[`TEMA9/Apuntes_Tema9.2.md`](TEMA9/Apuntes_Tema9.2.md)
 
 <div align="center">
 
 | Apartado | Contenido |
 | :------- | :-------- |
-| 🧩 Características | Almacenamiento en **BSON**, **replica sets** y escalabilidad horizontal |
-| 📚 Terminología | **Colección** ≈ tabla · **Documento** ≈ fila |
-| 🔺 Teorema CAP | **C**onsistencia · Disponibilidad (**A**vailability) · Tolerancia a **P**articiones. MongoDB es **CP** |
-| ☁️ MongoDB Atlas | Servicio en la nube (SaaS) para gestionar clústeres |
+| Características | Almacenamiento en **BSON**, **replica sets** y escalabilidad horizontal |
+| Terminología | **Colección** ≈ tabla · **Documento** ≈ fila |
+| Teorema CAP | **C**onsistencia · Disponibilidad (**A**vailability) · Tolerancia a **P**articiones. MongoDB es **CP** |
+| MongoDB Atlas | Servicio en la nube (SaaS) para gestionar clústeres |
 
 </div>
 
-### 🛠️ Tema 9.3: Integración con Spring Boot
-📍 [`TEMA9/Apuntes_Tema9.3.md`](TEMA9/Apuntes_Tema9.3.md)
+### Tema 9.3: Integración con Spring Boot
+[`TEMA9/Apuntes_Tema9.3.md`](TEMA9/Apuntes_Tema9.3.md)
 
 <div align="center">
 
@@ -532,23 +532,23 @@ Clases finales **Autor** y **Libro** con sus controladores y servicios, capturas
 
 </div>
 
-### 💰 Práctica 9: Control de gastos e ingresos
-📍 [`TEMA9/Practica9/Practica9.md`](TEMA9/Practica9/Practica9.md)
+### Práctica 9: Control de gastos e ingresos
+[`TEMA9/Practica9/Practica9.md`](TEMA9/Practica9/Practica9.md)
 
 <div align="center">
 
 | Apartado | Contenido |
 | :------- | :-------- |
-| 🧱 Configuración | Clúster en **MongoDB Atlas**, usuario administrador y conexión remota |
-| 🧩 Clase `Transaction` | ID, descripción, cantidad, tipo (ingreso o gasto) y fecha |
-| 🔍 Repositorio | Filtros por fechas, por descripción (por ejemplo, "Compra") y por rangos de cantidad |
-| 🚀 Inicialización | `CommandLineRunner` para limpiar y cargar datos de prueba en la nube |
+| Configuración | Clúster en **MongoDB Atlas**, usuario administrador y conexión remota |
+| Clase `Transaction` | ID, descripción, cantidad, tipo (ingreso o gasto) y fecha |
+| Repositorio | Filtros por fechas, por descripción (por ejemplo, "Compra") y por rangos de cantidad |
+| Inicialización | `CommandLineRunner` para limpiar y cargar datos de prueba en la nube |
 
 </div>
 
 ---
 
-## 🎯 Examen 2º Trimestre
+## Examen 2º Trimestre
 
 <p align="center">
   <img src="https://img.shields.io/badge/MongoDB_Atlas-34D399?style=flat-square&logo=mongodb&logoColor=white"/>
@@ -556,7 +556,7 @@ Clases finales **Autor** y **Libro** con sus controladores y servicios, capturas
   <img src="https://img.shields.io/badge/MongoRepository-A78BFA?style=flat-square"/>
 </p>
 
-📍 [`examen_2do_trimestre/examen.md`](examen_2do_trimestre/examen.md) · Proyecto: [`examen_2o_trimestre.zip`](examen_2do_trimestre/examen_2o_trimestre.zip)
+[`examen_2do_trimestre/examen.md`](examen_2do_trimestre/examen.md) · Proyecto: [`examen_2o_trimestre.zip`](examen_2do_trimestre/examen_2o_trimestre.zip)
 
 Aplicación Spring Boot que guarda **Pokémon** en una colección de MongoDB Atlas y los consulta con métodos derivados de `MongoRepository`.
 
@@ -572,7 +572,7 @@ Aplicación Spring Boot que guarda **Pokémon** en una colección de MongoDB Atl
 
 <br>
 
-# 📂 Estructura del Proyecto
+# Estructura del Proyecto
 
 ```bash
 ADD-NDT/
@@ -614,13 +614,13 @@ ADD-NDT/
 └── README.md
 ```
 
-> 💡 Cada práctica guarda sus capturas en una carpeta `IMAGENES/` junto a su `.md`.
+> Cada práctica guarda sus capturas en una carpeta `IMAGENES/` junto a su `.md`.
 
-# 🚀 Cómo Utilizar el Proyecto
+# Cómo Utilizar el Proyecto
 
 ### 1. Leerlo en GitHub
 
-Todo el contenido está en Markdown, así que se puede leer directamente desde GitHub: entra en el [índice](#-índice-de-contenidos) y pulsa en el tema o la práctica que quieras.
+Todo el contenido está en Markdown, así que se puede leer directamente desde GitHub: entra en el [índice](#índice-de-contenidos) y pulsa en el tema o la práctica que quieras.
 
 ### 2. Clonarlo en local
 
